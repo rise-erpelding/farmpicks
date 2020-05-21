@@ -25,28 +25,10 @@ class App extends Component {
     })
   }
 
-  searchFarms = query => {
-    //do stuff
-  }
-
-  addFarm = newFarm => {
-    this.setState({
-      farms: [...this.state.farms, newFarm]
-    })
-  }
-
-  updateFarm = updatedFarm => {
-    this.setState({
-      farms: this.state.farms.map(farm =>
-        (farm.id !== updatedFarm.id) ? farm : updatedFarm
-        )
-    })
-  }
-
-  componentDidMount() {
-    let url
+  getFarms = query => {
+    const url = config.API_ENDPOINT + '/farms/?' + query
     
-    fetch(config.API_ENDPOINT + '/farms', {
+    fetch(url, {
       method: 'GET',
       headers: {
         'content-type': 'application/json'
@@ -66,12 +48,49 @@ class App extends Component {
       })
   }
 
+  addFarm = newFarm => {
+    this.setState({
+      farms: [...this.state.farms, newFarm]
+    })
+  }
+
+  updateFarm = updatedFarm => {
+    this.setState({
+      farms: this.state.farms.map(farm =>
+        (farm.id !== updatedFarm.id) ? farm : updatedFarm
+        )
+    })
+  }
+
+  // componentDidMount() {
+  //   let url
+    
+  //   fetch(config.API_ENDPOINT + '/farms', {
+  //     method: 'GET',
+  //     headers: {
+  //       'content-type': 'application/json'
+  //       //auth will go here
+  //     }
+  //   })
+  //     .then(res => {
+  //       if (!res.ok) {
+  //         return res.json().then(error => Promise.reject(error))
+  //       }
+  //       return res.json()
+  //     })
+  //     .then(this.setFarms)
+  //     .catch(error => {
+  //       console.error(error)
+  //       this.setState({ error })
+  //     })
+  // }
+
 
   render() {
 
     const contextValue = {
       farms: this.state.farms,
-      searchFarms: this.searchFarms,
+      getFarms: this.getFarms,
       addFarm: this.addFarm,
       updateFarm: this.updateFarm,
     }

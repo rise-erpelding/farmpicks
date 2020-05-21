@@ -2,7 +2,7 @@ import React from 'react'
 
 const FarmContext = React.createContext({
   farms: [],
-  searchFarms: () => {},
+  getFarms: () => {},
   addFarm: () => {},
   updateFarm: () => {},
 })
