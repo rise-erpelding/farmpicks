@@ -4,7 +4,7 @@ import FarmContext from '../../contexts/FarmContext'
 import NavBar from '../NavBar/NavBar'
 import SearchPage from '../../routes/SearchPage/SearchPage'
 import ResultsPage from '../../routes/ResultsPage/ResultsPage'
-// import FarmPage from '../../routes/FarmPage/FarmPage'
+import FarmPage from '../../routes/FarmPage/FarmPage'
 // import AddFarmPage from '../../routes/AddFarmPage/AddFarmPage'
 // import UpdateFarmPage from '../../routes/UpdateFarmPage/UpdateFarmPage'
 // import NotFoundPage from '../../routes/NotFoundPage/NotFoundPage'
@@ -62,30 +62,6 @@ class App extends Component {
     })
   }
 
-  // componentDidMount() {
-  //   let url
-    
-  //   fetch(config.API_ENDPOINT + '/farms', {
-  //     method: 'GET',
-  //     headers: {
-  //       'content-type': 'application/json'
-  //       //auth will go here
-  //     }
-  //   })
-  //     .then(res => {
-  //       if (!res.ok) {
-  //         return res.json().then(error => Promise.reject(error))
-  //       }
-  //       return res.json()
-  //     })
-  //     .then(this.setFarms)
-  //     .catch(error => {
-  //       console.error(error)
-  //       this.setState({ error })
-  //     })
-  // }
-
-
   render() {
 
     const contextValue = {
@@ -105,17 +81,17 @@ class App extends Component {
             value={contextValue}>
             <Switch>
               <Route 
-                path={'/'}
+                exact path={'/'}
                 component={SearchPage}
               />
               <Route 
-                path={'/farms'}
+                exact path={'/farms'}
                 component={ResultsPage}
               />
-              {/* <Route 
+              <Route 
                 path={'/farms/:farmId'}
                 component={FarmPage}
-              /> */}
+              />
               {/* <Route 
                 path={'/add-farm'}
                 component={AddFarmPage}

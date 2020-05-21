@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import FarmContext from '../../contexts/FarmContext'
 
 class SearchBar extends Component {
+  static defaultProps = {
+    onChangePage: () => {}
+  }
 
   static contextType = FarmContext
 
@@ -20,6 +23,9 @@ class SearchBar extends Component {
     e.preventDefault()
     const formattedQuery = 'q=' + this.state.searchTerm
     this.context.getFarms(formattedQuery)
+    this.props.onChangePage()
+    // console.log('hi')
+    // console.log(this.props.history)
     // this.props.history.push('/farms')
   }
 
