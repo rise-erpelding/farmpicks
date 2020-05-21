@@ -5,9 +5,9 @@ import NavBar from '../NavBar/NavBar'
 import SearchPage from '../../routes/SearchPage/SearchPage'
 import ResultsPage from '../../routes/ResultsPage/ResultsPage'
 import FarmPage from '../../routes/FarmPage/FarmPage'
-// import AddFarmPage from '../../routes/AddFarmPage/AddFarmPage'
-// import UpdateFarmPage from '../../routes/UpdateFarmPage/UpdateFarmPage'
-// import NotFoundPage from '../../routes/NotFoundPage/NotFoundPage'
+import AddFarmPage from '../../routes/AddFarmPage/AddFarmPage'
+import UpdateFarmPage from '../../routes/UpdateFarmPage/UpdateFarmPage'
+import NotFoundPage from '../../routes/NotFoundPage/NotFoundPage'
 import config from '../../config'
 import './App.css'
 
@@ -92,17 +92,17 @@ class App extends Component {
                 path={'/farms/:farmId'}
                 component={FarmPage}
               />
-              {/* <Route 
+              <Route 
                 path={'/add-farm'}
                 component={AddFarmPage}
-              /> */}
-              {/* <Route
+              />
+              <Route
                 path={'/edit/:farmId'}
                 component={UpdateFarmPage}
-              /> */}
-              {/* <Route 
+              />
+              <Route 
                 component={NotFoundPage}
-              />                                     */}
+              />                                    
             </Switch>
           </FarmContext.Provider>
         </main>
