@@ -1,0 +1,36 @@
+.dropdown {
+  width: 20%;
+  padding: 10px;
+  margin: auto;
+}
+
+.dropdown__button {
+  font-size: 1em;
+  border: none;
+}
+
+.dropdown__content {
+  display: none;
+}
+
+.dropdown__products,
+.dropdown__purchase-options {
+  list-style: none;
+  padding: 0;
+  padding: 5px;
+  margin: 0;
+}
+
+.dropdown__products > li,
+.dropdown__purchase-options > li {
+  background-color: lightgray;
+  margin: 3px;
+}
+
+.dropdown > h5 {
+  margin: 0;
+}
+
+.dropdown:hover .dropdown__content {
+  display: block;
+}

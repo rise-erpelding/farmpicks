@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import SearchBar from '../../components/SearchBar/SearchBar'
 import Dropdown from '../../components/Dropdown/Dropdown'
+import './SearchPage.css'
 
 class SearchPage extends Component {
 
@@ -11,7 +12,7 @@ class SearchPage extends Component {
 
   render () {
     return (
-      <div>
+      <div className="search-page">
         <SearchBar onChangePage={this.changePage} />
         <Dropdown /> 
       </div>
