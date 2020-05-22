@@ -1,0 +1,11 @@
+.results-page__farms-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 90%;
+  margin: auto;
+}
+
+.results-page__farms-list > li {
+  border: 1px solid black;
+}

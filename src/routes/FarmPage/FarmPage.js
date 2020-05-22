@@ -25,9 +25,9 @@ class FarmPage extends Component {
     return (
       <section>
         <div onClick={this.goBack}>X</div>
-        <img src={farmInfo.cover_image} alt="farm cover"></img>
+        <img src={farmInfo.cover_image} alt="farm cover" />
         <h2>{farmInfo.farm_name}</h2>
-        <img src={farmInfo.profile_image} alt="farm avatar"></img>
+        <img src={farmInfo.profile_image} alt="farm avatar" />
         <div>{farmInfo.products.join(', ')}</div>
         <address>
           {farmInfo.address_1}<br />

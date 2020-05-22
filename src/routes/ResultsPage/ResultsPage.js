@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import FarmContext from '../../contexts/FarmContext'
 import FarmListItem from '../../components/FarmListItem/FarmListItem'
 import SearchBar from '../../components/SearchBar/SearchBar'
+import './ResultsPage.css'
 
 class ResultsPage extends Component {
 
@@ -19,10 +20,10 @@ class ResultsPage extends Component {
       </li>
       )
     return (
-      <div>
+      <div className="results-page">
         <SearchBar />
         <div>A link to add a farm if you can't find it</div>
-        <ul>
+        <ul className="results-page__farms-list">
           {farmsList}
         </ul>
       </div>
