@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import FarmContext from '../../contexts/FarmContext'
 // import FarmListItem from '../../components/FarmListItem/FarmListItem'
+import './FarmPage.css'
 
 class FarmPage extends Component {
 
@@ -17,32 +18,37 @@ class FarmPage extends Component {
     const farmInfo = farms.find(farm => 
       farm.id === farmId) || {}
 
-    // const farmsList = farms.map(farm =>
-    //   <li key={farm.id}>
-    //     <FarmListItem info={farm} />
-    //   </li>
-    //   )
     return (
-      <section>
-        <div onClick={this.goBack}>X</div>
-        <img src={farmInfo.cover_image} alt="farm cover" />
-        <h2>{farmInfo.farm_name}</h2>
-        <img src={farmInfo.profile_image} alt="farm avatar" />
-        <div>{farmInfo.products.join(', ')}</div>
-        <address>
-          {farmInfo.address_1}<br />
-          {farmInfo.address_2}<br />
-          {farmInfo.city}, {farmInfo.state} {farmInfo.zip_code}
-        </address>
-    <div><a href={farmInfo.website}>Website</a></div>
-        <p>
-          {farmInfo.farm_description}
-        </p>
-        <div>Line</div>
-        <h4>Purchasing Information</h4>
-        <div>{farmInfo.purchase_options.join(', ')}</div>
-        <p>{farmInfo.purchase_details}</p>
-
+      <section className="farm-page">
+        <div className="farm-page__back-button" onClick={this.goBack}>X</div>
+        <img 
+          className="farm-page__img--cover" 
+          src={farmInfo.cover_image} 
+          alt="farm cover" />
+        <div className="farm-page__container--info">
+          <div className="farm-page__container--img">
+            <img 
+              className="farm-page__img--profile"
+              src={farmInfo.profile_image} 
+              alt="farm avatar" />
+          </div>
+          <div className="farm-page__container--text">
+            <h2 className="farm-page__farm-name">{farmInfo.farm_name}</h2>
+            <div className="farm-page__products">{farmInfo.products.join(', ')}</div>
+            <address className="farm-page__address">
+              {farmInfo.address_1}, {farmInfo.address_2 ? farmInfo.address_2 + ', ' : ''} 
+              {farmInfo.city}, {farmInfo.state} {farmInfo.zip_code}
+            </address>
+            <div className="farm-page__website"><a href={farmInfo.website}>Website</a></div>
+            <p className="farm-page__description">
+              {farmInfo.farm_description}
+            </p>
+            <hr />
+            <h4 className="farm-page__purchasing-info--heading">Purchasing Information</h4>
+            <div className="farm-page__purchasing-info--options">{farmInfo.purchase_options.join(', ')}</div>
+            <p className="farm-page__purchasing-info--description">{farmInfo.purchase_details}</p>
+          </div>
+        </div>
       </section>
     )
   }

@@ -1,0 +1,52 @@
+.farm-page {
+  text-align: left;
+}
+
+.farm-page__back-button {
+  padding: 10px;
+  height: 30px;
+}
+
+.farm-page__img--cover {
+  width: 100vw;
+  height: 30vw;
+  object-fit: cover;
+  position: relative;
+  top: -50px;
+  z-index: -1;
+}
+.farm-page__container--info {
+  padding: 20px;
+  display: flex;
+}
+
+.farm-page__container--text {
+  padding-left: 15px;
+}
+
+.farm-page__img--profile {
+  width: 15vw;
+  height: 15vw;
+  object-fit: cover;
+}
+
+.farm-page__container--text > * {
+  margin: 0;
+}
+
+.farm-page__address {
+  margin-top: 10px;
+}
+
+.farm-page__description {
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
+.farm-page__purchasing-info--heading {
+  margin-top: 15px;
+}
+
+.farm-page__purchasing-info--description {
+  margin-top: 10px;
+}
