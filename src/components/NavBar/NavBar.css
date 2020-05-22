@@ -1,0 +1,14 @@
+.nav-bar {
+  font-size: 2em;
+  background-color: silver;
+  padding: 10px;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.nav-bar__logo {
+  width: 40px;
+}
