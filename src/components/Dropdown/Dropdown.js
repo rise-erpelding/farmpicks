@@ -1,9 +1,14 @@
 import React, { Component } from 'react'
-// import FarmContext from '../../contexts/FarmContext'
+import FarmContext from '../../contexts/FarmContext'
 import config from '../../config'
 import './Dropdown.css'
 
 class Dropdown extends Component {
+  static defaultProps = {
+    onChangePage: () => {}
+  }
+
+  static contextType = FarmContext
 
   state = {
     products: [],
@@ -24,6 +29,27 @@ class Dropdown extends Component {
       error: null,
     })
   }
+
+  //potentially these two methods could be shortened and the common part put into another method but also does it really make the code any shorter or neater?
+  handleProductClick = clickedThing => {
+    const formattedQuery = '?products=' + clickedThing
+    this.context.getFarms(formattedQuery)
+    this.props.onChangePage()
+  }
+
+  handlePurchaseOptionClick = clickedThing => {
+    const formattedQuery = '?purchaseOptions=' + clickedThing
+    this.context.getFarms(formattedQuery)
+    this.props.onChangePage()
+  }
+
+  handleSeeAllClick = () => {
+    console.log('handleSeeAllClick')
+    this.context.getFarms('')
+    this.props.onChangePage()
+  }
+
+
 
   componentDidMount() {
     const productsEndpoint = config.API_ENDPOINT + '/products'
@@ -59,9 +85,9 @@ class Dropdown extends Component {
 
   render() {
     const productsList = this.state.products.map((product, index) =>
-      <li key={index}>{product}</li>)
+      <li key={index} onClick={() => this.handleProductClick(product)}>{product}</li>)
     const purchaseOptionsList = this.state.purchaseOptions.map((purchaseOption, index) => 
-      <li key={index}>{purchaseOption}</li>)
+      <li key={index} onClick={() => this.handlePurchaseOptionClick(purchaseOption)}>{purchaseOption}</li>)
 
     return (
       <div className="dropdown">
@@ -75,7 +101,7 @@ class Dropdown extends Component {
           <ul className="dropdown__purchase-options">
             {purchaseOptionsList}
           </ul>
-          <h5 className="dropdown__all-farms">See all farms</h5>
+          <h5 className="dropdown__all-farms" onClick={() => this.handleSeeAllClick()}>See all farms</h5>
         </div>
       </div>
 

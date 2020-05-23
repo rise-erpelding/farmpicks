@@ -21,7 +21,7 @@ class SearchBar extends Component {
 
   handleSubmit = e => {
     e.preventDefault()
-    const formattedQuery = 'q=' + this.state.searchTerm
+    const formattedQuery = '?q=' + this.state.searchTerm
     this.context.getFarms(formattedQuery)
     this.props.onChangePage()
     // console.log('hi')

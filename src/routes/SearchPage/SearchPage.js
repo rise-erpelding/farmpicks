@@ -14,7 +14,7 @@ class SearchPage extends Component {
     return (
       <div className="search-page">
         <SearchBar onChangePage={this.changePage} />
-        <Dropdown /> 
+        <Dropdown onChangePage={this.changePage} /> 
       </div>
     )
   }
