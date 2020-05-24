@@ -4,6 +4,8 @@ import './Dropdown.css'
 
 class Dropdown extends Component {
   static defaultProps = {
+    products: [],
+    purchaseOptions: [],
     onChangePage: () => {}
   }
 
