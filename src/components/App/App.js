@@ -15,12 +15,28 @@ class App extends Component {
 
   state = {
     farms: [],
+    products: [],
+    purchaseOptions: [],
     error: null,
   }
 
   setFarms = farms => {
     this.setState({
       farms,
+      error: null,
+    })
+  }
+
+  setProducts = products => {
+    this.setState({
+      products,
+      error: null,
+    })
+  }
+
+  setPurchaseOptions = purchaseOptions => {
+    this.setState({
+      purchaseOptions,
       error: null,
     })
   }
@@ -63,10 +79,44 @@ class App extends Component {
     })
   }
 
+  componentDidMount() {
+    const productsEndpoint = config.API_ENDPOINT + '/products'
+    const purchaseOptionsEndpoint = config.API_ENDPOINT + '/purchase-options'
+    Promise.all([
+      fetch(productsEndpoint, {
+        method: 'GET',
+        headers: {
+          'content-type': 'application/json'
+          //auth here
+        }
+      }),
+      fetch(purchaseOptionsEndpoint, {
+        method: 'GET',
+        headers: {
+          'content-type': 'application/json'
+          //auth here
+        }
+      })
+    ])
+      .then(([productsRes, purchaseOptionsRes]) => {
+        if (!productsRes.ok)
+          return productsRes.json().then(error => Promise.reject(error))
+        if (!purchaseOptionsRes.ok)
+          return purchaseOptionsRes.json().then(error => Promise.reject(error))
+        return Promise.all([productsRes.json(), purchaseOptionsRes.json()])
+      })
+      .then(([products, purchaseOptions]) => {
+        this.setProducts(products)
+        this.setPurchaseOptions(purchaseOptions)
+      })
+  }
+
   render() {
 
     const contextValue = {
       farms: this.state.farms,
+      products: this.state.products,
+      purchaseOptions: this.state.purchaseOptions,
       getFarms: this.getFarms,
       addFarm: this.addFarm,
       updateFarm: this.updateFarm,
