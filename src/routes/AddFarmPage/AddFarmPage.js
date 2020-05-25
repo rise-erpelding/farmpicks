@@ -1,10 +1,86 @@
 import React, { Component } from 'react'
+import config from '../../config'
 import FarmContext from '../../contexts/FarmContext'
 import './AddFarmPage.css'
 
-class AddFarmPage extends Component {
 
+class AddFarmPage extends Component {
   static contextType = FarmContext
+
+  state = {
+    farmName: '',
+    products: [],
+    farmDescription: '',
+    address1: '',
+    address2: '',
+    city: '',
+    addressState: '',
+    zipCode: '',
+    contactName: '',
+    phoneNumber: '',
+    purchaseOptions: [],
+    purchaseDetails: '',
+    website: '',
+    error: null,
+  }
+
+  handleSubmit = e => {
+    e.preventDefault()
+    const newFarm = {
+      farm_name: this.state.farmName,
+      products: this.state.products,
+      farm_description: this.state.farmDescription,
+      address_1: this.state.address1,
+      address_2: this.state.address2,
+      city: this.state.city,
+      state: this.state.addressState,
+      zip_code: this.state.zipCode,
+      contact_name: this.state.contactName,
+      phone_number: this.state.phoneNumber,
+      purchase_options: this.state.purchaseOptions,
+      purchase_details: this.state.purchaseDetails,
+      website: this.state.website
+    }
+    console.log(newFarm)
+    const url = config.API_ENDPOINT + '/farms'
+    fetch(url, {
+      method: 'POST',
+      body: JSON.stringify(newFarm),
+      headers: {
+        'content-type': 'application/json'
+        //auth here
+      }
+    })
+    .then(res => {
+      if (!res.ok) {
+        return res.json().then(error => {
+          throw error
+        })
+      }
+      return res.json()
+    })
+    .then(data => {
+      this.context.addFarm(data)
+      this.props.history.push('/')
+    })
+    .catch(error => {
+      console.log(error)
+      this.setState({ error })
+    })
+  }
+
+  handleClickCancel = () => {
+    this.props.history.push('/')
+  }
+
+  updateFarmName = farmName => {
+    this.setState({farmName: farmName})
+  }
+
+  updateProducts = product => {
+    console.log(product)
+    // TODO: start here, how to get the value from the checkbox as it is checked and unchecked, need to build an array from what is checked
+  }
 
 
   render() {
@@ -14,6 +90,7 @@ class AddFarmPage extends Component {
       <li key={index}>
         <label className="add-farm-page__checkbox--label" htmlFor={'product' + index}>
           <input 
+            onChange={e => this.updateProducts(e.target.value)}
             type="checkbox" 
             id={'product' + index} 
             name={'product' + index} 
@@ -46,7 +123,11 @@ class AddFarmPage extends Component {
             <ul className="add-farm-page__farm-details--form">
               <li>
                 <label htmlFor="farm-name">Farm Name:</label>
-                <input className="add-farm-page__farm-name" type="text" name="farm-name" id="farm-name" />
+                <input 
+                  onChange={e => this.updateFarmName(e.target.value)} 
+                  type="text" 
+                  name="farm-name" 
+                  id="farm-name" />
               </li>
               <li>
                 <p>Stuff your farm sells:</p>
