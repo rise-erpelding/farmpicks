@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import FarmContext from '../../contexts/FarmContext'
 import FarmListItem from '../../components/FarmListItem/FarmListItem'
 import SearchBar from '../../components/SearchBar/SearchBar'
@@ -22,7 +23,7 @@ class ResultsPage extends Component {
     return (
       <div className="results-page">
         <SearchBar />
-        <div>A link to add a farm if you can't find it</div>
+        <Link to="/add-farm">Add a farm</Link>
         <ul className="results-page__farms-list">
           {farmsList}
         </ul>
