@@ -43,7 +43,6 @@ class App extends Component {
 
   getFarms = query => {
     const url = config.API_ENDPOINT + '/farms/' + query
-    console.log(url)
     
     fetch(url, {
       method: 'GET',
