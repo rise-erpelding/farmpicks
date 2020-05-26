@@ -1,16 +1,18 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import FarmerAvatar from '../../Images/FarmerAvatar.png'
 import './FarmListItem.css'
 
 export default function FarmListItem(props) {
   const farm = props.info
   const truncatedDescription = farm.farm_description.substring(0, 300) + '...'
+  const profile = farm.profile_image ? farm.profile_image : FarmerAvatar
   return (
     <div className="farm-list-item">
       <div className="farm-list-item__img--container">
         <img 
           className="farm-list-item__img" 
-          src={farm.profile_image} 
+          src={profile} 
           alt="farm avatar" />
       </div>
       <div className="farm-list-item__info--container">

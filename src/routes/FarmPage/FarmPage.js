@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import FarmContext from '../../contexts/FarmContext'
 // import FarmListItem from '../../components/FarmListItem/FarmListItem'
+import Barn from '../../Images/Barn.jpg'
+import FarmerAvatar from '../../Images/FarmerAvatar.png'
 import './FarmPage.css'
 
 class FarmPage extends Component {
@@ -18,18 +20,21 @@ class FarmPage extends Component {
     const farmInfo = farms.find(farm => 
       farm.id === farmId) || {}
 
+    const profile = farmInfo.profile_image ? farmInfo.profile_image : FarmerAvatar
+    const cover = farmInfo.cover_image ? farmInfo.cover_image : Barn
+
     return (
       <section className="farm-page">
         <div className="farm-page__back-button" onClick={this.goBack}>X</div>
         <img 
           className="farm-page__img--cover" 
-          src={farmInfo.cover_image} 
+          src={cover} 
           alt="farm cover" />
         <div className="farm-page__container--info">
           <div className="farm-page__container--img">
             <img 
               className="farm-page__img--profile"
-              src={farmInfo.profile_image} 
+              src={profile} 
               alt="farm avatar" />
           </div>
           <div className="farm-page__container--text">
