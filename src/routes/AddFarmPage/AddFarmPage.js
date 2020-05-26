@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import config from '../../config'
 import FarmContext from '../../contexts/FarmContext'
+import ValidationError from '../../components/ValidationError/ValidationError'
+import FormFieldExplanation from '../../components/FormFieldExplanation/FormFieldExplanation'
 import './AddFarmPage.css'
 
 class AddFarmPage extends Component {
@@ -72,6 +74,25 @@ class AddFarmPage extends Component {
     this.props.history.push('/')
   }
 
+  validateFarmName = () => {
+    const farmName = this.state.farmName.trim()
+    if (farmName.length === 0) {
+      return '*Farm name is required'
+    }
+  }
+
+  validateProducts = () => {
+    if (this.state.products.length === 0) {
+      return '*Select at least one product representing what the farm sells'
+    }
+  }
+
+  validatePurchaseOptions = () => {
+    if (this.state.purchaseOptions.length === 0) {
+      return '*Select at least one way that consumers can get products from the farm'
+    }
+  }
+
   updateFarmName = e => {
     this.setState({farmName: e.target.value})
   }
@@ -138,7 +159,6 @@ class AddFarmPage extends Component {
     }
   }
 
-
   render() {
     const { products } = this.context
     const { purchaseOptions } = this.context
@@ -168,6 +188,8 @@ class AddFarmPage extends Component {
           {purchaseOption}
         </label>
       </li>)
+    const farmDescriptionExp = 'What the farm sells and/or any farming practices that are relevant.'
+    const purchaseDetailsExp = 'What is the best way to get products from the farm. Accepted forms of payment are also useful for consumers.'
 
     return (
       <div className="add-farm-page">
@@ -178,8 +200,12 @@ class AddFarmPage extends Component {
               Farm Details
             </div>
             <ul className="add-farm-page__farm-details--form">
+
               <li>
-                <label htmlFor="farm-name">Farm Name:</label>
+                <label htmlFor="farm-name">
+                  Farm Name:
+                  <ValidationError message={this.validateFarmName()} />
+                </label>
                 <input 
                   onChange={this.updateFarmName.bind(this)} 
                   type="text" 
@@ -187,13 +213,19 @@ class AddFarmPage extends Component {
                   id="farm-name" />
               </li>
               <li>
-                <p>Stuff your farm sells:</p>
+                <div>
+                  Products the farm sells:
+                  <ValidationError message={this.validateProducts()} />
+                </div>
                 <ul className="add-farm-page__products">
                   {productCheckboxes}
                 </ul>
               </li>
               <li>
-                <label htmlFor="farm-description">Farm Description:</label>
+                <label htmlFor="farm-description">
+                  Farm Description:
+                  <FormFieldExplanation message={farmDescriptionExp} />
+                </label>
                 <textarea 
                   onChange={this.updateFarmDescription.bind(this)} 
                   id="farm-description" 
@@ -274,13 +306,19 @@ class AddFarmPage extends Component {
             </div>
               <ul className="add-farm-page__purchase-details--form">
                 <li>
-                  <p>Get methods:</p>
+                  <div>
+                    Purchase Options:
+                    <ValidationError message={this.validatePurchaseOptions()} />
+                  </div>
                   <ul className="add-farm-page__purchase-options">
                     {purchaseOptionCheckboxes}
                   </ul>
                 </li>
                 <li>
-                  <label htmlFor="purchase-details">Purchase details:</label>
+                  <label htmlFor="purchase-details">
+                    Purchase details:
+                    <FormFieldExplanation message={purchaseDetailsExp} />
+                  </label>
                   <textarea 
                     onChange={this.updatePurchaseDetails.bind(this)} 
                     id="purchase-details" 

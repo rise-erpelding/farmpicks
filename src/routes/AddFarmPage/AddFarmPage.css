@@ -65,8 +65,8 @@
 
 .add-farm-page__farm-details--form > li > label,
 .add-farm-page__purchase-details--form > li > label,
-.add-farm-page__farm-details--form > li > p,
-.add-farm-page__purchase-details--form > li > p {
+.add-farm-page__farm-details--form > li > div,
+.add-farm-page__purchase-details--form > li > div {
   padding-right: 5px;
   flex: 1 0 120px;
   max-width: 220px;
