@@ -9,3 +9,10 @@
 .results-page__farms-list > li {
   border: 1px solid black;
 }
+
+.results-page__add-farm {
+  border: 1px solid black;
+  background-color: lightgray;
+  padding: 2px;
+  font-size: 0.9em;
+}

@@ -23,7 +23,7 @@ class ResultsPage extends Component {
     return (
       <div className="results-page">
         <SearchBar />
-        <Link to="/add-farm">Add a farm</Link>
+        <Link className="results-page__add-farm" to="/add-farm">Add a farm</Link>
         <ul className="results-page__farms-list">
           {farmsList}
         </ul>

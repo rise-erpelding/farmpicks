@@ -16,7 +16,7 @@ class SearchPage extends Component {
       <div className="search-page">
         <SearchBar onChangePage={this.changePage} />
         <Dropdown onChangePage={this.changePage} /> 
-        <Link to="/add-farm">Add a farm</Link>
+        <Link className="search-page__add-farm" to="/add-farm">Add a farm</Link>
       </div>
     )
   }

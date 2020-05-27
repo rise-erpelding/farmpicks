@@ -50,3 +50,10 @@
 .farm-page__purchasing-info--description {
   margin-top: 10px;
 }
+
+.farm-page__update-farm-link {
+  border: 1px solid black;
+  background-color: lightgray;
+  padding: 2px;
+  font-size: 0.9em;
+}
