@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import FarmContext from '../../contexts/FarmContext'
+import config from '../../config'
 import { Link } from 'react-router-dom'
 // import FarmListItem from '../../components/FarmListItem/FarmListItem'
 import Barn from '../../Images/Barn.jpg'
@@ -7,22 +8,83 @@ import FarmerAvatar from '../../Images/FarmerAvatar.png'
 import './FarmPage.css'
 
 class FarmPage extends Component {
-
   static contextType = FarmContext
+
+  state = {
+    farmName: '',
+    farmDescription: '',
+    address1: '',
+    address2: '',
+    city: '',
+    addressState: '',
+    zipCode: '',
+    contactName: '',
+    phoneNumber: '',
+    website: '',
+    purchaseDetails: '',
+    products: [],
+    purchaseOptions: [],
+    profileImage: '',
+    coverImage: '',
+    error: null,
+  }
 
   goBack = () => {
     this.props.history.push('/farms')
   }
 
-  render () {
-    const farmId = Number(this.props.match.params.farmId)
-    // console.log(`value of farmId is ` + farmId)
-    const farms = this.context.farms
-    const farmInfo = farms.find(farm => 
-      farm.id === farmId) || {}
+  componentDidMount() {
+    const { farmId } = this.props.match.params
+    const url = config.API_ENDPOINT + `/farms/${farmId}`
+    fetch(url, {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json'
+        //auth here
+      }
+    })
+      .then(res => {
+        if (!res.ok)
+          return res.json().then(error => Promise.reject(error))
 
-    const profile = farmInfo.profile_image ? farmInfo.profile_image : FarmerAvatar
-    const cover = farmInfo.cover_image ? farmInfo.cover_image : Barn
+        return res.json()
+      })
+      .then(responseData => {
+        this.setState({
+          farmName: responseData.farm_name,
+          products: responseData.products,
+          farmDescription: responseData.farm_description,
+          address1: responseData.address_1,
+          address2: responseData.address_2,
+          city: responseData.city,
+          addressState: responseData.state,
+          zipCode: responseData.zip_code,
+          contactName: responseData.contact_name,
+          phoneNumber: responseData.phone_number,
+          purchaseOptions: responseData.purchase_options,
+          purchaseDetails: responseData.purchase_details,
+          website: responseData.website,
+          profileImage: responseData.profile_image,
+          coverImage: responseData.cover_image
+        })
+      })
+      .catch(error => {
+        console.error(error)
+        this.setState({ error })
+      })
+  }
+
+  render () {
+    const { farmId } = this.props.match.params
+    // console.log(`value of farmId is ` + farmId)
+    // const farms = this.context.farms
+    // const farmInfo = farms.find(farm => 
+    //   farm.id === farmId) || {}
+
+    const { farmName, address1, address2, city, addressState, zipCode, contactName, phoneNumber, website, farmDescription, purchaseDetails, products, purchaseOptions, profileImage, coverImage } = this.state
+
+    const profile = profileImage ? profileImage : FarmerAvatar
+    const cover = coverImage ? coverImage : Barn
 
     return (
       <section className="farm-page">
@@ -39,21 +101,22 @@ class FarmPage extends Component {
               alt="farm avatar" />
           </div>
           <div className="farm-page__container--text">
-            <h2 className="farm-page__farm-name">{farmInfo.farm_name}</h2>
+            <h2 className="farm-page__farm-name">{farmName}</h2>
             <Link to={`/edit/${farmId}`} className="farm-page__update-farm-link">Edit</Link>
-            <div className="farm-page__products">{farmInfo.products.join(', ')}</div>
+            <div className="farm-page__products">{products.join(', ')}</div>
             <address className="farm-page__address">
-              {farmInfo.address_1}, {farmInfo.address_2 ? farmInfo.address_2 + ', ' : ''} 
-              {farmInfo.city}, {farmInfo.state} {farmInfo.zip_code}
+              {address1}, {address2 ? address2 + ', ' : ''} 
+              {city}, {addressState} {zipCode}
             </address>
-            <div className="farm-page__website"><a href={farmInfo.website}>Website</a></div>
+            <div>Call {contactName} at {phoneNumber}</div>
+            <div className="farm-page__website"><a href={website}>Website</a></div>
             <p className="farm-page__description">
-              {farmInfo.farm_description}
+              {farmDescription}
             </p>
             <hr />
             <h4 className="farm-page__purchasing-info--heading">Purchasing Information</h4>
-            <div className="farm-page__purchasing-info--options">{farmInfo.purchase_options.join(', ')}</div>
-            <p className="farm-page__purchasing-info--description">{farmInfo.purchase_details}</p>
+            <div className="farm-page__purchasing-info--options">{purchaseOptions.join(', ')}</div>
+            <p className="farm-page__purchasing-info--description">{purchaseDetails}</p>
           </div>
         </div>
       </section>
