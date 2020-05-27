@@ -1,0 +1,215 @@
+.update-farm-page {
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.update-farm-page__title {
+  margin: 0;
+}
+
+/* Flexbox for positioning form elements */
+.update-farm-page__farm-details,
+.update-farm-page__purchase-details {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 20px;
+}
+
+.update-farm-page__farm-details--label,
+.update-farm-page__purchase-details--label {
+  color: #0a320e;
+  border-radius: 5px;
+  padding: 30px 10px;
+  font-size: 1.2em;
+  text-transform: uppercase;
+}
+
+.update-farm-page__farm-details--form,
+.update-farm-page__purchase-details--form {
+  margin: 0;
+  padding: 10px;
+  border: 1px solid #087f18;
+  border-radius: 5px;
+}
+
+.update-farm-page__products,
+.update-farm-page__purchase-options {
+  margin: 0;
+  padding: 0;
+}
+
+.update-farm-page__farm-details--form > li,
+.update-farm-page__purchase-details--form > li {
+  list-style: none;
+  padding: 5px;
+}
+
+.update-farm-page__products > li,
+.update-farm-page__purchase-options > li {
+  list-style: none;
+}
+
+/* .update-farm-page__farm-details > div,
+.update-farm-page__purchase-details > div {
+  border: 1px solid black;
+} */
+
+.update-farm-page__farm-details--form > li,
+.update-farm-page__purchase-details--form > li,
+.update-farm-page__products,
+.update-farm-page__purchase-options {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.update-farm-page__farm-details--form > li > label,
+.update-farm-page__purchase-details--form > li > label,
+.update-farm-page__farm-details--form > li > div,
+.update-farm-page__purchase-details--form > li > div {
+  padding-right: 5px;
+  flex: 1 0 120px;
+  max-width: 220px;
+}
+
+.update-farm-page__farm-details--form > li > label + *,
+.update-farm-page__purchase-details--form > li > label + *,
+.update-farm-page__products,
+.update-farm-page__purchase-options {
+  flex: 1 0 220px;
+}
+
+.update-farm-page__products > li,
+.update-farm-page__purchase-options > li {
+  width: 200px;
+  text-align: left;
+}
+
+.update-farm-page__products,
+.update-farm-page__purchase-options {
+  justify-content: space-between;
+  padding: 10px 15px;
+}
+
+/* Styling text inputs and textareas */
+input[type=text] {
+  padding: 10px 15px;
+  margin: 8px 0;
+  background-color: #e1ece2;
+  border: 2px solid #0a320e;
+  border-radius: 3px;
+  /* cursor: pointer; */
+}
+
+textarea {
+  padding: 10px 15px;
+  margin: 8px 0;
+  background-color: #e1ece2;
+  border: 2px solid #0a320e;
+  border-radius: 2px;
+  resize: none;
+}
+
+/* Styling checkboxes */
+.update-farm-page__checkbox--label {
+  display: block;
+  position: relative;
+  /* margin: auto; */
+  padding-left: 30px;
+  /* cursor: pointer; */
+  /* font-size: 22px; */
+  line-height: 30px;
+  /* width: 20px; */
+  clear: both;
+}
+
+.update-farm-page__checkbox--label input {
+  position: absolute;
+  opacity: 0;
+  /* cursor: pointer; */
+}
+.update-farm-page__checkbox--label .update-farm-page__checkbox--custom {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 20px;
+  width: 20px;
+  background-color: transparent;
+  border-radius: 3px;
+  border: 2px solid #0a320e;
+  transition: all 0.3s ease-out;
+}
+
+.update-farm-page__checkbox--label input:checked ~ .update-farm-page__checkbox--custom {
+  background-color: white;
+  border-radius: 3px;
+  transform: rotate(0deg) scale(1);
+  opacity: 1;
+  border: 2px solid #0a320e;
+}
+
+.update-farm-page__checkbox--label .update-farm-page__checkbox--custom::after {
+  position: absolute;
+  content: "";
+  left: 12px;
+  top: 12px;
+  height: 0px;
+  border-radius: 3px;
+  border: 2px solid #0a320e;
+  border-width: 0 3px 3px 0;
+  transform: rotate(0deg) scale(0);
+  opacity: 1;
+  transition: all 0.3s ease-out;
+}
+
+.update-farm-page__checkbox--label input:checked ~ .update-farm-page__checkbox--custom::after {
+  transform: rotate(45deg) scale(1);
+  opacity: 1;
+  left: 8px;
+  top: 3px;
+  width: 6px;
+  height: 12px;
+  border: 2px solid #0a320e;
+  border-width: 0 2px 2px 0;
+  background-color: transparent;
+  border-radius: 0;
+}
+
+/* Styling buttons */
+
+.update-farm-page__buttons > button {
+  border: 2px solid #0a320e;
+  border-radius: 30px;
+  margin: 5px;
+  padding: 10px;
+  width: 140px;
+  font-size: 1.3em;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.update-farm-page__buttons > button[type=submit] {
+  background-color: #0fdd2b;
+}
+
+.update-farm-page__buttons > button[type=button] {
+  background-color: #e1ece2;
+}
+
+@media screen and (min-width: 700px) {
+  .update-farm-page__farm-details,
+  .update-farm-page__purchase-details {
+    flex-direction: row;
+    margin: 10px 40px;
+  }
+
+  .update-farm-page__farm-details--label,
+  .update-farm-page__purchase-details--label {
+    width: 25vw;
+  }
+
+  .update-farm-page__farm-details--form,
+  .update-farm-page__purchase-details--form {
+    width: 65vw;
+  }
+}

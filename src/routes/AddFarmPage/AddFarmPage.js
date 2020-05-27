@@ -210,7 +210,8 @@ class AddFarmPage extends Component {
                   onChange={this.updateFarmName.bind(this)} 
                   type="text" 
                   name="farm-name" 
-                  id="farm-name" />
+                  id="farm-name"
+                  required />
               </li>
               <li>
                 <div>

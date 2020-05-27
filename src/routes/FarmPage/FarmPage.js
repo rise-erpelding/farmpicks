@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import FarmContext from '../../contexts/FarmContext'
+import { Link } from 'react-router-dom'
 // import FarmListItem from '../../components/FarmListItem/FarmListItem'
 import Barn from '../../Images/Barn.jpg'
 import FarmerAvatar from '../../Images/FarmerAvatar.png'
@@ -39,6 +40,7 @@ class FarmPage extends Component {
           </div>
           <div className="farm-page__container--text">
             <h2 className="farm-page__farm-name">{farmInfo.farm_name}</h2>
+            <Link to={`/edit/${farmId}`} className="farm-page__update-farm-link">Edit</Link>
             <div className="farm-page__products">{farmInfo.products.join(', ')}</div>
             <address className="farm-page__address">
               {farmInfo.address_1}, {farmInfo.address_2 ? farmInfo.address_2 + ', ' : ''} 
