@@ -24,9 +24,6 @@ class SearchBar extends Component {
     const formattedQuery = '?q=' + this.state.searchTerm
     this.context.getFarms(formattedQuery)
     this.props.onChangePage()
-    // console.log('hi')
-    // console.log(this.props.history)
-    // this.props.history.push('/farms')
   }
 
   render() {

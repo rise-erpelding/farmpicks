@@ -7,7 +7,6 @@ import './SearchPage.css'
 class SearchPage extends Component {
 
   changePage = () => {
-    // console.log("I want to change the page here")
     this.props.history.push('/farms')
   }
 

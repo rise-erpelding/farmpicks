@@ -8,7 +8,7 @@ import FarmPage from '../../routes/FarmPage/FarmPage'
 import AddFarmPage from '../../routes/AddFarmPage/AddFarmPage'
 import UpdateFarmPage from '../../routes/UpdateFarmPage/UpdateFarmPage'
 import NotFoundPage from '../../routes/NotFoundPage/NotFoundPage'
-import config from '../../config'
+import FarmsApiService from '../../services/farms-api-service'
 import './App.css'
 
 class App extends Component {
@@ -42,21 +42,7 @@ class App extends Component {
   }
 
   getFarms = query => {
-    const url = config.API_ENDPOINT + '/farms/' + query
-    
-    fetch(url, {
-      method: 'GET',
-      headers: {
-        'content-type': 'application/json'
-        //auth will go here
-      }
-    })
-      .then(res => {
-        if (!res.ok) {
-          return res.json().then(error => Promise.reject(error))
-        }
-        return res.json()
-      })
+    FarmsApiService.getFarms(query)
       .then(this.setFarms)
       .catch(error => {
         console.error(error)
@@ -79,31 +65,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const productsEndpoint = config.API_ENDPOINT + '/products'
-    const purchaseOptionsEndpoint = config.API_ENDPOINT + '/purchase-options'
-    Promise.all([
-      fetch(productsEndpoint, {
-        method: 'GET',
-        headers: {
-          'content-type': 'application/json'
-          //auth here
-        }
-      }),
-      fetch(purchaseOptionsEndpoint, {
-        method: 'GET',
-        headers: {
-          'content-type': 'application/json'
-          //auth here
-        }
-      })
-    ])
-      .then(([productsRes, purchaseOptionsRes]) => {
-        if (!productsRes.ok)
-          return productsRes.json().then(error => Promise.reject(error))
-        if (!purchaseOptionsRes.ok)
-          return purchaseOptionsRes.json().then(error => Promise.reject(error))
-        return Promise.all([productsRes.json(), purchaseOptionsRes.json()])
-      })
+    FarmsApiService.getProductsPurchaseOptions()
       .then(([products, purchaseOptions]) => {
         this.setProducts(products)
         this.setPurchaseOptions(purchaseOptions)
