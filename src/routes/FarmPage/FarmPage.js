@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import FarmContext from '../../contexts/FarmContext'
-import config from '../../config'
 import { Link } from 'react-router-dom'
 // import FarmListItem from '../../components/FarmListItem/FarmListItem'
 import Barn from '../../Images/Barn.jpg'
@@ -10,69 +9,9 @@ import './FarmPage.css'
 class FarmPage extends Component {
   static contextType = FarmContext
 
-  // state = {
-  //   farmName: '',
-  //   farmDescription: '',
-  //   address1: '',
-  //   address2: '',
-  //   city: '',
-  //   addressState: '',
-  //   zipCode: '',
-  //   contactName: '',
-  //   phoneNumber: '',
-  //   website: '',
-  //   purchaseDetails: '',
-  //   products: [],
-  //   purchaseOptions: [],
-  //   profileImage: '',
-  //   coverImage: '',
-  //   error: null,
-  // }
-
   goBack = () => {
     this.props.history.push('/farms')
   }
-
-  // componentDidMount() {
-  //   const { farmId } = this.props.match.params
-  //   const url = config.API_ENDPOINT + `/farms/${farmId}`
-  //   fetch(url, {
-  //     method: 'GET',
-  //     headers: {
-  //       'content-type': 'application/json'
-  //       //auth here
-  //     }
-  //   })
-  //     .then(res => {
-  //       if (!res.ok)
-  //         return res.json().then(error => Promise.reject(error))
-
-  //       return res.json()
-  //     })
-  //     .then(responseData => {
-  //       this.setState({
-  //         farmName: responseData.farm_name,
-  //         products: responseData.products,
-  //         farmDescription: responseData.farm_description,
-  //         address1: responseData.address_1,
-  //         address2: responseData.address_2,
-  //         city: responseData.city,
-  //         addressState: responseData.state,
-  //         zipCode: responseData.zip_code,
-  //         contactName: responseData.contact_name,
-  //         phoneNumber: responseData.phone_number,
-  //         purchaseOptions: responseData.purchase_options,
-  //         purchaseDetails: responseData.purchase_details,
-  //         website: responseData.website,
-  //         profileImage: responseData.profile_image,
-  //         coverImage: responseData.cover_image
-  //       })
-  //     })
-  //     .catch(error => {
-  //       console.error(error)
-  //       this.setState({ error })
-  //     })
-  // }
 
   render () {
     const { farmId } = this.props.match.params
