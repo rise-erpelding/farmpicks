@@ -15,11 +15,20 @@ class ResultsPage extends Component {
 
   render () {
     const { farms } = this.context
-    const farmsList = farms.map(farm =>
-      <li key={farm.id}>
-        <FarmListItem info={farm} />
-      </li>
-      )
+    let farmsList
+    if (farms.length === 0) {
+      farmsList = 
+        <li className="results-page__no-farms">
+          Whoops! No farms found. Try a different search term.
+        </li>
+    } else {
+      farmsList = farms.map(farm =>
+        <li key={farm.id}>
+          <FarmListItem info={farm} />
+        </li>
+        )
+    }
+
     return (
       <div className="results-page">
         <SearchBar />

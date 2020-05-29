@@ -82,6 +82,7 @@ class App extends Component {
       farms: this.state.farms,
       products: this.state.products,
       purchaseOptions: this.state.purchaseOptions,
+      farmAdded: this.state.farmAdded,
       getFarms: this.getFarms,
       addFarm: this.addFarm,
       updateFarm: this.updateFarm,
