@@ -11,8 +11,12 @@ class SearchPage extends Component {
   }
 
   render () {
+    // const farmAddStatus = this.props.farmAdded === 'yes' ? <div className="search-page__farm-added--success">Farm added successfully</div> : null
+
     return (
       <div className="search-page">
+        <div>From small farms to you.</div>
+        {/* {farmAddStatus} */}
         <SearchBar onChangePage={this.changePage} />
         <Dropdown onChangePage={this.changePage} /> 
         <Link className="search-page__add-farm" to="/add-farm">Add a farm</Link>

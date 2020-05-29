@@ -17,6 +17,7 @@ class App extends Component {
     farms: [],
     products: [],
     purchaseOptions: [],
+    farmAdded: false,
     error: null,
   }
 
@@ -54,6 +55,9 @@ class App extends Component {
     this.setState({
       farms: [...this.state.farms, newFarm]
     })
+    this.setState({
+      farmAdded: true
+    })
   }
 
   updateFarm = updatedFarm => {
@@ -82,6 +86,8 @@ class App extends Component {
       addFarm: this.addFarm,
       updateFarm: this.updateFarm,
     }
+
+    // const addFarmSuccess = this.state.farmAdded ? <div className="App__farm-added">Farm successfully added</div> : null
 
     return (
       <div className="App">

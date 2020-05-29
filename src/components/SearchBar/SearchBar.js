@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import FarmContext from '../../contexts/FarmContext'
+import './SearchBar.css'
 
 class SearchBar extends Component {
   static defaultProps = {
@@ -28,12 +29,12 @@ class SearchBar extends Component {
 
   render() {
     return (
-      <form
+      <form className="search-bar"
         onSubmit={this.handleSubmit}>
         <input 
           type="text" 
           name="search-bar" 
-          placeholder="Search for stuff"
+          placeholder="Search for farms or products..."
           onChange={e => this.updateQuery(e.target.value)} />
         <button type="submit">Search</button>
       </form>

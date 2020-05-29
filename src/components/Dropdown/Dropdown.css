@@ -9,9 +9,9 @@
   border: none;
 }
 
-.dropdown__content {
+/* .dropdown__content {
   display: none;
-}
+} */
 
 .dropdown__products,
 .dropdown__purchase-options {
@@ -27,10 +27,10 @@
   margin: 3px;
 }
 
-.dropdown > h5 {
+.dropdown__content > h5 {
   margin: 0;
 }
 
-.dropdown:hover .dropdown__content {
+/* .dropdown:hover .dropdown__content {
   display: block;
-}
+} */

@@ -11,7 +11,6 @@ class Dropdown extends Component {
 
   static contextType = FarmContext
 
-  //potentially these two methods could be shortened and the common part put into another method but also does it really make the code any shorter or neater?
   handleProductClick = clickedThing => {
     const formattedQuery = '?products=' + clickedThing
     this.context.getFarms(formattedQuery)
@@ -38,7 +37,7 @@ class Dropdown extends Component {
 
     return (
       <div className="dropdown">
-        <button className="dropdown__button">Categories</button>
+        {/* <button className="dropdown__button">Categories</button> */}
         <div className="dropdown__content">
           <h5>Products</h5>
           <ul className="dropdown__products">
