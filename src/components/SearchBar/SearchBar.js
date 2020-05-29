@@ -21,8 +21,8 @@ class SearchBar extends Component {
 
   handleSubmit = e => {
     e.preventDefault()
-    const formattedQuery = '?q=' + this.state.searchTerm
-    this.context.getFarms(formattedQuery)
+    const query = this.state.searchTerm
+    this.context.getFarms(query)
     this.props.onChangePage()
   }
 
@@ -33,7 +33,7 @@ class SearchBar extends Component {
         <input 
           type="text" 
           name="search-bar" 
-          placeholder="Search for stuff"
+          placeholder="Search for berries, farm, beef..."
           onChange={e => this.updateQuery(e.target.value)} />
         <button type="submit">Search</button>
       </form>

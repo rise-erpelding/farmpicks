@@ -8,8 +8,9 @@ import FarmPage from '../../routes/FarmPage/FarmPage'
 import AddFarmPage from '../../routes/AddFarmPage/AddFarmPage'
 import UpdateFarmPage from '../../routes/UpdateFarmPage/UpdateFarmPage'
 import NotFoundPage from '../../routes/NotFoundPage/NotFoundPage'
-import FarmsApiService from '../../services/farms-api-service'
 import './App.css'
+
+import dummyStore from '../../dummy-store'
 
 class App extends Component {
 
@@ -42,12 +43,12 @@ class App extends Component {
   }
 
   getFarms = query => {
-    FarmsApiService.getFarms(query)
-      .then(this.setFarms)
-      .catch(error => {
-        console.error(error)
-        this.setState({ error })
-      })
+    console.log(query)
+    const includesQuery = this.state.farms.filter(farm => farm.farm_description.includes(query))
+    console.log(includesQuery)
+    this.setState({
+      farms: includesQuery
+    })
   }
 
   addFarm = newFarm => {
@@ -65,11 +66,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    FarmsApiService.getProductsPurchaseOptions()
-      .then(([products, purchaseOptions]) => {
-        this.setProducts(products)
-        this.setPurchaseOptions(purchaseOptions)
-      })
+    setTimeout(() => this.setState(dummyStore), 600)
   }
 
   render() {

@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import config from '../../config'
 import FarmContext from '../../contexts/FarmContext'
 import ValidationError from '../../components/ValidationError/ValidationError'
 import FormFieldExplanation from '../../components/FormFieldExplanation/FormFieldExplanation'
 import './UpdateFarmPage.css'
+import dummyStore from '../../dummy-store'
 
 class UpdateFarmPage extends Component {
 
@@ -27,48 +27,25 @@ class UpdateFarmPage extends Component {
   }
 
   componentDidMount() {
-    const { farmId } = this.props.match.params
-    const url = config.API_ENDPOINT + `/farms/${farmId}`
-    console.log(url)
-    fetch(url, {
-      method: 'GET',
-      headers: {
-        'content-type': 'application/json'
-        //auth here
-      }
-    })
-      .then(res => {
-        if (!res.ok)
-          return res.json().then(error => Promise.reject(error))
-
-        return res.json()
-      })
-      .then(responseData => {
-        this.setState({
-          farmName: responseData.farm_name,
-          products: responseData.products,
-          farmDescription: responseData.farm_description,
-          address1: responseData.address_1,
-          address2: responseData.address_2,
-          city: responseData.city,
-          addressState: responseData.state,
-          zipCode: responseData.zip_code,
-          contactName: responseData.contact_name,
-          phoneNumber: responseData.phone_number,
-          purchaseOptions: responseData.purchase_options,
-          purchaseDetails: responseData.purchase_details,
-          website: responseData.website,
-        })
-      })
-      .catch(error => {
-        console.error(error)
-        this.setState({ error })
-      })
+    setTimeout(() => this.setState({
+      farmName: dummyStore.farms.farm_name,
+      products: dummyStore.farms.products,
+      farmDescription: dummyStore.farms.farm_description,
+      address1: dummyStore.farms.address_1,
+      address2: dummyStore.farms.address_2,
+      city: dummyStore.farms.city,
+      addressState: dummyStore.farms.state,
+      zipCode: dummyStore.farms.zip_code,
+      contactName: dummyStore.farms.contact_name,
+      phoneNumber: dummyStore.farms.phone_number,
+      purchaseOptions: dummyStore.farms.purchase_options,
+      purchaseDetails: dummyStore.farms.purchase_details,
+      website: dummyStore.farms.website,
+    }))
   }
 
   handleSubmit = e => {
     e.preventDefault()
-    const { farmId } = this.props.match.params
     const updatedFarm = {
       farm_name: this.state.farmName,
       products: this.state.products,
@@ -85,44 +62,10 @@ class UpdateFarmPage extends Component {
       website: this.state.website
     }
     console.log(updatedFarm)
-    const url = config.API_ENDPOINT + `/farms/${farmId}`
-    fetch(url, {
-      method: 'PATCH',
-      body: JSON.stringify(updatedFarm),
-      headers: {
-        'content-type': 'application/json'
-        //auth here
-      }
-    })
-    .then(res => {
-      if (!res.ok) {
-        return res.json().then(error => {
-          throw error
-        })
-      }
-    })
-    .then(() => {
-      //potentially resetFields but I don't have that written yet
-      this.context.updateFarm(updatedFarm)
-      this.props.history.push('/')
-    })
-    .catch(error => {
-      console.log(error)
-      this.setState({ error })
-    })
+    
+    this.context.updateFarm(updatedFarm)
+    this.props.history.push('/')
   }
-  
-  //resetFields
-  //it would look something like this
-  // resetFields = (newFields) => {
-  //   this.setState({
-  //     id: newFields.id || '',
-  //     title: newFields.title || '',
-  //     url: newFields.url || '',
-  //     description: newFields.description || '',
-  //     rating: newFields.rating || '',
-  //   })
-  // }
 
   handleClickCancel = () => {
     this.props.history.push('/')
