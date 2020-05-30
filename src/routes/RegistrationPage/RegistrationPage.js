@@ -1,35 +1,24 @@
 import React, { Component } from 'react'
-import TokenService from '../../services/token-service'
+// import TokenService from '../../services/token-service'
 // import { Link } from 'react-router-dom'
 // import config from '../../config'
 
 
-class LoginPage extends Component {
+class RegistrationPage extends Component {
   handleSubmit = e => {
-    e.preventDefault()
-    const { user_name, password } = e.target
-
-    TokenService.saveAuthToken(
-      TokenService.makeBasicAuthToken(user_name.value, password.value)
-    )
-
-    user_name.value = ''
-    password.value = ''
-
-    this.handleLoginSuccess()
+    e.preventDefault() 
+    console.log('registration form submitted')
   }
 
-  handleLoginSuccess = () => {
-    this.props.history.push('/')
-  }
 
   render () {
 
     return (
-      <div className='login-page'>
-        <h2>Login</h2>
+      <div className='registration-page'>
+        <h2>Register</h2>
+        <h3>I will work on this more later...</h3>
         <form 
-          className='login-page__form'
+          className='registration-page__form'
           onSubmit={this.handleSubmit}>
           <div>
             <label htmlFor='user_name'>User name</label>
@@ -49,11 +38,11 @@ class LoginPage extends Component {
               id='password'
               />
           </div>
-          <button type='submit'>Login</button>
+          <button type='submit'>Register</button>
         </form>
       </div>
     )
   }
 }
 
-export default LoginPage
+export default RegistrationPage
