@@ -6,10 +6,16 @@ import './NavBar.css'
 
 class NavBar extends Component {
 
+  handleLogoutClick = () => {
+    TokenService.clearAuthToken()
+  }
+
   renderLogoutLink() {
     return (
       <div className='nav-bar__logout'>
-        <Link to='/'>
+        <Link 
+          onClick={this.handleLogoutClick}
+          to='/'>
           Logout
         </Link>
       </div>
