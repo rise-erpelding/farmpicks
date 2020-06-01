@@ -63,7 +63,7 @@ const FarmsApiService = {
       body: JSON.stringify(newFarm),
       headers: {
         'content-type': 'application/json',
-        'authorization': `basic ${TokenService.getAuthToken()}`
+        'authorization': `bearer ${TokenService.getAuthToken()}`
       }
     })
     .then(res => {
@@ -81,7 +81,7 @@ const FarmsApiService = {
       body: JSON.stringify(newFarmFields),
       headers: {
         'content-type': 'application/json',
-        'authorization': `basic ${TokenService.getAuthToken()}`
+        'authorization': `bearer ${TokenService.getAuthToken()}`
       }
     })
     .then(res => {
