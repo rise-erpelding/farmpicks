@@ -125,8 +125,6 @@ class App extends Component {
       return firstIndex === index;
     })
 
-    // TODO: This could still use some work, if you uncheck something that was previously checked it doesn't go back 
-
     this.setState({
       filteredFarms: filteredUniqueFarms
     })
