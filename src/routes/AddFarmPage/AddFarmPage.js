@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
-import config from '../../config'
 import FarmContext from '../../contexts/FarmContext'
 import ValidationError from '../../components/ValidationError/ValidationError'
 import FormFieldExplanation from '../../components/FormFieldExplanation/FormFieldExplanation'
 import './AddFarmPage.css'
-// import FarmsApiService from '../../services/farms-api-service'
+import FarmsApiService from '../../services/farms-api-service'
 
 class AddFarmPage extends Component {
   static contextType = FarmContext
@@ -44,24 +43,7 @@ class AddFarmPage extends Component {
       website: this.state.website
     }
 
-    const url = config.API_ENDPOINT + '/farms'
-    fetch(url, {
-      method: 'POST',
-      body: JSON.stringify(newFarm),
-      headers: {
-        'content-type': 'application/json'
-        //auth here
-      }
-    })
-    .then(res => {
-      if (!res.ok) {
-        return res.json().then(error => {
-          throw error
-        })
-      }
-      return res.json()
-    })
-    // FarmsApiService.postFarm(newFarm)
+    FarmsApiService.postFarm(newFarm)
     .then(data => {
       this.context.addFarm(data)
       this.props.history.push('/')

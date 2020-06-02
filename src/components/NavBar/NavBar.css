@@ -12,3 +12,9 @@ a {
 .nav-bar__logo {
   width: 40px;
 }
+
+.nav-bar__login,
+.nav-bar__logout {
+  font-size: 0.5em;
+  text-align: right;
+}

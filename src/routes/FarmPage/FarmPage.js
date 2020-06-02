@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import FarmContext from '../../contexts/FarmContext'
-import config from '../../config'
 import { Link } from 'react-router-dom'
 // import FarmListItem from '../../components/FarmListItem/FarmListItem'
+import FarmsApiService from '../../services/farms-api-service'
 import Barn from '../../Images/Barn.jpg'
 import FarmerAvatar from '../../Images/FarmerAvatar.png'
 import './FarmPage.css'
@@ -35,20 +35,21 @@ class FarmPage extends Component {
 
   componentDidMount() {
     const { farmId } = this.props.match.params
-    const url = config.API_ENDPOINT + `/farms/${farmId}`
-    fetch(url, {
-      method: 'GET',
-      headers: {
-        'content-type': 'application/json'
-        //auth here
-      }
-    })
-      .then(res => {
-        if (!res.ok)
-          return res.json().then(error => Promise.reject(error))
+    FarmsApiService.getFarmById(farmId)
+    // const url = config.API_ENDPOINT + `/farms/${farmId}`
+    // fetch(url, {
+    //   method: 'GET',
+    //   headers: {
+    //     'content-type': 'application/json'
+    //     //auth here
+    //   }
+    // })
+    //   .then(res => {
+    //     if (!res.ok)
+    //       return res.json().then(error => Promise.reject(error))
 
-        return res.json()
-      })
+    //     return res.json()
+    //   })
       .then(responseData => {
         this.setState({
           farmName: responseData.farm_name,
@@ -80,6 +81,7 @@ class FarmPage extends Component {
     // const farms = this.context.farms
     // const farmInfo = farms.find(farm => 
     //   farm.id === farmId) || {}
+    // TODO: I think what happens on reload needs to be fixed here?
 
     const { farmName, address1, address2, city, addressState, zipCode, contactName, phoneNumber, website, farmDescription, purchaseDetails, products, purchaseOptions, profileImage, coverImage } = this.state
 

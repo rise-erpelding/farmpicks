@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import config from '../../config'
 import FarmContext from '../../contexts/FarmContext'
 import ValidationError from '../../components/ValidationError/ValidationError'
 import FormFieldExplanation from '../../components/FormFieldExplanation/FormFieldExplanation'
+import FarmsApiService from '../../services/farms-api-service'
 import './UpdateFarmPage.css'
 
 class UpdateFarmPage extends Component {
@@ -28,21 +28,20 @@ class UpdateFarmPage extends Component {
 
   componentDidMount() {
     const { farmId } = this.props.match.params
-    const url = config.API_ENDPOINT + `/farms/${farmId}`
-    console.log(url)
-    fetch(url, {
-      method: 'GET',
-      headers: {
-        'content-type': 'application/json'
-        //auth here
-      }
-    })
-      .then(res => {
-        if (!res.ok)
-          return res.json().then(error => Promise.reject(error))
+    // fetch(`${config.API_ENDPOINT}/farms/${farmId}`, {
+    //   method: 'GET',
+    //   headers: {
+    //     'content-type': 'application/json'
+    //     //auth here
+    //   }
+    // })
+    //   .then(res => {
+    //     if (!res.ok)
+    //       return res.json().then(error => Promise.reject(error))
 
-        return res.json()
-      })
+    //     return res.json()
+    //   })
+      FarmsApiService.getFarmById(farmId)
       .then(responseData => {
         this.setState({
           farmName: responseData.farm_name,
@@ -84,23 +83,8 @@ class UpdateFarmPage extends Component {
       purchase_details: this.state.purchaseDetails,
       website: this.state.website
     }
-    console.log(updatedFarm)
-    const url = config.API_ENDPOINT + `/farms/${farmId}`
-    fetch(url, {
-      method: 'PATCH',
-      body: JSON.stringify(updatedFarm),
-      headers: {
-        'content-type': 'application/json'
-        //auth here
-      }
-    })
-    .then(res => {
-      if (!res.ok) {
-        return res.json().then(error => {
-          throw error
-        })
-      }
-    })
+
+    FarmsApiService.updateFarm(updatedFarm, farmId)
     .then(() => {
       //potentially resetFields but I don't have that written yet
       this.context.updateFarm(updatedFarm)

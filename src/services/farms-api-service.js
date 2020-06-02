@@ -1,4 +1,5 @@
 import config from '../config'
+import TokenService from './token-service'
 
 const FarmsApiService = {
   getFarms(query) {
@@ -13,6 +14,21 @@ const FarmsApiService = {
         if (!res.ok) {
           return res.json().then(error => Promise.reject(error))
         }
+        return res.json()
+      })
+  },
+  getFarmById(farmId) {
+    return fetch(`${config.API_ENDPOINT}/farms/${farmId}`, {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json'
+        //auth here
+      }
+    })
+      .then(res => {
+        if (!res.ok)
+          return res.json().then(error => Promise.reject(error))
+
         return res.json()
       })
   },
@@ -42,26 +58,40 @@ const FarmsApiService = {
     })
   },
   postFarm(newFarm) {
-    fetch(`${config.API_ENDPOINT}/farms`, {
+    return fetch(`${config.API_ENDPOINT}/farms`, {
       method: 'POST',
       body: JSON.stringify(newFarm),
       headers: {
-        'content-type': 'application/json'
-        //auth here
+        'content-type': 'application/json',
+        'authorization': `bearer ${TokenService.getAuthToken()}`
       }
     })
     .then(res => {
       if (!res.ok) {
-        return res.json().then(error => Promise.reject(error))
+        return res.json().then(error => {
+          throw error
+        })
       }
       return res.json()
     })
   },
-  updateFarm(newFarmFields) {
-
+  updateFarm(newFarmFields, farmId) {
+    return fetch(`${config.API_ENDPOINT}/farms/${farmId}`, {
+      method: 'PATCH',
+      body: JSON.stringify(newFarmFields),
+      headers: {
+        'content-type': 'application/json',
+        'authorization': `bearer ${TokenService.getAuthToken()}`
+      }
+    })
+    .then(res => {
+      if (!res.ok) {
+        return res.json().then(error => {
+          throw error
+        })
+      }
+    })
   }
-  
-
 }
 
 export default FarmsApiService
