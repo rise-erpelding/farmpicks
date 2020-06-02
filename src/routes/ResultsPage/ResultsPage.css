@@ -17,6 +17,7 @@
 
 .results-page__buttons {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+  /* justify-content: space-between; */
   margin: 20px;
 }
