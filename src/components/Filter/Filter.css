@@ -1,0 +1,148 @@
+.filter-modal {
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.filter-modal__title {
+  margin: 0;
+}
+
+.filter-modal__products,
+.filter-modal__purchase-options {
+  margin: 0;
+  padding: 0;
+}
+
+.filter-modal__products > li,
+.filter-modal__purchase-options > li {
+  list-style: none;
+}
+
+.filter-modal__products,
+.filter-modal__purchase-options {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.filter-modal__products,
+.filter-modal__purchase-options {
+  flex: 1 0 220px;
+}
+
+.filter-modal__products > li,
+.filter-modal__purchase-options > li {
+  width: 200px;
+  text-align: left;
+}
+
+.filter-modal__products,
+.filter-modal__purchase-options {
+  justify-content: space-between;
+  padding: 10px 15px;
+}
+
+/* Styling text inputs and textareas */
+input[type=text] {
+  padding: 10px 15px;
+  margin: 8px 0;
+  background-color: #e1ece2;
+  border: 2px solid #0a320e;
+  border-radius: 3px;
+  /* cursor: pointer; */
+}
+
+textarea {
+  padding: 10px 15px;
+  margin: 8px 0;
+  background-color: #e1ece2;
+  border: 2px solid #0a320e;
+  border-radius: 2px;
+  resize: none;
+}
+
+/* Styling checkboxes */
+.filter-modal__checkbox--label {
+  display: block;
+  position: relative;
+  /* margin: auto; */
+  padding-left: 30px;
+  /* cursor: pointer; */
+  /* font-size: 22px; */
+  line-height: 30px;
+  /* width: 20px; */
+  clear: both;
+}
+
+.filter-modal__checkbox--label input {
+  position: absolute;
+  opacity: 0;
+  /* cursor: pointer; */
+}
+.filter-modal__checkbox--label .filter-modal__checkbox--custom {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 20px;
+  width: 20px;
+  background-color: transparent;
+  border-radius: 3px;
+  border: 2px solid #0a320e;
+  transition: all 0.3s ease-out;
+}
+
+.filter-modal__checkbox--label input:checked ~ .filter-modal__checkbox--custom {
+  background-color: white;
+  border-radius: 3px;
+  transform: rotate(0deg) scale(1);
+  opacity: 1;
+  border: 2px solid #0a320e;
+}
+
+.filter-modal__checkbox--label .filter-modal__checkbox--custom::after {
+  position: absolute;
+  content: "";
+  left: 12px;
+  top: 12px;
+  height: 0px;
+  border-radius: 3px;
+  border: 2px solid #0a320e;
+  border-width: 0 3px 3px 0;
+  transform: rotate(0deg) scale(0);
+  opacity: 1;
+  transition: all 0.3s ease-out;
+}
+
+.filter-modal__checkbox--label input:checked ~ .filter-modal__checkbox--custom::after {
+  transform: rotate(45deg) scale(1);
+  opacity: 1;
+  left: 8px;
+  top: 3px;
+  width: 6px;
+  height: 12px;
+  border: 2px solid #0a320e;
+  border-width: 0 2px 2px 0;
+  background-color: transparent;
+  border-radius: 0;
+}
+
+/* Styling buttons */
+
+.filter-modal__buttons > button {
+  border: 2px solid #0a320e;
+  border-radius: 30px;
+  margin: 5px;
+  padding: 10px;
+  width: 140px;
+  font-size: 1.3em;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.filter-modal__buttons > button[type=submit] {
+  background-color: #0fdd2b;
+}
+
+.filter-modal__buttons > button[type=button] {
+  background-color: #e1ece2;
+}

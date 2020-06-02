@@ -74,6 +74,82 @@ class App extends Component {
     })
   }
 
+  filterProductsBy = products => {
+    // const filteredFarms = []
+    // this.state.farms.forEach(farm => {
+    //   farm.products.forEach(hasProduct => {
+    //     products.forEach(prod => {
+    //       if (hasProduct === prod) {
+    //         filteredFarms.push(farm)
+    //       }
+    //     })
+    //   })
+    // })
+    // console.log('farms filtered by product')
+    // console.log(filteredFarms)
+    // this.setState({
+    //   farms: filteredFarms
+    // })
+    console.log('filterProductsBy ran')
+  }
+
+  filterPurchaseOptionsBy = purchaseOptions => {
+    // const filteredFarms = []
+    // this.state.farms.forEach(farm => {
+    //   farm.purchase_options.forEach(hasPO => {
+    //     purchaseOptions.forEach(option => {
+    //       if (hasPO === option) {
+    //         filteredFarms.push(farm)
+    //       }
+    //     })
+    //   })
+    // })
+    // console.log('farms filtered by purchase option')
+    // console.log(filteredFarms)
+    // this.setState({
+    //   farms: filteredFarms
+    // })
+    console.log('filterPurchaseOptionsBy ran')
+  }
+
+  filterOptions = (products, purchaseOptions) => {
+    const filteredFarms = []
+    this.state.farms.forEach(farm => {
+      farm.products.forEach(hasProduct => {
+        products.forEach(prod => {
+          if (hasProduct === prod) {
+            filteredFarms.push(farm)
+          }
+        })
+      })
+    })
+    console.log('farms filtered by product')
+    console.log(filteredFarms)
+
+    this.state.farms.forEach(farm => {
+      farm.purchase_options.forEach(hasPO => {
+        purchaseOptions.forEach(option => {
+          if (hasPO === option) {
+            filteredFarms.push(farm)
+          }
+        })
+      })
+    })
+    console.log('farms filtered by purchase option')
+    console.log(filteredFarms)
+
+    // const filteredUniqueFarms = []
+
+    //look at each element in the array
+    //if the id of one element is equal to another 
+
+    
+
+    this.setState({
+      farms: filteredFarms
+    })
+  }
+
   componentDidMount() {
     FarmsApiService.getProductsPurchaseOptions()
       .then(([products, purchaseOptions]) => {
@@ -92,6 +168,9 @@ class App extends Component {
       getFarms: this.getFarms,
       addFarm: this.addFarm,
       updateFarm: this.updateFarm,
+      filterProductsBy: this.filterProductsBy,
+      filterPurchaseOptionsBy: this.filterPurchaseOptionsBy,
+      filterOptions: this.filterOptions,
     }
 
     return (

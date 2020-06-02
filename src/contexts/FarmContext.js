@@ -8,6 +8,9 @@ const FarmContext = React.createContext({
   getFarms: () => {},
   addFarm: () => {},
   updateFarm: () => {},
+  filterProductsBy: () => {},
+  filterPurchaseOptionsBy: () => {},
+  filterOptions: () => {},
 })
 
 export default FarmContext
