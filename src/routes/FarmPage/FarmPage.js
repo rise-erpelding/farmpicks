@@ -3,6 +3,7 @@ import FarmContext from '../../contexts/FarmContext'
 import { Link } from 'react-router-dom'
 // import FarmListItem from '../../components/FarmListItem/FarmListItem'
 import FarmsApiService from '../../services/farms-api-service'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Barn from '../../Images/Barn.jpg'
 import FarmerAvatar from '../../Images/FarmerAvatar.png'
 import './FarmPage.css'
@@ -90,7 +91,7 @@ class FarmPage extends Component {
 
     return (
       <section className="farm-page">
-        <div className="farm-page__back-button" onClick={this.goBack}>X</div>
+        <div className="farm-page__back-button" onClick={this.goBack}><FontAwesomeIcon icon='chevron-left' /></div>
         <img 
           className="farm-page__img--cover" 
           src={cover} 
@@ -104,6 +105,8 @@ class FarmPage extends Component {
           </div>
           <div className="farm-page__container--text">
             <h2 className="farm-page__farm-name">{farmName}</h2>
+            <FontAwesomeIcon icon={['far', 'heart']} />
+            <FontAwesomeIcon icon={['fas', 'heart']} />
             <Link to={`/edit/${farmId}`} className="farm-page__update-farm-link">Edit</Link>
             <div className="farm-page__products">{products.join(', ')}</div>
             <address className="farm-page__address">

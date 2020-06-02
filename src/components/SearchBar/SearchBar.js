@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import FarmContext from '../../contexts/FarmContext'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './SearchBar.css'
 
 class SearchBar extends Component {
@@ -36,7 +37,7 @@ class SearchBar extends Component {
           name="search-bar" 
           placeholder="Search for farms or products..."
           onChange={e => this.updateQuery(e.target.value)} />
-        <button type="submit">Search</button>
+        <button type="submit"><FontAwesomeIcon icon='search' /></button>
       </form>
     )
   }
