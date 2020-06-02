@@ -42,8 +42,6 @@ class FilterModal extends Component {
 
   handleSubmit = e => {
     e.preventDefault()
-    this.props.onUpdateProducts(this.state.products)
-    this.props.onUpdatePurchaseOptions(this.state.purchaseOptions)
     this.props.onUpdateOptions(this.state.products, this.state.purchaseOptions)
     this.props.handleClose()
   }

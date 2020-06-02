@@ -21,6 +21,7 @@ class App extends Component {
 
   state = {
     farms: [],
+    filteredFarms: [],
     products: [],
     purchaseOptions: [],
     farmAdded: false,
@@ -29,7 +30,8 @@ class App extends Component {
 
   setFarms = farms => {
     this.setState({
-      farms,
+      farms: farms,
+      filteredFarms: farms,
       error: null,
     })
   }
@@ -74,81 +76,59 @@ class App extends Component {
     })
   }
 
-  filterProductsBy = products => {
-    // const filteredFarms = []
-    // this.state.farms.forEach(farm => {
-    //   farm.products.forEach(hasProduct => {
-    //     products.forEach(prod => {
-    //       if (hasProduct === prod) {
-    //         filteredFarms.push(farm)
-    //       }
-    //     })
-    //   })
-    // })
-    // console.log('farms filtered by product')
-    // console.log(filteredFarms)
-    // this.setState({
-    //   farms: filteredFarms
-    // })
-    console.log('filterProductsBy ran')
-  }
-
-  filterPurchaseOptionsBy = purchaseOptions => {
-    // const filteredFarms = []
-    // this.state.farms.forEach(farm => {
-    //   farm.purchase_options.forEach(hasPO => {
-    //     purchaseOptions.forEach(option => {
-    //       if (hasPO === option) {
-    //         filteredFarms.push(farm)
-    //       }
-    //     })
-    //   })
-    // })
-    // console.log('farms filtered by purchase option')
-    // console.log(filteredFarms)
-    // this.setState({
-    //   farms: filteredFarms
-    // })
-    console.log('filterPurchaseOptionsBy ran')
-  }
-
   filterOptions = (products, purchaseOptions) => {
     const filteredFarms = []
-    this.state.farms.forEach(farm => {
-      farm.products.forEach(hasProduct => {
-        products.forEach(prod => {
-          if (hasProduct === prod) {
-            filteredFarms.push(farm)
-          }
+    if (products.length === 0 && purchaseOptions.length === 0) {
+      this.state.farms.forEach(farm => {
+        filteredFarms.push(farm)
+      })
+    } else if (products.length === 0) {
+      console.log('no products selected')
+      this.state.farms.forEach(farm => {
+        farm.purchase_options.forEach(hasPO => {
+          purchaseOptions.forEach(option => {
+            if (hasPO === option) {
+              filteredFarms.push(farm)
+            }
+          })
         })
       })
-    })
-    console.log('farms filtered by product')
-    console.log(filteredFarms)
-
-    this.state.farms.forEach(farm => {
-      farm.purchase_options.forEach(hasPO => {
-        purchaseOptions.forEach(option => {
-          if (hasPO === option) {
-            filteredFarms.push(farm)
-          }
+    } else if (purchaseOptions.length === 0) {
+      console.log('no purchase options selected')
+      this.state.farms.forEach(farm => {
+        farm.products.forEach(hasProduct => {
+          products.forEach(prod => {
+            if (hasProduct === prod) {
+              filteredFarms.push(farm)
+            }
+          })
         })
       })
+    } else {
+      this.state.farms.forEach(farm => {
+        farm.products.forEach(hasProduct => {
+          products.forEach(prod => {
+            farm.purchase_options.forEach(hasPO => {
+              purchaseOptions.forEach(option => {
+                if (hasProduct === prod && hasPO === option) {
+                  filteredFarms.push(farm)
+                }
+              })
+            })
+          })
+        })
+      })
+    }
+
+    const filteredUniqueFarms = filteredFarms.filter((item, index) => {
+      const firstIndex = filteredFarms.findIndex(({ id }) => item.id === id)
+      return firstIndex === index;
     })
-    console.log('farms filtered by purchase option')
-    console.log(filteredFarms)
 
-    // TODO: filter out duplicates
-
-    // const filteredUniqueFarms = []
-
-    //look at each element in the array
-    //if the id of one element is equal to another 
-
-    
+    // TODO: This could still use some work, if you uncheck something that was previously checked it doesn't go back 
 
     this.setState({
-      farms: filteredFarms
+      filteredFarms: filteredUniqueFarms
     })
   }
 
@@ -164,6 +144,7 @@ class App extends Component {
 
     const contextValue = {
       farms: this.state.farms,
+      filteredFarms: this.state.filteredFarms,
       products: this.state.products,
       purchaseOptions: this.state.purchaseOptions,
       farmAdded: this.state.farmAdded,

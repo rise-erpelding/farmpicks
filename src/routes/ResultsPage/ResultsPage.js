@@ -26,28 +26,20 @@ class ResultsPage extends Component {
     this.setState({ show: false })
   }
 
-  changeProducts = (products) => {
-    this.context.filterProductsBy(products)
-  }
-
-  changePurchaseOptions = (purchaseOptions) => {
-    this.context.filterPurchaseOptionsBy(purchaseOptions)
-  }
-
   changeOptions = (products, purchaseOptions) => {
     this.context.filterOptions(products, purchaseOptions)
   }
 
   render () {
-    const { farms } = this.context
+    const { filteredFarms } = this.context
     let farmsList
-    if (farms.length === 0) {
+    if (filteredFarms.length === 0) {
       farmsList = 
         <li className="results-page__no-farms">
           Whoops! No farms found. Try a different search term.
         </li>
     } else {
-      farmsList = farms.map(farm =>
+      farmsList = filteredFarms.map(farm =>
         <li key={farm.id}>
           <FarmListItem info={farm} />
         </li>
