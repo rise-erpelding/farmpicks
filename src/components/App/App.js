@@ -138,6 +138,8 @@ class App extends Component {
     console.log('farms filtered by purchase option')
     console.log(filteredFarms)
 
+    // TODO: filter out duplicates
+
     // const filteredUniqueFarms = []
 
     //look at each element in the array

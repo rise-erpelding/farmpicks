@@ -57,7 +57,6 @@ class ResultsPage extends Component {
     return (
       <div className="results-page">
         <SearchBar />
-        <Link className="results-page__add-farm" to="/add-farm">Add a farm</Link>
         <FilterModal 
           show={this.state.show} 
           handleClose={this.hideModal} 
@@ -65,7 +64,14 @@ class ResultsPage extends Component {
           onUpdatePurchaseOptions={this.changePurchaseOptions}
           onUpdateOptions={this.changeOptions}
         />
-        <button type='button' onClick={this.showModal}>open</button>
+        <div className="results-page__buttons">
+          <button type='button' onClick={this.showModal}>
+            Filter Results
+          </button>
+          <button>
+            <Link to="/add-farm">Add a farm</Link>
+          </button>
+        </div>
         <ul className="results-page__farms-list">
           {farmsList}
         </ul>

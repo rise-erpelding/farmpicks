@@ -10,14 +10,13 @@
   border: 1px solid black;
 }
 
-.results-page__add-farm {
-  border: 1px solid black;
-  background-color: lightgray;
-  padding: 2px;
-  font-size: 0.9em;
-}
-
 .results-page__no-farms {
   color: red;
   border: 1px solid black;
+}
+
+.results-page__buttons {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
 }
