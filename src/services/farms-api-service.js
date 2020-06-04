@@ -49,13 +49,13 @@ const FarmsApiService = {
         }
       })
     ])
-    .then(([productsRes, purchaseOptionsRes]) => {
-      if (!productsRes.ok)
-        return productsRes.json().then(error => Promise.reject(error))
-      if (!purchaseOptionsRes.ok)
-        return purchaseOptionsRes.json().then(error => Promise.reject(error))
-      return Promise.all([productsRes.json(), purchaseOptionsRes.json()])
-    })
+      .then(([productsRes, purchaseOptionsRes]) => {
+        if (!productsRes.ok)
+          return productsRes.json().then(error => Promise.reject(error))
+        if (!purchaseOptionsRes.ok)
+          return purchaseOptionsRes.json().then(error => Promise.reject(error))
+        return Promise.all([productsRes.json(), purchaseOptionsRes.json()])
+      })
   },
   postFarm(newFarm) {
     return fetch(`${config.API_ENDPOINT}/farms`, {
@@ -66,14 +66,14 @@ const FarmsApiService = {
         'authorization': `bearer ${TokenService.getAuthToken()}`
       }
     })
-    .then(res => {
-      if (!res.ok) {
-        return res.json().then(error => {
-          throw error
-        })
-      }
-      return res.json()
-    })
+      .then(res => {
+        if (!res.ok) {
+          return res.json().then(error => {
+            throw error
+          })
+        }
+        return res.json()
+      })
   },
   updateFarm(newFarmFields, farmId) {
     return fetch(`${config.API_ENDPOINT}/farms/${farmId}`, {
@@ -84,13 +84,83 @@ const FarmsApiService = {
         'authorization': `bearer ${TokenService.getAuthToken()}`
       }
     })
-    .then(res => {
-      if (!res.ok) {
-        return res.json().then(error => {
-          throw error
-        })
+      .then(res => {
+        if (!res.ok) {
+          return res.json().then(error => {
+            throw error
+          })
+        }
+      })
+  },
+  postUserFavorite(userId, farmId) {
+    return fetch(`${config.API_ENDPOINT}/users/${userId}/favorites`, {
+      method: 'POST',
+      body: JSON.stringify(farmId),
+      headers: {
+        'content-type': 'application/json',
+        'authorization': `bearer ${TokenService.getAuthToken()}`
       }
     })
+      .then(res => {
+        if (!res.ok) {
+          return res.json().then(error => {
+            throw error
+          })
+        }
+      })
+  },
+  addFavorite(userId, farmId) {
+    return fetch(`${config.API_ENDPOINT}/favorites`, {
+      method: 'POST',
+      body: JSON.stringify({
+        'favorite_farm': farmId,
+        'user_id': userId
+      }),
+      headers: {
+        'content-type': 'application/json',
+        'authorization': `bearer ${TokenService.getAuthToken()}`
+      }
+    })
+      .then(res => {
+        if (!res.ok) {
+          return res.json().then(error => {
+            throw error
+          })
+        }
+        return res.json()
+      })
+  },
+  getFavoriteId(userId, farmId) {
+    return fetch(`${config.API_ENDPOINT}/favorites/?farm_id=${farmId}&user_id=${userId}`, {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+        'authorization': `bearer ${TokenService.getAuthToken()}`
+      }
+    })
+      .then(res => {
+        if (!res.ok)
+        return res.json().then(error => Promise.reject(error))
+
+        return res.json()
+      })
+  },
+  removeFavorite(id) {
+    return fetch(`${config.API_ENDPOINT}/favorites/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'content-type': 'application/json',
+        'authorization': `bearer ${TokenService.getAuthToken()}`
+      }
+    })
+      .then(res => {
+        if (!res.ok) {
+          return res.json().then(error => {
+            throw error
+          })
+        }
+        return res.json()
+      })
   }
 }
 
