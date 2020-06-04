@@ -14,7 +14,7 @@ a {
 }
 
 .nav-bar__login,
-.nav-bar__logout {
+.nav-bar__logout-and-profile {
   font-size: 0.5em;
   text-align: right;
 }

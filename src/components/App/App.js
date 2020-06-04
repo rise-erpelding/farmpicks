@@ -7,7 +7,6 @@ import ResultsPage from '../../routes/ResultsPage/ResultsPage'
 import FarmPage from '../../routes/FarmPage/FarmPage'
 import RegistrationPage from '../../routes/RegistrationPage/RegistrationPage'
 import LoginPage from '../../routes/LoginPage/LoginPage'
-import MyFarmProfilePage from '../../routes/MyFarmProfilePage/MyFarmProfilePage'
 import MyProfilePage from '../../routes/MyProfilePage/MyProfilePage'
 import AddFarmPage from '../../routes/AddFarmPage/AddFarmPage'
 import UpdateFarmPage from '../../routes/UpdateFarmPage/UpdateFarmPage'
@@ -182,10 +181,6 @@ class App extends Component {
               <PublicOnlyRoute
                 path={'/login'}
                 component={LoginPage}
-              />
-              <PrivateRoute 
-                path={'/my-farm'}
-                component={MyFarmProfilePage}
               />
               <PrivateRoute
                 path={'/my-profile'}

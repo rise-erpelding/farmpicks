@@ -10,9 +10,14 @@ class NavBar extends Component {
     TokenService.clearAuthToken()
   }
 
-  renderLogoutLink() {
+  renderLogoutAndProfileLinks() {
     return (
-      <div className='nav-bar__logout'>
+      <div className='nav-bar__logout-and-profile'>
+        <Link
+          to='my-profile'>
+          My Profile
+        </Link>
+        {' '}
         <Link 
           onClick={this.handleLogoutClick}
           to='/'>
@@ -49,7 +54,7 @@ class NavBar extends Component {
           </Link>
         </div> 
         {TokenService.hasAuthToken()
-            ? this.renderLogoutLink()
+            ? this.renderLogoutAndProfileLinks()
             : this.renderLoginLink()}
       </div>
     )
