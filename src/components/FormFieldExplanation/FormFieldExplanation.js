@@ -10,3 +10,7 @@ const FormFieldExplanation = (props) => {
 }
 
 export default FormFieldExplanation;
+
+FormFieldExplanation.defaultProps = {
+  message: ''
+}

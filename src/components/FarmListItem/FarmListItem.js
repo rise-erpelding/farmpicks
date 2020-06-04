@@ -33,5 +33,11 @@ export default function FarmListItem(props) {
 }
 
 FarmListItem.defaultProps = {
-  info: {}
+  info: {
+    farm_description: '',
+    profile_image: '',
+    farm_name: '',
+    products: [],
+    id: '',
+  }
 }

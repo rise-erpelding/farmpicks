@@ -9,6 +9,14 @@ import FarmerAvatar from '../../Images/FarmerAvatar.png'
 import './FarmPage.css'
 
 class FarmPage extends Component {
+  static defaultProps = {
+    match: {
+      params: {
+        farmId: ''
+      }
+    }
+  }
+
   static contextType = FarmContext
 
   state = {

@@ -7,6 +7,14 @@ import './UpdateFarmPage.css'
 
 class UpdateFarmPage extends Component {
 
+  static defaultProps = {
+    match: {
+      params: {
+        farmId: ''
+      }
+    }
+  }
+
   static contextType = FarmContext
 
   state = {
