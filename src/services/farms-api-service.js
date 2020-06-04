@@ -109,12 +109,11 @@ const FarmsApiService = {
         }
       })
   },
-  addFavorite(userId, farmId) {
+  addFavorite(farmId) {
     return fetch(`${config.API_ENDPOINT}/favorites`, {
       method: 'POST',
       body: JSON.stringify({
-        'favorite_farm': farmId,
-        'user_id': userId
+        'favorite_farm': farmId
       }),
       headers: {
         'content-type': 'application/json',
@@ -130,8 +129,8 @@ const FarmsApiService = {
         return res.json()
       })
   },
-  getFavoriteId(userId, farmId) {
-    return fetch(`${config.API_ENDPOINT}/favorites/?farm_id=${farmId}&user_id=${userId}`, {
+  getFavoriteId(farmId) {
+    return fetch(`${config.API_ENDPOINT}/favorites/?farm_id=${farmId}`, {
       method: 'GET',
       headers: {
         'content-type': 'application/json',
@@ -159,9 +158,39 @@ const FarmsApiService = {
             throw error
           })
         }
-        return res.json()
+        // return res.json()
       })
-  }
+  },
+  getUserInfo() {
+    return fetch(`${config.API_ENDPOINT}/users`, {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+        'authorization': `bearer ${TokenService.getAuthToken()}`
+      }
+    })
+    .then(res => {
+      if (!res.ok)
+      return res.json().then(error => Promise.reject(error))
+
+      return res.json()
+    })
+  },
+  getUserFavorites() {
+    return fetch(`${config.API_ENDPOINT}/users/favorites`, {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+        'authorization': `bearer ${TokenService.getAuthToken()}`
+      }
+    })
+    .then(res => {
+      if (!res.ok)
+      return res.json().then(error => Promise.reject(error))
+
+      return res.json()
+    })
+  },
 }
 
 export default FarmsApiService

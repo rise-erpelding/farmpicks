@@ -27,6 +27,7 @@ class FarmPage extends Component {
     purchaseOptions: [],
     profileImage: '',
     coverImage: '',
+    numberOfFavorites: '',
     favoriteId: '',
     showFavorite: false,
     error: null,
@@ -39,21 +40,27 @@ class FarmPage extends Component {
   addFavorite = () => {
     const { farmId } = this.props.match.params
 
-    FarmsApiService.addFavorite(11, farmId)
+    FarmsApiService.addFavorite(farmId)
       .then(response => {
         console.log('favorite added')
         console.log(response)
       })
+      .catch(error => {
+        console.error(error)
+        this.setState({ error })
+      })
+    let numFavorites = Number(this.state.numberOfFavorites)
+    numFavorites = numFavorites + 1
+    this.setState({ numberOfFavorites: numFavorites.toString() })
     this.setState({ showFavorite: true })
   }
 
   removeFavorite = () => {
     const { farmId } = this.props.match.params
-    FarmsApiService.getFavoriteId(11, farmId)
+    FarmsApiService.getFavoriteId(farmId)
       .then(response => {
         this.deleteFavorite(response.id)
       })
-      // TODO: HALP WITH THIS
       .catch(error => {
         console.error(error)
         this.setState({ error })
@@ -62,15 +69,19 @@ class FarmPage extends Component {
 
   deleteFavorite = (favId) => {
     FarmsApiService.removeFavorite(favId)
-      .then(response => {
-        console.log('favorite removed')
-        console.log(response)
+      .catch(error => {
+        console.error(error)
+        this.setState({ error })
       })
+    let numFavorites = Number(this.state.numberOfFavorites)
+    numFavorites = numFavorites - 1
+    this.setState({ numberOfFavorites: numFavorites.toString() })
     this.setState({ showFavorite: false })
   }
 
   componentDidMount() {
     const { farmId } = this.props.match.params
+    console.log(typeof farmId)
     FarmsApiService.getFarmById(farmId)
       .then(responseData => {
         this.setState({
@@ -88,8 +99,24 @@ class FarmPage extends Component {
           purchaseDetails: responseData.purchase_details,
           website: responseData.website,
           profileImage: responseData.profile_image,
-          coverImage: responseData.cover_image
+          coverImage: responseData.cover_image,
+          numberOfFavorites: responseData.number_of_favorites,
         })
+      })
+      .catch(error => {
+        console.error(error)
+        this.setState({ error })
+      })
+    FarmsApiService.getUserFavorites()
+      .then(response => {
+        console.log(response)
+        const isFavorite = response.find(farm => farm.id === Number(farmId))
+        console.log(isFavorite)
+        if (isFavorite) {
+          this.setState({
+            showFavorite: true
+          })
+        }
       })
       .catch(error => {
         console.error(error)
@@ -104,23 +131,28 @@ class FarmPage extends Component {
     // const farmInfo = farms.find(farm => 
     //   farm.id === farmId) || {}
 
-    const { farmName, address1, address2, city, addressState, zipCode, contactName, phoneNumber, website, farmDescription, purchaseDetails, products, purchaseOptions, profileImage, coverImage } = this.state
+    const { farmName, address1, address2, city, addressState, zipCode, contactName, phoneNumber, website, farmDescription, purchaseDetails, products, purchaseOptions, profileImage, coverImage, numberOfFavorites } = this.state
 
     const profile = profileImage ? profileImage : FarmerAvatar
     const cover = coverImage ? coverImage : Barn
 
     const showHideFavorite = this.state.showFavorite ? 
-      <FontAwesomeIcon 
-        className='farm-page__heart' 
-        icon={['fas', 'heart']} 
-        onClick={this.removeFavorite} 
-      />
+      <span onClick={this.removeFavorite} >
+        Click to Remove From Favorites
+        <FontAwesomeIcon 
+          className='farm-page__heart' 
+          icon={['fas', 'heart']} 
+        />
+      </span>
       :
-      <FontAwesomeIcon 
-        className='farm-page__heart' 
-        icon={['far', 'heart']} 
-        onClick={this.addFavorite} 
-      />
+      <span onClick={this.addFavorite}>
+        Click to Add To Favorites
+        <FontAwesomeIcon
+          className='farm-page__heart'
+          icon={['far', 'heart']}
+        />
+      </span>
+
 
     return (
       <section className='farm-page'>
@@ -138,10 +170,12 @@ class FarmPage extends Component {
           </div>
           <div className='farm-page__container--text'>
             <h2 className='farm-page__farm-name'>{farmName}</h2>
+            <p>Number of favorites: {numberOfFavorites}</p>
 
             {showHideFavorite}
-
-            <Link to={`/edit/${farmId}`} className='farm-page__update-farm-link'>Edit</Link>
+            <div>
+              <Link to={`/edit/${farmId}`} className='farm-page__update-farm-link'>Edit</Link>
+            </div>
             <div className='farm-page__products'>{products.join(', ')}</div>
             <address className='farm-page__address'>
               {address1}, {address2 ? address2 + ', ' : ''} 
