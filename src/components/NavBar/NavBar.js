@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import TokenService from '../../services/token-service'
 import { Link } from 'react-router-dom'
-import Harvest from '../Logo/Harvest.png'
+import Harvest from '../../Images/Harvest.png'
 import './NavBar.css'
 
 class NavBar extends Component {
