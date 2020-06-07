@@ -27,6 +27,8 @@ class App extends Component {
     error: null,
   }
 
+
+
   setFarms = farms => {
     this.setState({
       farms: farms,
@@ -74,6 +76,8 @@ class App extends Component {
         )
     })
   }
+
+
 
   filterOptions = (products, purchaseOptions) => {
     const filteredFarms = []
@@ -145,6 +149,7 @@ class App extends Component {
       products: this.state.products,
       purchaseOptions: this.state.purchaseOptions,
       farmAdded: this.state.farmAdded,
+      // loggedIn: this.state.loggedIn,
       getFarms: this.getFarms,
       addFarm: this.addFarm,
       updateFarm: this.updateFarm,

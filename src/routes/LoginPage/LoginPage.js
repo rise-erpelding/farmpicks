@@ -6,6 +6,11 @@ import AuthApiService from '../../services/auth-api-service'
 
 
 class LoginPage extends Component {
+  static defaultProps = {
+    history: {
+      push: () => {},
+    }
+  }
 
   state = { error: null }
 
@@ -52,6 +57,7 @@ class LoginPage extends Component {
 
   handleLoginSuccess = () => {
     this.props.history.push('/')
+    console.log('login success!')
   }
 
   render () {

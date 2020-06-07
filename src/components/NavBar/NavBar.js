@@ -5,9 +5,13 @@ import Harvest from '../../Images/Harvest.png'
 import './NavBar.css'
 
 class NavBar extends Component {
+  state = {
+    loggedIn: false
+  }
 
   handleLogoutClick = () => {
     TokenService.clearAuthToken()
+    this.setState({ loggedIn: false })
   }
 
   renderLogoutAndProfileLinks() {
@@ -39,6 +43,12 @@ class NavBar extends Component {
         </Link>
       </div>
     )
+  }
+
+  componentDidMount() {
+    if (TokenService.hasAuthToken()) {
+      this.setState({ loggedIn: true })
+    }
   }
 
   render () {

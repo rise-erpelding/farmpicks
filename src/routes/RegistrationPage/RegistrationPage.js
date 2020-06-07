@@ -16,7 +16,7 @@ class RegistrationPage extends Component {
     return (
       <div className='registration-page'>
         <h2>Register</h2>
-        <h3>I will work on this more later...</h3>
+        <h3>Registration coming soon!</h3>
         <form 
           className='registration-page__form'
           onSubmit={this.handleSubmit}>

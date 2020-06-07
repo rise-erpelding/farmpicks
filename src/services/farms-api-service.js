@@ -22,7 +22,6 @@ const FarmsApiService = {
       method: 'GET',
       headers: {
         'content-type': 'application/json'
-        //auth here
       }
     })
       .then(res => {
@@ -38,14 +37,12 @@ const FarmsApiService = {
         method: 'GET',
         headers: {
           'content-type': 'application/json'
-          //auth here
         }
       }),
       fetch(`${config.API_ENDPOINT}/purchase-options`, {
         method: 'GET',
         headers: {
           'content-type': 'application/json'
-          //auth here
         }
       })
     ])
