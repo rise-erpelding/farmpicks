@@ -59,7 +59,6 @@ class NavBar extends Component {
             {' '}FarmPicks
           </Link>
         </div> 
-        {/* {TokenService.hasAuthToken() */}
         {this.props.login === true
             ? this.renderLogoutAndProfileLinks()
             : this.renderLoginLink()}

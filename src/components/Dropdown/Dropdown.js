@@ -24,7 +24,6 @@ class Dropdown extends Component {
   }
 
   handleSeeAllClick = () => {
-    console.log('handleSeeAllClick')
     this.context.getFarms('')
     this.props.onChangePage()
   }

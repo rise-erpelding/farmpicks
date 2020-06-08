@@ -12,8 +12,4 @@ const ValidationError = (props) => {
   return <></>
 }
 
-// ValidationError.propTypes = {
-//   history: PropTypes.string,
-// };
-
 export default ValidationError;

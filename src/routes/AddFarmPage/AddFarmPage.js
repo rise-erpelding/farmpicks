@@ -49,7 +49,6 @@ class AddFarmPage extends Component {
       this.props.history.push('/')
     })
     .catch(error => {
-      console.log(error)
       this.setState({ error })
     })
   }

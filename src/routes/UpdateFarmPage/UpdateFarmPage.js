@@ -36,19 +36,6 @@ class UpdateFarmPage extends Component {
 
   componentDidMount() {
     const { farmId } = this.props.match.params
-    // fetch(`${config.API_ENDPOINT}/farms/${farmId}`, {
-    //   method: 'GET',
-    //   headers: {
-    //     'content-type': 'application/json'
-    //     //auth here
-    //   }
-    // })
-    //   .then(res => {
-    //     if (!res.ok)
-    //       return res.json().then(error => Promise.reject(error))
-
-    //     return res.json()
-    //   })
       FarmsApiService.getFarmById(farmId)
       .then(responseData => {
         this.setState({
@@ -94,27 +81,13 @@ class UpdateFarmPage extends Component {
 
     FarmsApiService.updateFarm(updatedFarm, farmId)
     .then(() => {
-      //potentially resetFields but I don't have that written yet
       this.context.updateFarm(updatedFarm)
       this.props.history.push('/')
     })
     .catch(error => {
-      console.log(error)
       this.setState({ error })
     })
   }
-  
-  //resetFields
-  //it would look something like this
-  // resetFields = (newFields) => {
-  //   this.setState({
-  //     id: newFields.id || '',
-  //     title: newFields.title || '',
-  //     url: newFields.url || '',
-  //     description: newFields.description || '',
-  //     rating: newFields.rating || '',
-  //   })
-  // }
 
   handleClickCancel = () => {
     this.props.history.push('/')

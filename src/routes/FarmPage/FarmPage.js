@@ -50,8 +50,6 @@ class FarmPage extends Component {
 
     FarmsApiService.addFavorite(farmId)
       .then(response => {
-        console.log('favorite added')
-        console.log(response)
       })
       .catch(error => {
         console.error(error)
@@ -89,7 +87,6 @@ class FarmPage extends Component {
 
   componentDidMount() {
     const { farmId } = this.props.match.params
-    console.log(typeof farmId)
     FarmsApiService.getFarmById(farmId)
       .then(responseData => {
         this.setState({
@@ -117,9 +114,7 @@ class FarmPage extends Component {
       })
     FarmsApiService.getUserFavorites()
       .then(response => {
-        console.log(response)
         const isFavorite = response.find(farm => farm.id === Number(farmId))
-        console.log(isFavorite)
         if (isFavorite) {
           this.setState({
             showFavorite: true
@@ -134,10 +129,6 @@ class FarmPage extends Component {
 
   render () {
     const { farmId } = this.props.match.params
-    // console.log(`value of farmId is ` + farmId)
-    // const farms = this.context.farms
-    // const farmInfo = farms.find(farm => 
-    //   farm.id === farmId) || {}
 
     const { farmName, address1, address2, city, addressState, zipCode, contactName, phoneNumber, website, farmDescription, purchaseDetails, products, purchaseOptions, profileImage, coverImage, numberOfFavorites } = this.state
 
