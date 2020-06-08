@@ -27,6 +27,8 @@ class NavBar extends Component {
           to='/'>
           Logout
         </Link>
+
+
       </div>
     )
   }
@@ -52,10 +54,10 @@ class NavBar extends Component {
       <div className='nav-bar'>
         <div>
           <Link to='/'>
-            <img 
+            {/* <img 
               className='nav-bar__logo' 
               src={Harvest} 
-              alt='FarmPicks Logo' />
+              alt='FarmPicks Logo' /> */}
             {' '}FarmPicks
           </Link>
         </div> 
