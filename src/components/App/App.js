@@ -24,7 +24,6 @@ class App extends Component {
     products: [],
     purchaseOptions: [],
     farmAdded: false,
-    loggedIn: false,
     error: null,
   }
 
@@ -77,28 +76,6 @@ class App extends Component {
         )
     })
   }
-
-  setLoggedIn = (loginStatus) => {
-   if (loginStatus === 'logged in!') {
-     this.setState({ loggedIn: true })
-   } else {
-     this.setState({ loggedIn: false })
-   }
-  }
-
-  // loggedIn = () => {
-  //   this.setState({
-  //     loggedIn: true
-  //   })
-  // }
-
-  // loggedOut = () => {
-  //   this.setState({
-  //     loggedIn: false
-  //   })
-  // }
-
-
 
   filterOptions = (products, purchaseOptions) => {
     const filteredFarms = []
@@ -164,28 +141,24 @@ class App extends Component {
 
   render() {
 
-    const loggedInValue = this.state.loggedIn
-
     const contextValue = {
       farms: this.state.farms,
       filteredFarms: this.state.filteredFarms,
       products: this.state.products,
       purchaseOptions: this.state.purchaseOptions,
       farmAdded: this.state.farmAdded,
-      loggedIn: this.state.loggedIn,
       getFarms: this.getFarms,
       addFarm: this.addFarm,
       updateFarm: this.updateFarm,
       filterProductsBy: this.filterProductsBy,
       filterPurchaseOptionsBy: this.filterPurchaseOptionsBy,
       filterOptions: this.filterOptions,
-      setLoggedIn: this.setLoggedIn,
     }
 
     return (
       <div className="App">
         <header>
-          <NavBar links={loggedInValue} />
+          <NavBar />
         </header>
         <main>
           <FarmContext.Provider

@@ -10,7 +10,6 @@ const FarmContext = React.createContext({
   addFarm: () => {},
   updateFarm: () => {},
   filterOptions: () => {},
-  setLoggedIn: () => {},
 })
 
 export default FarmContext

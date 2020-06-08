@@ -41,7 +41,7 @@ class LoginPage extends Component {
 
   handleLoginSuccess = () => {
     this.props.history.push('/')
-    this.context.setLoggedIn('logged in!')
+    // this.context.setLoggedIn(true)
   }
 
   render () {
