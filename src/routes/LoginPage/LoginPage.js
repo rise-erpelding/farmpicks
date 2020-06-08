@@ -1,11 +1,15 @@
 import React, { Component } from 'react'
 import TokenService from '../../services/token-service'
 import AuthApiService from '../../services/auth-api-service'
+import FarmContext from '../../contexts/FarmContext'
 // import { Link } from 'react-router-dom'
 // import config from '../../config'
 
 
 class LoginPage extends Component {
+
+  static contextType = FarmContext
+
   static defaultProps = {
     history: {
       push: () => {},
@@ -13,25 +17,6 @@ class LoginPage extends Component {
   }
 
   state = { error: null }
-
-  // handleSubmit = e => {
-  //   e.preventDefault()
-  //   const { user_name, password } = e.target
-
-  //   TokenService.saveAuthToken(
-  //     TokenService.makeBasicAuthToken(user_name.value, password.value)
-  //   )
-
-  //   console.log(user_name.value)
-  //   console.log(password.value)
-
-  //   user_name.value = ''
-  //   password.value = ''
-
-
-
-  //   this.handleLoginSuccess()
-  // }
 
   handleSubmitJwtAuth = e => {
     e.preventDefault()
@@ -46,7 +31,6 @@ class LoginPage extends Component {
         user_name.value = ''
         password.value = ''
         TokenService.saveAuthToken(res.authToken)
-        this.props.onLoginSuccess()
       })
       .catch(res => {
         this.setState({ error: res.error })
@@ -57,7 +41,7 @@ class LoginPage extends Component {
 
   handleLoginSuccess = () => {
     this.props.history.push('/')
-    console.log('login success!')
+    this.context.setLoggedIn('logged in!')
   }
 
   render () {
