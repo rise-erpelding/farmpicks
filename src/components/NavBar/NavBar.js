@@ -2,13 +2,15 @@ import React, { Component } from 'react'
 import TokenService from '../../services/token-service'
 import { Link } from 'react-router-dom'
 import Harvest from '../../Images/Harvest.png'
+import FarmContext from '../../contexts/FarmContext'
 import './NavBar.css'
 
 class NavBar extends Component {
 
-
+  static contextType = FarmContext
 
   handleLogoutClick = () => {
+    this.context.toggleLogin()
     TokenService.clearAuthToken()
   }
 
@@ -57,7 +59,8 @@ class NavBar extends Component {
             {' '}FarmPicks
           </Link>
         </div> 
-        {TokenService.hasAuthToken()
+        {/* {TokenService.hasAuthToken() */}
+        {this.props.login === true
             ? this.renderLogoutAndProfileLinks()
             : this.renderLoginLink()}
       </div>

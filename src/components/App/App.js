@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {  Route, Switch } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import FarmContext from '../../contexts/FarmContext'
 import NavBar from '../NavBar/NavBar'
 import SearchPage from '../../routes/SearchPage/SearchPage'
@@ -24,6 +24,7 @@ class App extends Component {
     products: [],
     purchaseOptions: [],
     farmAdded: false,
+    isLoggedIn: false,
     error: null,
   }
 
@@ -73,7 +74,7 @@ class App extends Component {
     this.setState({
       farms: this.state.farms.map(farm =>
         (farm.id !== updatedFarm.id) ? farm : updatedFarm
-        )
+      )
     })
   }
 
@@ -131,6 +132,12 @@ class App extends Component {
     })
   }
 
+  toggleLogin = () => {
+    this.setState(prevState => ({
+      isLoggedIn: !prevState.isLoggedIn
+    }))
+  }
+
   componentDidMount() {
     FarmsApiService.getProductsPurchaseOptions()
       .then(([products, purchaseOptions]) => {
@@ -153,26 +160,28 @@ class App extends Component {
       filterProductsBy: this.filterProductsBy,
       filterPurchaseOptionsBy: this.filterPurchaseOptionsBy,
       filterOptions: this.filterOptions,
+      toggleLogin: this.toggleLogin,
     }
 
     return (
       <div className="App">
-        <header>
-          <NavBar />
-        </header>
-        <main>
-          <FarmContext.Provider
-            value={contextValue}>
+        <FarmContext.Provider
+          value={contextValue}>
+          <header>
+            <NavBar login={this.state.isLoggedIn} />
+          </header>
+          <main>
+
             <Switch>
-              <Route 
+              <Route
                 exact path={'/'}
                 component={SearchPage}
               />
-              <Route 
+              <Route
                 exact path={'/farms'}
                 component={ResultsPage}
               />
-              <Route 
+              <PrivateRoute
                 path={'/farms/:farmId'}
                 component={FarmPage}
               />
@@ -188,7 +197,7 @@ class App extends Component {
                 path={'/my-profile'}
                 component={MyProfilePage}
               />
-              <PrivateRoute 
+              <PrivateRoute
                 path={'/add-farm'}
                 component={AddFarmPage}
               />
@@ -196,12 +205,13 @@ class App extends Component {
                 path={'/edit/:farmId'}
                 component={UpdateFarmPage}
               />
-              <Route 
+              <Route
                 component={NotFoundPage}
-              />                                    
+              />
             </Switch>
-          </FarmContext.Provider>
-        </main>
+
+          </main>
+        </FarmContext.Provider>
       </div>
     )
   }
