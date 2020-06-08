@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import FarmContext from '../../contexts/FarmContext'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './Dropdown.css'
 
 class Dropdown extends Component {
@@ -36,7 +37,7 @@ class Dropdown extends Component {
 
     return (
       <div className="dropdown">
-        {/* <button className="dropdown__button">Categories</button> */}
+        <button className="dropdown__button">See Categories <FontAwesomeIcon icon='caret-down' /></button>
         <div className="dropdown__content">
           <h5>Products</h5>
           <ul className="dropdown__products">

@@ -147,6 +147,7 @@ class App extends Component {
   }
 
   render() {
+    const appClass = this.state.farms.length ? 'app' : 'app show-background'
 
     const contextValue = {
       farms: this.state.farms,
@@ -164,13 +165,13 @@ class App extends Component {
     }
 
     return (
-      <div className="App">
+      <div className={appClass}>
         <FarmContext.Provider
           value={contextValue}>
           <header>
             <NavBar login={this.state.isLoggedIn} />
           </header>
-          <main>
+          <main className='app__main'>
 
             <Switch>
               <Route

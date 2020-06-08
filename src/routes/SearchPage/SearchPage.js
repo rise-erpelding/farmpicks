@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import FarmContext from '../../contexts/FarmContext'
 import SearchBar from '../../components/SearchBar/SearchBar'
 import Dropdown from '../../components/Dropdown/Dropdown'
@@ -17,11 +16,9 @@ class SearchPage extends Component {
 
     return (
       <div className="search-page">
-        <div>From small farms to you.</div>
         {farmAddStatus}
         <SearchBar onChangePage={this.changePage} />
         <Dropdown onChangePage={this.changePage} /> 
-        <Link className="search-page__add-farm" to="/add-farm">Add a farm</Link>
       </div>
     )
   }

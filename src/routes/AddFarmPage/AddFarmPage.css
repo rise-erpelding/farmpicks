@@ -92,7 +92,7 @@
 }
 
 /* Styling text inputs and textareas */
-input[type=text] {
+.add-farm-page > input[type=text] {
   padding: 10px 15px;
   margin: 8px 0;
   background-color: #e1ece2;

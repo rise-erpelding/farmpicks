@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@900&display=swap');
+
 .nav-bar {
-  height: 0px;
+  /* height: 0px; */
   text-align: left;
 }
 
@@ -9,20 +11,43 @@ a {
 }
 
 .nav-bar__home {
-  font-size: 2em;
-  position: relative;
+  font-size: 2.2em;
+  /* position: relative; */
+  padding-left: 25px;
+  padding-top: 15px;
+  margin-bottom: 20px;
   /* top: 100px;
   left: 200px; */
 }
 
-.nav-bar__home > p {
-  font-size: 0.5em;
+.nav-bar__farmpicks {
+  font-family: 'Lato', sans-serif;
 }
 
-.nav-bar__sign-in {
+.nav-bar__home > p {
+  font-size: 0.45em;
+  margin: 8px;
+}
+
+.nav-bar__login-logout {
   text-align: right;
   padding-top: 18px;
   padding-right: 20px;
   font-size: 1em;
   text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.nav-bar__login-logout * {
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+@media screen and (min-width: 700px) {
+  .nav-bar__home {
+    font-size: 3em;
+    padding-left: 110px;
+    padding-top: 30px;
+    margin-bottom: 50px;
+  }
 }

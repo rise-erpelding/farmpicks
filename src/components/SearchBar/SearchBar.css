@@ -1,9 +1,44 @@
+.search-bar {
+  border: 2px solid #0a320e;
+  border-radius: 3px;
+  width: 280px;
+  height: 30px;
+  margin: auto;
+  background-color: #e1ece2;
+  display: inline-block;
+}
+
 .search-bar > input {
-  width: 200px;
+  width: 230px;
+  padding-left: 11px;
+  border: 0px;
+  height: 24px;
+  background-color: transparent;
 }
 
 .search-bar > button {
   border: none;
-  background-color: transparent;
+  /* background-color: ; */
   font-size: 1.5em;
+  width: 35px;
+}
+
+
+@media screen and (min-width: 400px) {
+  .search-bar {
+    width: 300px;
+  }
+
+  .search-bar > input {
+    width: 250px;
+  }
+}
+
+@media screen and (min-width: 700px) {
+  .search-bar {
+    width: 350px;
+  }
+  .search-bar > input {
+    width: 300px;
+  }
 }

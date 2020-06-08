@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import TokenService from '../../services/token-service'
 import { Link } from 'react-router-dom'
-import Harvest from '../../Images/Harvest.png'
 import FarmContext from '../../contexts/FarmContext'
 import './NavBar.css'
 
@@ -16,7 +15,12 @@ class NavBar extends Component {
 
   renderLogoutAndProfileLinks() {
     return (
-      <div className='nav-bar__logout-and-profile'>
+      <div className='nav-bar__login-logout'>
+        <Link
+          to='/add-farm'>
+          Add a farm
+        </Link>
+        {' '}
         <Link
           to='my-profile'>
           My Profile
@@ -27,15 +31,13 @@ class NavBar extends Component {
           to='/'>
           Logout
         </Link>
-
-
       </div>
     )
   }
 
   renderLoginLink() {
     return (
-      <div className='nav-bar__login'>
+      <div className='nav-bar__login-logout'>
         <Link to='register'>
           Register
           {' '}
@@ -52,18 +54,19 @@ class NavBar extends Component {
 
     return (
       <div className='nav-bar'>
-        <div>
-          <Link to='/'>
-            {/* <img 
-              className='nav-bar__logo' 
-              src={Harvest} 
-              alt='FarmPicks Logo' /> */}
-            {' '}FarmPicks
-          </Link>
-        </div> 
+
         {this.props.login === true
-            ? this.renderLogoutAndProfileLinks()
-            : this.renderLoginLink()}
+          ? this.renderLogoutAndProfileLinks()
+          : this.renderLoginLink()}
+        <div className='nav-bar__home'>
+          <Link
+            className='nav-bar__farmpicks'
+            to='/'
+          >
+            FarmPicks
+          </Link>
+          <p>From small farms to you.</p>
+        </div>
       </div>
     )
   }
