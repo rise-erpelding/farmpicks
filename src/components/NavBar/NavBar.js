@@ -26,7 +26,7 @@ class NavBar extends Component {
         </Link>
         {' '}
         <Link
-          to='my-profile'>
+          to='/my-profile'>
           My Profile
         </Link>
         {' '}
@@ -42,11 +42,11 @@ class NavBar extends Component {
   renderLoginLink() {
     return (
       <div className='nav-bar__login-logout'>
-        <Link to='register'>
+        <Link to='/register'>
           Register
           {' '}
         </Link>
-        <Link to='login'>
+        <Link to='/login'>
           Login
         </Link>
       </div>
