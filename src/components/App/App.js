@@ -36,6 +36,10 @@ class App extends Component {
       filteredFarms: farms,
       error: null,
     })
+
+    window.sessionStorage.setItem('filteredFarms', JSON.stringify(farms))
+    // const seshStore = window.sessionStorage.getItem('filteredFarms')
+    // console.log(JSON.parse(seshStore))
   }
 
   setProducts = products => {
@@ -85,7 +89,6 @@ class App extends Component {
         filteredFarms.push(farm)
       })
     } else if (products.length === 0) {
-      console.log('no products selected')
       this.state.farms.forEach(farm => {
         farm.purchase_options.forEach(hasPO => {
           purchaseOptions.forEach(option => {
@@ -96,7 +99,6 @@ class App extends Component {
         })
       })
     } else if (purchaseOptions.length === 0) {
-      console.log('no purchase options selected')
       this.state.farms.forEach(farm => {
         farm.products.forEach(hasProduct => {
           products.forEach(prod => {
@@ -130,6 +132,10 @@ class App extends Component {
     this.setState({
       filteredFarms: filteredUniqueFarms
     })
+
+    window.sessionStorage.setItem('filteredFarms', JSON.stringify(filteredUniqueFarms))
+    // const seshStore = window.sessionStorage.getItem('filteredFarms')
+    // console.log(JSON.parse(seshStore))
   }
 
   toggleLogin = () => {

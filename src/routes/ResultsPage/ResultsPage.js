@@ -32,12 +32,23 @@ class ResultsPage extends Component {
 
   render () {
     const { filteredFarms } = this.context
+    const sessionStoredFarms = JSON.parse(window.sessionStorage.getItem('filteredFarms'))
+
     let farmsList
     if (filteredFarms.length === 0) {
-      farmsList = 
+      if (sessionStoredFarms.length === 0) {
+        farmsList = 
         <li className="results-page__no-farms">
           Whoops! No farms found. Try a different search term.
         </li>
+      }
+      else {
+        farmsList = sessionStoredFarms.map(farm =>
+          <li key={farm.id}>
+            <FarmListItem info={farm} />
+          </li>
+          )
+      }
     } else {
       farmsList = filteredFarms.map(farm =>
         <li key={farm.id}>
