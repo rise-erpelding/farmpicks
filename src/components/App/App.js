@@ -14,6 +14,7 @@ import NotFoundPage from '../../routes/NotFoundPage/NotFoundPage'
 import FarmsApiService from '../../services/farms-api-service'
 import PrivateRoute from '../../Utils/PrivateRoute'
 import PublicOnlyRoute from '../../Utils/PublicOnlyRoute'
+import TokenService from '../../services/token-service'
 import './App.css'
 
 class App extends Component {
@@ -24,7 +25,7 @@ class App extends Component {
     products: [],
     purchaseOptions: [],
     farmAdded: false,
-    isLoggedIn: false,
+    isLoggedIn: TokenService.hasAuthToken(),
     showBackground: true,
     error: null,
   }
