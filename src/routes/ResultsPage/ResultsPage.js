@@ -35,27 +35,47 @@ class ResultsPage extends Component {
     const sessionStoredFarms = JSON.parse(window.sessionStorage.getItem('filteredFarms'))
 
     let farmsList
-    if (filteredFarms.length === 0) {
-      if (sessionStoredFarms.length === 0) {
-        farmsList = 
-        <li className="results-page__no-farms">
-          Whoops! No farms found. Try a different search term.
-        </li>
-      }
-      else {
-        farmsList = sessionStoredFarms.map(farm =>
-          <li key={farm.id}>
-            <FarmListItem info={farm} />
-          </li>
-          )
-      }
-    } else {
+    if (filteredFarms && filteredFarms.length) {
       farmsList = filteredFarms.map(farm =>
         <li key={farm.id}>
           <FarmListItem info={farm} />
         </li>
         )
+    } else if (sessionStoredFarms) {
+      farmsList = sessionStoredFarms.map(farm =>
+        <li key={farm.id}>
+          <FarmListItem info={farm} />
+        </li>
+        )
+    } else {
+      farmsList = 
+        <li className="results-page__no-farms">
+          Whoops! No farms found. Try a different search term.
+        </li>
     }
+
+    // let farmsList
+    // if (filteredFarms.length === 0) {
+    //   if (sessionStoredFarms.length === 0) {
+    //     farmsList = 
+    //     <li className="results-page__no-farms">
+    //       Whoops! No farms found. Try a different search term.
+    //     </li>
+    //   }
+    //   else {
+    //     farmsList = sessionStoredFarms.map(farm =>
+    //       <li key={farm.id}>
+    //         <FarmListItem info={farm} />
+    //       </li>
+    //       )
+    //   }
+    // } else {
+    //   farmsList = filteredFarms.map(farm =>
+    //     <li key={farm.id}>
+    //       <FarmListItem info={farm} />
+    //     </li>
+    //     )
+    // }
 
     return (
       <div className="results-page">

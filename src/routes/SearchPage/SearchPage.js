@@ -9,13 +9,14 @@ class SearchPage extends Component {
 
   changePage = () => {
     this.props.history.push('/farms')
-  }
-
-  componentDidMount() {
-    window.sessionStorage.removeItem('filteredFarms')
+    this.context.hideBackground()
   }
 
   render () {
+
+    window.sessionStorage.removeItem('filteredFarms')
+    console.log('removing filteredFarms from session storage')
+
     const farmAddStatus = this.context.farmAdded === true ? <div className="search-page__farm-added--success">Farm added successfully</div> : null
 
     return (

@@ -25,6 +25,7 @@ class App extends Component {
     purchaseOptions: [],
     farmAdded: false,
     isLoggedIn: false,
+    showBackground: true,
     error: null,
   }
 
@@ -38,8 +39,6 @@ class App extends Component {
     })
 
     window.sessionStorage.setItem('filteredFarms', JSON.stringify(farms))
-    // const seshStore = window.sessionStorage.getItem('filteredFarms')
-    // console.log(JSON.parse(seshStore))
   }
 
   setProducts = products => {
@@ -134,14 +133,24 @@ class App extends Component {
     })
 
     window.sessionStorage.setItem('filteredFarms', JSON.stringify(filteredUniqueFarms))
-    // const seshStore = window.sessionStorage.getItem('filteredFarms')
-    // console.log(JSON.parse(seshStore))
   }
 
   toggleLogin = () => {
     this.setState(prevState => ({
       isLoggedIn: !prevState.isLoggedIn
     }))
+  }
+
+  showBackground = () => {
+    this.setState({
+      showBackground: true
+    })
+  }
+
+  hideBackground = ()=> {
+    this.setState({
+      showBackground: false
+    })
   }
 
   componentDidMount() {
@@ -153,7 +162,9 @@ class App extends Component {
   }
 
   render() {
-    const appClass = this.state.farms.length ? 'app' : 'app show-background'
+    // console.log('App is rendering')
+    // const sessionStoredFarms = window.sessionStorage.getItem('filteredFarms')
+    const appClass = this.state.showBackground ? 'app show-background' : 'app'
 
     const contextValue = {
       farms: this.state.farms,
@@ -168,6 +179,8 @@ class App extends Component {
       filterPurchaseOptionsBy: this.filterPurchaseOptionsBy,
       filterOptions: this.filterOptions,
       toggleLogin: this.toggleLogin,
+      showBackground: this.showBackground,
+      hideBackground: this.hideBackground,
     }
 
     return (
