@@ -1,8 +1,24 @@
 .farm-list-item {
-  margin: 20px;
+  font-size: 0.8em;
+  text-align: left;
   display: flex;
-  /* flex-flow: row nowrap;
-  align-items: center; */
+  padding: 8px;
+  border-radius: 3px;
+  margin-bottom: 10px;
+  -webkit-box-shadow: 2px 2px 3px 2px #B4BDB5;
+  -moz-box-shadow:    2px 2px 3px 2px #B4BDB5;
+  box-shadow:         2px 2px 3px 2px #B4BDB5;
+}
+
+.farm-list-item__img--container {
+  display: flex;
+}
+
+.farm-list-item__info--container {
+  padding-left: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .farm-list-item__title {
@@ -10,15 +26,20 @@
 }
 
 .farm-list-item__img {
-  width: 10vw;
-  height: 10vw;
+  width: 20vw;
+  height: 20vw;
   object-fit: cover;
+  border-radius: 3px;
 }
 
-.farm-list-item__img--container {
-  width: 25%;
+
+
+@media screen and (min-width: 400px) {
+
 }
 
-.farm-list-item__info--container {
-  width: 75%;
+@media screen and (min-width: 700px) {
+
 }
+
+

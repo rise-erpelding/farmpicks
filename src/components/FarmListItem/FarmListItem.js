@@ -5,7 +5,6 @@ import './FarmListItem.css'
 
 export default function FarmListItem(props) {
   const farm = props.info
-  const truncatedDescription = farm.farm_description.substring(0, 300) + '...'
   const profile = farm.profile_image ? farm.profile_image : FarmerAvatar
   return (
     <div className="farm-list-item">
@@ -23,9 +22,6 @@ export default function FarmListItem(props) {
         </h4>
         <div className="farm-list-item__products">
           {farm.products.join(', ')}
-        </div>
-        <div className="farm-list-item__description--truncated">
-          {truncatedDescription} 
         </div>
       </div>
     </div>

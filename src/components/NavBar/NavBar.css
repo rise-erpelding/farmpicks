@@ -3,11 +3,7 @@
 .nav-bar {
   /* height: 0px; */
   text-align: left;
-}
 
-a {
-  text-decoration: none;
-  color: black;
 }
 
 .nav-bar__home {
@@ -29,18 +25,35 @@ a {
   margin: 8px;
 }
 
+.nav-bar__home > a {
+  color: black;
+}
+
 .nav-bar__login-logout {
   text-align: right;
   padding-top: 18px;
-  padding-right: 20px;
-  font-size: 1em;
+  padding-right: 15px;
+  font-size: 0.8em;
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 1.5px;
 }
 
-.nav-bar__login-logout * {
-  padding-left: 12px;
-  padding-right: 12px;
+.nav-bar__login-logout > a {
+  padding-left: 8px;
+  padding-right: 8px;
+  cursor: pointer;
+  color: black;
+}
+
+@media screen and (min-width: 400px) {
+  .nav-bar__login-logout {
+    font-size: 0.95em;
+  }
+  
+  .nav-bar__login-logout * {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
 }
 
 @media screen and (min-width: 700px) {
@@ -49,5 +62,14 @@ a {
     padding-left: 110px;
     padding-top: 30px;
     margin-bottom: 50px;
+  }
+
+  .nav-bar__login-logout {
+    font-size: 1em;
+  }
+  
+  .nav-bar__login-logout * {
+    padding-left: 12px;
+    padding-right: 12px;
   }
 }

@@ -1,5 +1,10 @@
+
 .app {
   text-align: center;
+}
+
+a {
+  text-decoration: none;
 }
 
 .show-background {
@@ -14,3 +19,4 @@
   background-position-x: right;
   height: 100vh;
 }
+

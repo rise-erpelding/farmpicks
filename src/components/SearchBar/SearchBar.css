@@ -1,26 +1,31 @@
 .search-bar {
   border: 2px solid #0a320e;
   border-radius: 3px;
-  width: 280px;
+  width: 274px;
   height: 30px;
   margin: auto;
   background-color: #e1ece2;
   display: inline-block;
+  padding: 4px 1px 3px 1px;
 }
 
 .search-bar > input {
   width: 230px;
-  padding-left: 11px;
+  padding: 0;
   border: 0px;
-  height: 24px;
+  height: 30px;
   background-color: transparent;
+  position: relative;
+  top: -4px;
 }
 
 .search-bar > button {
   border: none;
-  /* background-color: ; */
+  background-color: transparent;
   font-size: 1.5em;
   width: 35px;
+  height: 30px;
+  cursor: pointer;
 }
 
 

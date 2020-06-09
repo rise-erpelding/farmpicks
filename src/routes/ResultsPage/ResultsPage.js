@@ -60,8 +60,15 @@ class ResultsPage extends Component {
           <button type='button' onClick={this.showModal}>
             Filter Results
           </button>
-          <button>
-            <Link to="/add-farm">Add a farm</Link>
+          <button 
+            type='button' 
+            className='results-page__button'
+          >
+            <Link 
+              to="/add-farm"
+            >
+                Add a farm
+            </Link>
           </button>
         </div>
         <ul className="results-page__farms-list">
