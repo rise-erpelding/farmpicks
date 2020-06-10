@@ -31,6 +31,10 @@ class ResultsPage extends Component {
     this.context.filterOptions(products, purchaseOptions)
   }
 
+  showBackground = () => {
+    this.context.showBackground()
+  }
+
   render () {
     const { filteredFarms } = this.context
     const sessionStoredFarms = JSON.parse(FilteredFarmsService.getFilteredFarms())
@@ -71,7 +75,10 @@ class ResultsPage extends Component {
             type='button'
             className='results-page__button'
           >
-            <Link to='/'>
+            <Link 
+              onClick={this.showBackground}
+              to='/'
+            >
               New search <FontAwesomeIcon icon='search' />
             </Link>
           </button>
