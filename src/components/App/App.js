@@ -138,8 +138,13 @@ class App extends Component {
     this.setState({
       filteredFarms: filteredUniqueFarms
     })
-    FilteredFarmsService.setFilteredFarms(JSON.stringify(filteredUniqueFarms))
-    // window.sessionStorage.setItem('filteredFarms', JSON.stringify(filteredUniqueFarms))
+
+    if (filteredUniqueFarms.length > 0) {
+      FilteredFarmsService.setFilteredFarms(JSON.stringify(filteredUniqueFarms))
+    } else {
+      FilteredFarmsService.clearFilteredFarms()
+    }
+
   }
 
   toggleLogin = () => {

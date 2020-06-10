@@ -40,7 +40,7 @@ class ResultsPage extends Component {
     const sessionStoredFarms = JSON.parse(FilteredFarmsService.getFilteredFarms())
 
     let farmsList
-    if (filteredFarms && filteredFarms.length) {
+    if (filteredFarms && filteredFarms.length > 0) {
       farmsList = filteredFarms.map(farm =>
         <li key={farm.id}>
           <FarmListItem info={farm} />
@@ -55,7 +55,7 @@ class ResultsPage extends Component {
     } else {
       farmsList = 
         <li className="results-page__no-farms">
-          <h4>Whoops! No farms found. Try a new search with a different search term.</h4>
+          <h4>Whoops! No farms found. Try a new search.</h4>
           <p>Are you searching for specific products (for example, "carrots" or "spinach")? Try making your search more broad (for example, "produce").</p>
         </li>
     }
