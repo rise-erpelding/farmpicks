@@ -15,6 +15,7 @@ import FarmsApiService from '../../services/farms-api-service'
 import PrivateRoute from '../../Utils/PrivateRoute'
 import PublicOnlyRoute from '../../Utils/PublicOnlyRoute'
 import TokenService from '../../services/token-service'
+import FilteredFarmsService from '../../services/filtered-farms-service'
 import './App.css'
 
 class App extends Component {
@@ -26,7 +27,7 @@ class App extends Component {
     purchaseOptions: [],
     farmAdded: false,
     isLoggedIn: TokenService.hasAuthToken(),
-    showBackground: true,
+    showBackground: !FilteredFarmsService.hasFilteredFarms(),
     error: null,
   }
 
@@ -39,7 +40,12 @@ class App extends Component {
       error: null,
     })
 
-    window.sessionStorage.setItem('filteredFarms', JSON.stringify(farms))
+    if (farms.length > 0) {
+      FilteredFarmsService.setFilteredFarms(JSON.stringify(farms))
+    } 
+    // else {
+    //   FilteredFarmsService.clearFilteredFarms()
+    // }
   }
 
   setProducts = products => {
@@ -132,8 +138,8 @@ class App extends Component {
     this.setState({
       filteredFarms: filteredUniqueFarms
     })
-
-    window.sessionStorage.setItem('filteredFarms', JSON.stringify(filteredUniqueFarms))
+    FilteredFarmsService.setFilteredFarms(JSON.stringify(filteredUniqueFarms))
+    // window.sessionStorage.setItem('filteredFarms', JSON.stringify(filteredUniqueFarms))
   }
 
   toggleLogin = () => {
@@ -163,8 +169,6 @@ class App extends Component {
   }
 
   render() {
-    // console.log('App is rendering')
-    // const sessionStoredFarms = window.sessionStorage.getItem('filteredFarms')
     const appClass = this.state.showBackground ? 'app show-background' : 'app'
 
     const contextValue = {

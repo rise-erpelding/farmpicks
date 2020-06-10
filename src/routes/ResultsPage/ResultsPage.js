@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import FarmContext from '../../contexts/FarmContext'
 import FarmListItem from '../../components/FarmListItem/FarmListItem'
-import SearchBar from '../../components/SearchBar/SearchBar'
 import FilterModal from '../../components/FilterModal/FilterModal'
+import FilteredFarmsService from '../../services/filtered-farms-service'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './ResultsPage.css'
 
 class ResultsPage extends Component {
@@ -32,7 +33,7 @@ class ResultsPage extends Component {
 
   render () {
     const { filteredFarms } = this.context
-    const sessionStoredFarms = JSON.parse(window.sessionStorage.getItem('filteredFarms'))
+    const sessionStoredFarms = JSON.parse(FilteredFarmsService.getFilteredFarms())
 
     let farmsList
     if (filteredFarms && filteredFarms.length) {
@@ -54,32 +55,10 @@ class ResultsPage extends Component {
         </li>
     }
 
-    // let farmsList
-    // if (filteredFarms.length === 0) {
-    //   if (sessionStoredFarms.length === 0) {
-    //     farmsList = 
-    //     <li className="results-page__no-farms">
-    //       Whoops! No farms found. Try a different search term.
-    //     </li>
-    //   }
-    //   else {
-    //     farmsList = sessionStoredFarms.map(farm =>
-    //       <li key={farm.id}>
-    //         <FarmListItem info={farm} />
-    //       </li>
-    //       )
-    //   }
-    // } else {
-    //   farmsList = filteredFarms.map(farm =>
-    //     <li key={farm.id}>
-    //       <FarmListItem info={farm} />
-    //     </li>
-    //     )
-    // }
 
     return (
       <div className="results-page">
-        <SearchBar />
+
         <FilterModal 
           show={this.state.show} 
           handleClose={this.hideModal} 
@@ -88,18 +67,28 @@ class ResultsPage extends Component {
           onUpdateOptions={this.changeOptions}
         />
         <div className="results-page__buttons">
-          <button type='button' onClick={this.showModal}>
-            Filter Results
-          </button>
-          <button 
-            type='button' 
+          <button
+            type='button'
             className='results-page__button'
           >
-            <Link 
-              to="/add-farm"
-            >
-                Add a farm
+            <Link to='/'>
+              New search <FontAwesomeIcon icon='search' />
             </Link>
+          </button>
+
+          <button
+            type='button'
+            className='results-page__button'
+          >
+            <Link to="/add-farm">
+              Add a farm
+            </Link>
+          </button>
+          <button
+            type='button' 
+            onClick={this.showModal}
+          >
+            Filter Results
           </button>
         </div>
         <ul className="results-page__farms-list">

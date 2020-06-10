@@ -35,13 +35,13 @@
   cursor: pointer;
 }
 
-.results-page__buttons > button[type=submit] {
-  border: 2px solid #087f18;
-  background-color: #087f18;
-}
-
 .results-page__button > a {
   color: white;
+}
+
+.results-page__button--filter {
+  border: 2px solid #224626;
+  background-color: orange;
 }
 
 /* @media screen and (min-width: 400px) {

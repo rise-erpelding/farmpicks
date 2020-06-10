@@ -25,6 +25,11 @@
   margin: 0;
 }
 
+.farm-list-item__title > a {
+  color: #0a320e;
+  cursor: pointer;
+}
+
 .farm-list-item__img {
   width: 20vw;
   height: 20vw;
