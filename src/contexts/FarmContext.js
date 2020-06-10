@@ -11,6 +11,8 @@ const FarmContext = React.createContext({
   updateFarm: () => {},
   filterOptions: () => {},
   toggleLogin: () => {},
+  showBackground: () => {},
+  hideBackground: () => {},
 })
 
 export default FarmContext

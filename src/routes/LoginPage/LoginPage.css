@@ -1,4 +1,4 @@
-.registration-page {
+.login-page {
   border-radius: 3px;
   width: 260px;
   margin: auto;
@@ -6,11 +6,18 @@
   background: rgba(255, 255, 255, 0.6);
 }
 
-.registration-page > h3 {
+.login-page > h2 {
   font-family: 'Lato', sans-serif;
 }
 
-.registration-page__email > input {
+.login-page__username,
+.login-page__password {
+  text-align: right;
+  padding-right: 15px;
+}
+
+.login-page__username > input,
+.login-page__password > input {
   padding: 7px 11px;
   margin: 5px 0;
   background-color: #e1ece2;
@@ -19,11 +26,11 @@
   width: 125px;
 }
 
-.registration-page__email {
+.login-page__password {
   margin-bottom: 15px;
 }
 
-.registration-page__form > button {
+.login-page__form > button {
   border: 2px solid #0a320e;
   background-color: #0a320e;
   color: white;
@@ -43,11 +50,17 @@
 } */
 
 @media screen and (min-width: 700px) {
-  .registration-page {
+  .login-page {
     width: 350px;
   }
 
-  .registration-page__email > input {
+  .login-page__username,
+.login-page__password {
+  padding-right: 50px;
+}
+
+  .login-page__username > input,
+  .login-page__password > input {
   width: 150px;
 }
 }

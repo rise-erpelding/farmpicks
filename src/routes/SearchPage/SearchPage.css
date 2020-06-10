@@ -3,11 +3,5 @@
   background-color: lightgray;
   padding: 2px;
   font-size: 0.9em;
-}
-
-.search-page__farm-added--success {
-  margin: 10px 100px;
-  padding: 10px;
-  border: 1px solid black;
-  color: green;
+  top: 80px;
 }

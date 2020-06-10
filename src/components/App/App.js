@@ -14,6 +14,8 @@ import NotFoundPage from '../../routes/NotFoundPage/NotFoundPage'
 import FarmsApiService from '../../services/farms-api-service'
 import PrivateRoute from '../../Utils/PrivateRoute'
 import PublicOnlyRoute from '../../Utils/PublicOnlyRoute'
+import TokenService from '../../services/token-service'
+import FilteredFarmsService from '../../services/filtered-farms-service'
 import './App.css'
 
 class App extends Component {
@@ -24,7 +26,8 @@ class App extends Component {
     products: [],
     purchaseOptions: [],
     farmAdded: false,
-    isLoggedIn: false,
+    isLoggedIn: TokenService.hasAuthToken(),
+    showBackground: !FilteredFarmsService.hasFilteredFarms(),
     error: null,
   }
 
@@ -36,6 +39,13 @@ class App extends Component {
       filteredFarms: farms,
       error: null,
     })
+
+    if (farms.length > 0) {
+      FilteredFarmsService.setFilteredFarms(JSON.stringify(farms))
+    } 
+    // else {
+    //   FilteredFarmsService.clearFilteredFarms()
+    // }
   }
 
   setProducts = products => {
@@ -85,7 +95,6 @@ class App extends Component {
         filteredFarms.push(farm)
       })
     } else if (products.length === 0) {
-      console.log('no products selected')
       this.state.farms.forEach(farm => {
         farm.purchase_options.forEach(hasPO => {
           purchaseOptions.forEach(option => {
@@ -96,7 +105,6 @@ class App extends Component {
         })
       })
     } else if (purchaseOptions.length === 0) {
-      console.log('no purchase options selected')
       this.state.farms.forEach(farm => {
         farm.products.forEach(hasProduct => {
           products.forEach(prod => {
@@ -130,12 +138,31 @@ class App extends Component {
     this.setState({
       filteredFarms: filteredUniqueFarms
     })
+
+    if (filteredUniqueFarms.length > 0) {
+      FilteredFarmsService.setFilteredFarms(JSON.stringify(filteredUniqueFarms))
+    } else {
+      FilteredFarmsService.clearFilteredFarms()
+    }
+
   }
 
   toggleLogin = () => {
     this.setState(prevState => ({
       isLoggedIn: !prevState.isLoggedIn
     }))
+  }
+
+  showBackground = () => {
+    this.setState({
+      showBackground: true
+    })
+  }
+
+  hideBackground = ()=> {
+    this.setState({
+      showBackground: false
+    })
   }
 
   componentDidMount() {
@@ -147,6 +174,7 @@ class App extends Component {
   }
 
   render() {
+    const appClass = this.state.showBackground ? 'app show-background' : 'app'
 
     const contextValue = {
       farms: this.state.farms,
@@ -161,16 +189,18 @@ class App extends Component {
       filterPurchaseOptionsBy: this.filterPurchaseOptionsBy,
       filterOptions: this.filterOptions,
       toggleLogin: this.toggleLogin,
+      showBackground: this.showBackground,
+      hideBackground: this.hideBackground,
     }
 
     return (
-      <div className="App">
+      <div className={appClass}>
         <FarmContext.Provider
           value={contextValue}>
           <header>
             <NavBar login={this.state.isLoggedIn} />
           </header>
-          <main>
+          <main className='app__main'>
 
             <Switch>
               <Route

@@ -1,13 +1,10 @@
 import React, { Component } from 'react'
-// import TokenService from '../../services/token-service'
-// import { Link } from 'react-router-dom'
-// import config from '../../config'
-
+import './RegistrationPage.css'
 
 class RegistrationPage extends Component {
   handleSubmit = e => {
     e.preventDefault() 
-    console.log('registration form submitted')
+    console.log('registration interest form submitted')
   }
 
 
@@ -15,27 +12,19 @@ class RegistrationPage extends Component {
 
     return (
       <div className='registration-page'>
-        <h2>Register</h2>
         <h3>Registration coming soon!</h3>
+        <p>Sign up to be the first to know when registration opens.</p>
         <form 
           className='registration-page__form'
           onSubmit={this.handleSubmit}>
-          <div>
-            <label htmlFor='user_name'>User name</label>
+          <div className='registration-page__email'>
+            <label htmlFor='email'>Email</label>
+            {' '}
             <input 
               required
-              name='user_name'
-              type='text'
-              id='user_name'
-              />
-          </div>
-          <div>
-            <label htmlFor='password'>Password</label>
-            <input 
-              required
-              name='password'
-              type='password'
-              id='password'
+              name='email'
+              type='email'
+              id='email'
               />
           </div>
           <button type='submit'>Register</button>

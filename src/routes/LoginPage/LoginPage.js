@@ -4,6 +4,7 @@ import AuthApiService from '../../services/auth-api-service'
 import FarmContext from '../../contexts/FarmContext'
 // import { Link } from 'react-router-dom'
 // import config from '../../config'
+import './LoginPage.css'
 
 
 class LoginPage extends Component {
@@ -52,8 +53,9 @@ class LoginPage extends Component {
         <form 
           className='login-page__form'
           onSubmit={this.handleSubmitJwtAuth}>
-          <div>
+          <div className='login-page__username'>
             <label htmlFor='user_name'>User name</label>
+            {' '}
             <input 
               required
               name='user_name'
@@ -61,8 +63,9 @@ class LoginPage extends Component {
               id='user_name'
               />
           </div>
-          <div>
+          <div className='login-page__password'>
             <label htmlFor='password'>Password</label>
+            {' '}
             <input 
               required
               name='password'

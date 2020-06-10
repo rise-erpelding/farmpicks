@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import FarmContext from '../../contexts/FarmContext'
 import SearchBar from '../../components/SearchBar/SearchBar'
 import Dropdown from '../../components/Dropdown/Dropdown'
+import FilteredFarmsService from '../../services/filtered-farms-service'
 import './SearchPage.css'
 
 class SearchPage extends Component {
@@ -10,18 +10,21 @@ class SearchPage extends Component {
 
   changePage = () => {
     this.props.history.push('/farms')
+    this.context.hideBackground()
   }
 
   render () {
+
+    // window.sessionStorage.removeItem('filteredFarms')
+    FilteredFarmsService.clearFilteredFarms()
+
     const farmAddStatus = this.context.farmAdded === true ? <div className="search-page__farm-added--success">Farm added successfully</div> : null
 
     return (
       <div className="search-page">
-        <div>From small farms to you.</div>
         {farmAddStatus}
         <SearchBar onChangePage={this.changePage} />
         <Dropdown onChangePage={this.changePage} /> 
-        <Link className="search-page__add-farm" to="/add-farm">Add a farm</Link>
       </div>
     )
   }

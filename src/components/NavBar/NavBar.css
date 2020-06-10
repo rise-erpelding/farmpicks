@@ -1,20 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@900&display=swap');
+
 .nav-bar {
-  font-size: 2em;
-  background-color: silver;
-  padding: 10px;
+  /* height: 0px; */
+  text-align: left;
+
 }
 
-a {
-  text-decoration: none;
+.nav-bar__home {
+  font-size: 2.2em;
+  /* position: relative; */
+  padding-left: 25px;
+  padding-top: 15px;
+  margin-bottom: 20px;
+  /* top: 100px;
+  left: 200px; */
+}
+
+.nav-bar__farmpicks {
+  font-family: 'Lato', sans-serif;
+}
+
+.nav-bar__home > p {
+  font-size: 0.45em;
+  margin: 8px;
+}
+
+.nav-bar__home > a {
   color: black;
 }
 
-.nav-bar__logo {
-  width: 40px;
+.nav-bar__login-logout {
+  text-align: right;
+  padding-top: 18px;
+  padding-right: 15px;
+  font-size: 0.8em;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
 }
 
-.nav-bar__login,
-.nav-bar__logout-and-profile {
-  font-size: 0.5em;
-  text-align: right;
+.nav-bar__login-logout > a {
+  padding-left: 8px;
+  padding-right: 8px;
+  cursor: pointer;
+  color: black;
+}
+
+@media screen and (min-width: 400px) {
+  .nav-bar__login-logout {
+    font-size: 0.95em;
+  }
+  
+  .nav-bar__login-logout * {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+
+@media screen and (min-width: 700px) {
+  .nav-bar__home {
+    font-size: 3em;
+    padding-left: 110px;
+    padding-top: 30px;
+    margin-bottom: 50px;
+  }
+
+  .nav-bar__login-logout {
+    font-size: 1em;
+  }
+  
+  .nav-bar__login-logout * {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
 }

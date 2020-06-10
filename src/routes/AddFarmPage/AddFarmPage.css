@@ -92,7 +92,7 @@
 }
 
 /* Styling text inputs and textareas */
-input[type=text] {
+.add-farm-page > input[type=text] {
   padding: 10px 15px;
   margin: 8px 0;
   background-color: #e1ece2;
@@ -179,21 +179,23 @@ textarea {
 
 .add-farm-page__buttons > button {
   border: 2px solid #0a320e;
-  border-radius: 30px;
+  background-color: #0a320e;
+  color: white;
+  border-radius: 10px;
   margin: 5px;
-  padding: 10px;
-  width: 140px;
-  font-size: 1.3em;
+  padding: 6px;
+  width: 110px;
+  font-size: 1.2em;
+  font-family: 'Lato', sans-serif;
   letter-spacing: 1px;
-  text-transform: uppercase;
+  -webkit-box-shadow: 2px 2px 3px 2px #e1ece2;
+  -moz-box-shadow:    2px 2px 3px 2px #e1ece2;
+  box-shadow:         2px 2px 3px 2px #e1ece2;
 }
 
 .add-farm-page__buttons > button[type=submit] {
-  background-color: #0fdd2b;
-}
-
-.add-farm-page__buttons > button[type=button] {
-  background-color: #e1ece2;
+  border: 2px solid #087f18;
+  background-color: #087f18;
 }
 
 @media screen and (min-width: 700px) {
