@@ -40,11 +40,21 @@
 
 
 @media screen and (min-width: 400px) {
-
+  .farm-list-item {
+    font-size: 1em;
+  }
 }
 
 @media screen and (min-width: 700px) {
+  .farm-list-item__img {
+    width: 150px;
+    height: 150px;
+  }
 
+  .farm-list-item {
+    width: 40vw;
+    margin: 10px 10px 10px 10px;
+  }
 }
 
 

@@ -9,10 +9,12 @@ export default function FarmListItem(props) {
   return (
     <div className="farm-list-item">
       <div className="farm-list-item__img--container">
-        <img 
-          className="farm-list-item__img" 
-          src={profile} 
-          alt="farm avatar" />
+        <Link to={`/farms/${farm.id}`}>
+          <img 
+            className="farm-list-item__img" 
+            src={profile} 
+            alt="farm avatar" />
+        </Link>
       </div>
       <div className="farm-list-item__info--container">
         <h4 className="farm-list-item__title">
