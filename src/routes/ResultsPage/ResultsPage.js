@@ -55,7 +55,8 @@ class ResultsPage extends Component {
     } else {
       farmsList = 
         <li className="results-page__no-farms">
-          Whoops! No farms found. Try a different search term.
+          <h4>Whoops! No farms found. Try a new search with a different search term.</h4>
+          <p>Are you searching for specific products (for example, "carrots" or "spinach")? Try making your search more broad (for example, "produce").</p>
         </li>
     }
 
