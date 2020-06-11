@@ -16,7 +16,7 @@
   height: 30px;
   background-color: transparent;
   position: relative;
-  top: -4px;
+  top: -8px;
 }
 
 .search-bar > button {
@@ -25,6 +25,8 @@
   font-size: 1.5em;
   width: 35px;
   height: 30px;
+  position: relative;
+  top: -1px;
   cursor: pointer;
 }
 
