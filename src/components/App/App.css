@@ -7,6 +7,14 @@ a {
   text-decoration: none;
 }
 
+.app__header--color {
+  background-image:
+    linear-gradient(
+      to top right,
+      #50875f, #50875f, #84ab8f
+    )
+}
+
 .show-background {
   background-image: 
     linear-gradient(

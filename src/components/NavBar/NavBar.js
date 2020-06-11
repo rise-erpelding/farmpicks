@@ -8,9 +8,9 @@ class NavBar extends Component {
 
   static contextType = FarmContext
 
-  showBackground = () => {
-    this.context.showBackground()
-  }
+  // showBackground = () => {
+  //   this.context.showBackground()
+  // }
 
   handleLogoutClick = () => {
     this.context.toggleLogin()
@@ -64,7 +64,7 @@ class NavBar extends Component {
           : this.renderLoginLink()}
         <div className='nav-bar__home'>
           <Link
-            onClick={this.showBackground}
+            // onClick={this.showBackground}
             className='nav-bar__farmpicks'
             to='/'
           >

@@ -3,7 +3,7 @@
 .nav-bar {
   /* height: 0px; */
   text-align: left;
-
+  padding-bottom: 20px;
 }
 
 .nav-bar__home {

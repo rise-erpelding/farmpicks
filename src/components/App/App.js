@@ -174,7 +174,12 @@ class App extends Component {
   }
 
   render() {
-    const appClass = this.state.showBackground ? 'app show-background' : 'app'
+    const appClass = this.state.showBackground 
+      ? 'app show-background' 
+      : 'app'
+    const headerClass = this.state.showBackground 
+      ? 'app__header' 
+      : 'app__header--color'
 
     const contextValue = {
       farms: this.state.farms,
@@ -197,7 +202,7 @@ class App extends Component {
       <div className={appClass}>
         <FarmContext.Provider
           value={contextValue}>
-          <header>
+          <header className={headerClass}>
             <NavBar login={this.state.isLoggedIn} />
           </header>
           <main className='app__main'>

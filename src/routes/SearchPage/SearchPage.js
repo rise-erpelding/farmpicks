@@ -10,6 +10,14 @@ class SearchPage extends Component {
 
   changePage = () => {
     this.props.history.push('/farms')
+    // this.context.hideBackground()
+  }
+
+  componentDidMount() {
+    this.context.showBackground()
+  }
+
+  componentWillUnmount() {
     this.context.hideBackground()
   }
 
