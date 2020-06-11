@@ -19,17 +19,15 @@ class NavBar extends Component {
 
   renderLogoutAndProfileLinks() {
     return (
-      <div className='nav-bar__login-logout'>
+      <div className='nav-bar'>
         <Link
           to='/add-farm'>
           Add a farm
         </Link>
-        {' '}
         <Link
           to='/my-profile'>
           My Profile
         </Link>
-        {' '}
         <Link 
           onClick={this.handleLogoutClick}
           to='/'>
@@ -41,10 +39,9 @@ class NavBar extends Component {
 
   renderLoginLink() {
     return (
-      <div className='nav-bar__login-logout'>
+      <div className='nav-bar'>
         <Link to='/register'>
           Register
-          {' '}
         </Link>
         <Link to='/login'>
           Login
@@ -57,22 +54,13 @@ class NavBar extends Component {
 
 
     return (
-      <div className='nav-bar'>
+      <>
 
         {this.props.login === true
           ? this.renderLogoutAndProfileLinks()
           : this.renderLoginLink()}
-        <div className='nav-bar__home'>
-          <Link
-            // onClick={this.showBackground}
-            className='nav-bar__farmpicks'
-            to='/'
-          >
-            FarmPicks
-          </Link>
-          <p>From small farms to you.</p>
-        </div>
-      </div>
+
+      </>
     )
   }
 }

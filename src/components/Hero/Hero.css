@@ -1,0 +1,18 @@
+.hero {
+  text-align: left;
+  font-size: 2.2em;
+  padding: 15px 25px 30px 25px;
+}
+
+.hero--farmpicks {
+  font-family: 'Lato', sans-serif;
+}
+
+.hero > p {
+  font-size: 0.45em;
+  margin: 8px;
+}
+
+.hero > a {
+  color: black;
+}

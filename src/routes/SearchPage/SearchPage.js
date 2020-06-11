@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import FarmContext from '../../contexts/FarmContext'
+import Hero from '../../components/Hero/Hero'
 import SearchBar from '../../components/SearchBar/SearchBar'
 import Dropdown from '../../components/Dropdown/Dropdown'
 import FilteredFarmsService from '../../services/filtered-farms-service'
@@ -30,6 +31,7 @@ class SearchPage extends Component {
 
     return (
       <div className="search-page">
+        <Hero />
         {farmAddStatus}
         <SearchBar onChangePage={this.changePage} />
         <Dropdown onChangePage={this.changePage} /> 
