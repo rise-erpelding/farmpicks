@@ -27,7 +27,7 @@ class App extends Component {
     purchaseOptions: [],
     farmAdded: false,
     isLoggedIn: TokenService.hasAuthToken(),
-    showBackground: !FilteredFarmsService.hasFilteredFarms(),
+    showBackground: false,
     error: null,
   }
 

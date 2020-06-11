@@ -155,7 +155,9 @@ class FarmPage extends Component {
 
     return (
       <section className='farm-page'>
-        <div className='farm-page__back-button' onClick={this.goBack}><FontAwesomeIcon icon='chevron-left' /></div>
+        <div className='farm-page__back-button' onClick={this.goBack}>
+          <FontAwesomeIcon icon='chevron-left' />
+        </div>
         <img 
           className='farm-page__img--cover' 
           src={cover} 

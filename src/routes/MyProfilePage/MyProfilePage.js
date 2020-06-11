@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import FarmListItem from '../../components/FarmListItem/FarmListItem'
 import FarmsApiService from '../../services/farms-api-service'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './MyProfilePage.css'
 
 
@@ -69,14 +70,24 @@ class MyProfilePage extends Component {
 
     return (
       <main className='my-profile-page'>
-        <div>
+        <Link to='/'>
+          <FontAwesomeIcon 
+            icon='chevron-left'
+            className='my-profile-page__back'
+          />
+        </Link>
+        <div className='my-profile-page__profile-info'>
           <h2>Profile information</h2>
-          <p>First name: {firstName}</p>
-          <p>Last name: {lastName}</p>
-          <p>Username: {userName}</p>
-          <p>User Type: {userType}</p>
+          <div className='my-profile-page__avatar'>
+            <FontAwesomeIcon
+              className='my-profile-page__avatar--graphic'
+              icon='user' 
+            />
+          </div>
+          <h3>{firstName}{' '}{lastName}</h3>
+          <h6>{userType} | username: {userName}</h6>
         </div>
-        <div>
+        <div className='my-profile-page__farms'>
           {myInfo}
         </div>
       </main>

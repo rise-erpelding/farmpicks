@@ -1,11 +1,55 @@
+.my-profile-page {
+  text-align: left;
+  padding: 12px;
+}
+
+.my-profile-page > a {
+  color: black;
+}
+
+.my-profile-page__profile-info > h2,
+.my-profile-page__farms-list > h3 {
+  font-family: 'Lato', sans-serif;
+  margin: 15px;
+  text-align: center;
+  color: #0a320e;
+}
+
+.my-profile-page__back {
+  font-size: 2em;
+}
+
+.my-profile-page__avatar {
+  border: 3px solid #0a320e;
+  background-color: #e1ece2;
+  border-radius: 50%;
+  margin: auto;
+  width: 95px;
+  height: 95px;
+}
+
+.my-profile-page__avatar--graphic {
+  font-size: 65px;
+  padding-top: 12px;
+  display: inline-block;
+  padding-left: 19px;
+}
+
+.my-profile-page__profile-info > h3 {
+  margin: 10px;
+  text-align: center;
+}
+
+.my-profile-page__profile-info > h6 {
+  font-size: 0.9em;
+  margin: 10px;
+  text-align: center;
+}
+
 .my-profile-page__farms-list {
   list-style: none;
   margin: 0;
   padding: 0;
   width: 90%;
   margin: auto;
-}
-
-.my-profile-page__farms-list > li {
-  border: 1px solid black;
 }
