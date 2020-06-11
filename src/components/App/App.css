@@ -12,8 +12,8 @@ a {
 .app__header--color {
   background-image:
     linear-gradient(
-      to top right,
-      #50875f, #50875f, #84ab8f
+      to right,
+      #508776, #50875f, #50875f
     )
 }
 
