@@ -41,6 +41,7 @@
   font-size: 0.9em;
   font-family: 'Lato', sans-serif;
   letter-spacing: 1px;
+  cursor: pointer;
 }
 
 .login-page__form > button[type=submit] {

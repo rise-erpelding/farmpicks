@@ -53,3 +53,15 @@
   width: 90%;
   margin: auto;
 }
+
+.my-profile-page__farms > h3 {
+  text-align: center;
+}
+
+@media screen and (min-width: 700px) {
+  .my-profile-page__farms-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}

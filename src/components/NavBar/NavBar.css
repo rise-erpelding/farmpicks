@@ -8,9 +8,14 @@
 }
 
 .nav-bar > a {
-  padding: 0px 8px;
+  margin: 0px 8px;
   cursor: pointer;
   color: black;
+}
+
+.nav-bar > a:hover,
+.selected {
+  border-bottom: 2px solid black;
 }
 
 @media screen and (min-width: 400px) {
@@ -19,7 +24,7 @@
   }
   
   .nav-bar * {
-    padding: 0px 10px;
+    margin: 0px 10px;
   }
 }
 
@@ -29,6 +34,6 @@
   }
   
   .nav-bar * {
-    padding: 0px 12px;
+    margin: 0px 15px;
   }
 }

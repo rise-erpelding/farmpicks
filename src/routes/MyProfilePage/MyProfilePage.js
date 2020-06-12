@@ -53,13 +53,15 @@ class MyProfilePage extends Component {
 
     if (this.state.userType === 'Consumer') {
       myInfo = 
-        <ul className='my-profile-page__farms-list'>
+        <>
           <h3>My Saved Farms:</h3>
-          {this.state.favoriteFarms.map(farm => 
-            <li key={farm.id}>
-              <FarmListItem info={farm} />
-            </li>)}
-        </ul>
+          <ul className='my-profile-page__farms-list'>
+            {this.state.favoriteFarms.map(farm =>
+              <li key={farm.id}>
+                <FarmListItem info={farm} />
+              </li>)}
+          </ul>
+        </>
     } else if (this.state.userType === 'Farmer') {
       myInfo =
         <Link to={`/farms/${this.state.userId}`}>

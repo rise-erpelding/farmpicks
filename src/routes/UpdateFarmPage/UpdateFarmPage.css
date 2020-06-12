@@ -193,6 +193,7 @@ textarea {
   -webkit-box-shadow: 2px 2px 3px 2px #e1ece2;
   -moz-box-shadow:    2px 2px 3px 2px #e1ece2;
   box-shadow:         2px 2px 3px 2px #e1ece2;
+  cursor: pointer;
 }
 
 .update-farm-page__buttons > button[type=submit] {

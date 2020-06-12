@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import TokenService from '../../services/token-service'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import FarmContext from '../../contexts/FarmContext'
 import './NavBar.css'
 
@@ -20,14 +20,16 @@ class NavBar extends Component {
   renderLogoutAndProfileLinks() {
     return (
       <div className='nav-bar'>
-        <Link
+        <NavLink
+          activeClassName='selected'
           to='/add-farm'>
           Add a farm
-        </Link>
-        <Link
+        </NavLink>
+        <NavLink
+          activeClassName='selected'
           to='/my-profile'>
           My Profile
-        </Link>
+        </NavLink>
         <Link 
           onClick={this.handleLogoutClick}
           to='/'>
@@ -40,12 +42,12 @@ class NavBar extends Component {
   renderLoginLink() {
     return (
       <div className='nav-bar'>
-        <Link to='/register'>
+        <NavLink activeClassName='selected' to='/register'>
           Register
-        </Link>
-        <Link to='/login'>
+        </NavLink>
+        <NavLink to='/login'>
           Login
-        </Link>
+        </NavLink>
       </div>
     )
   }

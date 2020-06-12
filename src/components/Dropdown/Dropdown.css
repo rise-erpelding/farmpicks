@@ -8,6 +8,7 @@
   font-size: 1em;
   border: none;
   background-color: transparent;
+  cursor: pointer;
 }
 
 .dropdown__content {
@@ -37,6 +38,7 @@
 .dropdown__all-farms:hover {
   color: #087f18;
   text-decoration: underline;
+  cursor: pointer;
 }
 
 .dropdown__content > h5 {
