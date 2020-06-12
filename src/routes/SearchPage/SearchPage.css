@@ -5,3 +5,9 @@
   font-size: 0.9em;
   top: 80px;
 }
+
+.search-page__farm-added--success {
+  font-family: 'Lato', sans-serif;
+  color: #50875f;
+  padding: 10px;
+}
