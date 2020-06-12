@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import TokenService from '../../services/token-service'
 import AuthApiService from '../../services/auth-api-service'
 import FarmContext from '../../contexts/FarmContext'
-// import { Link } from 'react-router-dom'
-// import config from '../../config'
 import './LoginPage.css'
+
+import DemoLoginInfo from '../../components/DemoLoginInfo/DemoLoginInfo'
 
 
 class LoginPage extends Component {
@@ -80,6 +80,7 @@ class LoginPage extends Component {
           <button type='button' onClick={this.handleClickCancel}>Cancel</button>
           <button type='submit'>Login</button>
         </form>
+        <DemoLoginInfo />
       </div>
     )
   }

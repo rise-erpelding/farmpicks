@@ -6,6 +6,8 @@ import Dropdown from '../../components/Dropdown/Dropdown'
 import FilteredFarmsService from '../../services/filtered-farms-service'
 import './SearchPage.css'
 
+import DemoLoginInfo from '../../components/DemoLoginInfo/DemoLoginInfo'
+
 class SearchPage extends Component {
   static contextType = FarmContext
 
@@ -23,8 +25,6 @@ class SearchPage extends Component {
   }
 
   render () {
-
-    // window.sessionStorage.removeItem('filteredFarms')
     FilteredFarmsService.clearFilteredFarms()
 
     const farmAddStatus = this.context.farmAdded === true ? <div className="search-page__farm-added--success">Farm added successfully</div> : null
@@ -35,6 +35,7 @@ class SearchPage extends Component {
         {farmAddStatus}
         <SearchBar onChangePage={this.changePage} />
         <Dropdown onChangePage={this.changePage} /> 
+        <DemoLoginInfo />
       </div>
     )
   }

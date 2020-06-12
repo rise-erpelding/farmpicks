@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import './RegistrationPage.css'
 
+import DemoLoginInfo from '../../components/DemoLoginInfo/DemoLoginInfo'
+
 class RegistrationPage extends Component {
   handleSubmit = e => {
     e.preventDefault() 
@@ -32,6 +34,7 @@ class RegistrationPage extends Component {
           <button type='button' onClick={this.handleClickCancel}>Cancel</button>
           <button type='submit'>Register</button>
         </form>
+        <DemoLoginInfo />
       </div>
     )
   }
