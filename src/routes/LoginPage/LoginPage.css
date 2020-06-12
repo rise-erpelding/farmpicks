@@ -31,8 +31,8 @@
 }
 
 .login-page__form > button {
-  border: 2px solid #0a320e;
-  background-color: #0a320e;
+  border: 2px solid #50875f;
+  background-color: #50875f;
   color: white;
   border-radius: 10px;
   margin: 5px;
@@ -41,6 +41,11 @@
   font-size: 0.9em;
   font-family: 'Lato', sans-serif;
   letter-spacing: 1px;
+}
+
+.login-page__form > button[type=submit] {
+  border: 2px solid #0a320e;
+  background-color: #0a320e;
 }
 
 /* @media screen and (min-width: 400px) {

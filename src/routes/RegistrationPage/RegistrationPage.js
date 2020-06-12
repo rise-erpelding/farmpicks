@@ -7,9 +7,11 @@ class RegistrationPage extends Component {
     console.log('registration interest form submitted')
   }
 
+  handleClickCancel = () => {
+    this.props.history.push('/')
+  }
 
   render () {
-
     return (
       <div className='registration-page'>
         <h3>Registration coming soon!</h3>
@@ -27,6 +29,7 @@ class RegistrationPage extends Component {
               id='email'
               />
           </div>
+          <button type='button' onClick={this.handleClickCancel}>Cancel</button>
           <button type='submit'>Register</button>
         </form>
       </div>

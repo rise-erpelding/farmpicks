@@ -45,6 +45,10 @@ class LoginPage extends Component {
     this.context.toggleLogin()
   }
 
+  handleClickCancel = () => {
+    this.props.history.push('/')
+  }
+
   render () {
 
     return (
@@ -73,6 +77,7 @@ class LoginPage extends Component {
               id='password'
               />
           </div>
+          <button type='button' onClick={this.handleClickCancel}>Cancel</button>
           <button type='submit'>Login</button>
         </form>
       </div>
