@@ -132,7 +132,7 @@ class FarmPage extends Component {
 
     const { farmName, address1, address2, city, addressState, zipCode, contactName, phoneNumber, website, farmDescription, purchaseDetails, products, purchaseOptions, profileImage, coverImage, numberOfFavorites } = this.state
 
-    const timeOrTimes = Number(numberOfFavorites === 1) ? 'time' : 'times'
+    const timeOrTimes = Number(this.state.numberOfFavorites) === 1 ? 'time' : 'times'
     const profile = profileImage ? profileImage : FarmerAvatar
     const cover = coverImage ? coverImage : Barn
 
@@ -162,7 +162,10 @@ class FarmPage extends Component {
     return (
       <section className='farm-page'>
         <div className='farm-page__back-button' onClick={this.goBack}>
-          <FontAwesomeIcon icon='chevron-left' />
+          <FontAwesomeIcon 
+            className='farm-page__chevron-left'
+            icon='chevron-left'
+          />
         </div>
         <img 
           className='farm-page__img--cover' 

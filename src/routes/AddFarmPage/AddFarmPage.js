@@ -233,7 +233,7 @@ class AddFarmPage extends Component {
                   name="address-line-2" 
                   id="address-line-2" />
               </li>
-              <li>
+              <li className="add-farm-page__city-state-zip">
                 <label htmlFor="city">City:</label>
                 <input 
                   onChange={this.updateCity.bind(this)} 
@@ -241,7 +241,7 @@ class AddFarmPage extends Component {
                   name="city" 
                   id="city" />
               </li>
-              <li>
+              <li className="add-farm-page__city-state-zip">
                 <label htmlFor="state">State:</label>
                 <input 
                   onChange={this.updateAddressState.bind(this)} 
@@ -249,7 +249,7 @@ class AddFarmPage extends Component {
                   name="state" 
                   id="state" />
               </li>
-              <li>
+              <li className="add-farm-page__city-state-zip">
                 <label htmlFor="zip">Zip Code:</label>
                 <input 
                   onChange={this.updateZipCode.bind(this)} 
@@ -266,7 +266,7 @@ class AddFarmPage extends Component {
                   id="contact-name" />
               </li>
               <li>
-                <label htmlFor="phone">Phone number</label>
+                <label htmlFor="phone">Phone number:</label>
                 <input 
                   onChange={this.updatePhoneNumber.bind(this)} 
                   type="text" 

@@ -68,8 +68,10 @@
 .update-farm-page__farm-details--form > li > div,
 .update-farm-page__purchase-details--form > li > div {
   padding-right: 5px;
-  flex: 1 0 120px;
+  text-align: left;
+  /* flex: 1 0 120px; */
   max-width: 220px;
+  min-width: 80vw;
 }
 
 .update-farm-page__farm-details--form > li > label + *,
@@ -178,8 +180,8 @@ textarea {
 /* Styling buttons */
 
 .update-farm-page__buttons > button {
-  border: 2px solid #0a320e;
-  background-color: #0a320e;
+  border: 2px solid #50875f;
+  background-color: #50875f;
   color: white;
   border-radius: 10px;
   margin: 5px;
@@ -194,8 +196,8 @@ textarea {
 }
 
 .update-farm-page__buttons > button[type=submit] {
-  border: 2px solid #087f18;
-  background-color: #087f18;
+  border: 2px solid #0a320e;
+  background-color: #0a320e;
 }
 
 @media screen and (min-width: 700px) {
@@ -209,6 +211,14 @@ textarea {
   .update-farm-page__purchase-details--label {
     width: 25vw;
   }
+
+  .update-farm-page__farm-details--form > li > label,
+  .update-farm-page__purchase-details--form > li > label,
+  .update-farm-page__farm-details--form > li > div,
+  .update-farm-page__purchase-details--form > li > div {
+  flex: 1 0 120px;
+}
+
 
   .update-farm-page__farm-details--form,
   .update-farm-page__purchase-details--form {
