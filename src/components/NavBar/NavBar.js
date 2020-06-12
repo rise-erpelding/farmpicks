@@ -8,10 +8,6 @@ class NavBar extends Component {
 
   static contextType = FarmContext
 
-  // showBackground = () => {
-  //   this.context.showBackground()
-  // }
-
   handleLogoutClick = () => {
     this.context.toggleLogin()
     TokenService.clearAuthToken()
@@ -53,15 +49,11 @@ class NavBar extends Component {
   }
 
   render () {
-
-
     return (
       <>
-
         {this.props.login === true
           ? this.renderLogoutAndProfileLinks()
           : this.renderLoginLink()}
-
       </>
     )
   }
