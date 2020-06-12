@@ -5,6 +5,12 @@
 .farm-page__back-button {
   padding: 10px;
   height: 30px;
+  font-size: 2em;
+  cursor: pointer;
+}
+
+.farm-page__back-button:hover {
+  color: white;
 }
 
 .farm-page__img--cover {
@@ -18,6 +24,16 @@
 .farm-page__container--info {
   padding: 20px;
   display: flex;
+  position: relative;
+  top: -50px;
+}
+
+.farm-page__farm-name {
+  font-family: 'Lato', sans-serif;
+}
+
+.farm-page__heart {
+  color: black;
 }
 
 .farm-page__container--text {
@@ -25,13 +41,21 @@
 }
 
 .farm-page__img--profile {
-  width: 15vw;
-  height: 15vw;
+  width: 80px;
+  height: 80px;
+  border-radius: 3px;
   object-fit: cover;
 }
 
 .farm-page__container--text > * {
   margin: 0;
+}
+
+.farm-page__farm--number-of-favorites {
+  font-size: 0.8em;
+  font-family: 'Open Sans', sans-serif;
+  font-style: italic;
+  color: black;
 }
 
 .farm-page__address {
@@ -51,9 +75,27 @@
   margin-top: 10px;
 }
 
-.farm-page__update-farm-link {
-  border: 1px solid black;
-  background-color: lightgray;
-  padding: 2px;
-  font-size: 0.9em;
+.farm-page__buttons {
+  margin-bottom: 10px;
+}
+
+.farm-page__buttons > button {
+  border: 2px solid #0a320e;
+  background-color: #0a320e;
+  color: white;
+  border-radius: 10px;
+  margin: 5px;
+  padding: 6px;
+  width: 120px;
+  font-size: 0.7em;
+  font-family: 'Lato', sans-serif;
+  letter-spacing: 1px;
+  -webkit-box-shadow: 2px 2px 3px 2px #e1ece2;
+  -moz-box-shadow:    2px 2px 3px 2px #e1ece2;
+  box-shadow:         2px 2px 3px 2px #e1ece2;
+  cursor: pointer;
+}
+
+.farm-page__button > a {
+  color: white;
 }

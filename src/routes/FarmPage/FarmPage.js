@@ -132,25 +132,31 @@ class FarmPage extends Component {
 
     const { farmName, address1, address2, city, addressState, zipCode, contactName, phoneNumber, website, farmDescription, purchaseDetails, products, purchaseOptions, profileImage, coverImage, numberOfFavorites } = this.state
 
+    const timeOrTimes = Number(numberOfFavorites === 1) ? 'time' : 'times'
     const profile = profileImage ? profileImage : FarmerAvatar
     const cover = coverImage ? coverImage : Barn
 
     const showHideFavorite = this.state.showFavorite ? 
       <span onClick={this.removeFavorite} >
-        Click to Remove From Favorites
-        <FontAwesomeIcon 
-          className='farm-page__heart' 
-          icon={['fas', 'heart']} 
-        />
+        Remove Favorite
       </span>
       :
       <span onClick={this.addFavorite}>
-        Click to Add To Favorites
-        <FontAwesomeIcon
-          className='farm-page__heart'
-          icon={['far', 'heart']}
-        />
+        Add Favorite
       </span>
+
+    const showHideHeart = this.state.showFavorite ?
+      <FontAwesomeIcon
+        className='farm-page__heart'
+        icon={['fas', 'heart']}
+        onClick={this.removeFavorite}
+      />
+      :
+      <FontAwesomeIcon
+        className='farm-page__heart'
+        icon={['far', 'heart']}
+        onClick={this.addFavorite}
+      />
 
 
     return (
@@ -170,14 +176,28 @@ class FarmPage extends Component {
               alt='farm avatar' />
           </div>
           <div className='farm-page__container--text'>
-            <h2 className='farm-page__farm-name'>{farmName}</h2>
-            <p>Number of favorites: {numberOfFavorites}</p>
-
-            {showHideFavorite}
-            <div>
-              <Link to={`/edit/${farmId}`} className='farm-page__update-farm-link'>Edit</Link>
+              <h2 className='farm-page__farm-name'>
+                {farmName}{' '}{showHideHeart}
+              </h2>
+              <div className='farm-page__products'>{products.join(', ')}</div>
+              <p className='farm-page__farm--number-of-favorites'>
+                Favorited
+                  {' '}
+                {numberOfFavorites}
+                {' '}
+                {timeOrTimes}
+              </p>
+            <div className='farm-page__buttons'>
+              <button type='button' className='farm-page__button'>
+                {showHideFavorite}
+              </button>
+              <button type='button' className='farm-page__button'>
+                <Link to={`/edit/${farmId}`}>Edit Farm</Link>
+              </button>
             </div>
-            <div className='farm-page__products'>{products.join(', ')}</div>
+              
+
+
             <address className='farm-page__address'>
               {address1}, {address2 ? address2 + ', ' : ''} 
               {city}, {addressState} {zipCode}
