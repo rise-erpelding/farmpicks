@@ -1,14 +1,10 @@
 import React, { Component } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './RegistrationPage.css'
 
 import DemoLoginInfo from '../../components/DemoLoginInfo/DemoLoginInfo'
 
 class RegistrationPage extends Component {
-  handleSubmit = e => {
-    e.preventDefault() 
-    console.log('registration interest form submitted')
-  }
-
   handleClickCancel = () => {
     this.props.history.push('/')
   }
@@ -17,6 +13,17 @@ class RegistrationPage extends Component {
     return (
       <div className='registration-page'>
         <h3>Registration coming soon!</h3>
+        <button 
+          onClick={this.handleClickCancel}
+          type='button'
+          >
+          <FontAwesomeIcon 
+            className='farm-page__chevron-left'
+            icon='chevron-left'
+          />
+          {' '}
+          Back
+        </button>
         <DemoLoginInfo />
       </div>
     )

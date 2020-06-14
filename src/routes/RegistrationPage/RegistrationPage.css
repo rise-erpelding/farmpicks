@@ -10,20 +10,7 @@
   font-family: 'Lato', sans-serif;
 }
 
-.registration-page__email > input {
-  padding: 7px 11px;
-  margin: 5px 0;
-  background-color: #e1ece2;
-  border: 2px solid #0a320e;
-  border-radius: 3px;
-  width: 125px;
-}
-
-.registration-page__email {
-  margin-bottom: 15px;
-}
-
-.registration-page__form > button {
+.registration-page > button {
   border: 2px solid #50875f;
   background-color: #50875f;
   color: white;
@@ -37,23 +24,8 @@
   cursor: pointer;
 }
 
-.registration-page__form > button[type=submit] {
-  border: 2px solid #0a320e;
-  background-color: #0a320e;
-}
-
-/* @media screen and (min-width: 400px) {
-  .login-page {
-    width: 75vw;
-  }
-} */
-
 @media screen and (min-width: 700px) {
   .registration-page {
     width: 350px;
   }
-
-  .registration-page__email > input {
-  width: 150px;
-}
 }
