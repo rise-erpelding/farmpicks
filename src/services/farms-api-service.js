@@ -7,7 +7,6 @@ const FarmsApiService = {
       method: 'GET',
       headers: {
         'content-type': 'application/json'
-        //auth will go here
       }
     })
       .then(res => {
@@ -155,7 +154,6 @@ const FarmsApiService = {
             throw error
           })
         }
-        // return res.json()
       })
   },
   getUserInfo() {

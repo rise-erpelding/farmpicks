@@ -49,12 +49,6 @@
   background-color: #0a320e;
 }
 
-/* @media screen and (min-width: 400px) {
-  .login-page {
-    width: 75vw;
-  }
-} */
-
 @media screen and (min-width: 700px) {
   .login-page {
     width: 350px;

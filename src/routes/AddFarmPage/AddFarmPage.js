@@ -283,7 +283,6 @@ class AddFarmPage extends Component {
               </li>
             </ul>
           </div>
-          {/* <hr /> */}
           <div className="add-farm-page__purchase-details">
             <div className="add-farm-page__purchase-details--label">
               Purchase Details
@@ -310,10 +309,6 @@ class AddFarmPage extends Component {
                     rows="12" 
                     cols="60" />
                 </li>
-
-                {/* These are not currently working features
-                <div>Upload Profile photo</div>
-                <div>Upload Cover photo</div> */}
             </ul>
           </div>
           <div className="add-farm-page__buttons">

@@ -43,9 +43,6 @@ class App extends Component {
     if (farms.length > 0) {
       FilteredFarmsService.setFilteredFarms(JSON.stringify(farms))
     } 
-    // else {
-    //   FilteredFarmsService.clearFilteredFarms()
-    // }
   }
 
   setProducts = products => {
@@ -89,6 +86,7 @@ class App extends Component {
   }
 
   filterOptions = (products, purchaseOptions) => {
+    // filters according to products and purchase options in ResultsPage
     const filteredFarms = []
     if (products.length === 0 && purchaseOptions.length === 0) {
       this.state.farms.forEach(farm => {

@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import FarmContext from '../../contexts/FarmContext'
 import { Link } from 'react-router-dom'
-// import FarmListItem from '../../components/FarmListItem/FarmListItem'
 import FarmsApiService from '../../services/farms-api-service'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Barn from '../../Images/Barn.jpg'

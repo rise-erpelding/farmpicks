@@ -49,11 +49,6 @@
   list-style: none;
 }
 
-/* .update-farm-page__farm-details > div,
-.update-farm-page__purchase-details > div {
-  border: 1px solid black;
-} */
-
 .update-farm-page__farm-details--form > li,
 .update-farm-page__purchase-details--form > li,
 .update-farm-page__products,
@@ -69,7 +64,6 @@
 .update-farm-page__purchase-details--form > li > div {
   padding-right: 5px;
   text-align: left;
-  /* flex: 1 0 120px; */
   max-width: 220px;
   min-width: 80vw;
 }
@@ -100,7 +94,6 @@
   background-color: #e1ece2;
   border: 2px solid #0a320e;
   border-radius: 3px;
-  /* cursor: pointer; */
 }
 
 textarea {
@@ -116,19 +109,14 @@ textarea {
 .update-farm-page__checkbox--label {
   display: block;
   position: relative;
-  /* margin: auto; */
   padding-left: 30px;
-  /* cursor: pointer; */
-  /* font-size: 22px; */
   line-height: 30px;
-  /* width: 20px; */
   clear: both;
 }
 
 .update-farm-page__checkbox--label input {
   position: absolute;
   opacity: 0;
-  /* cursor: pointer; */
 }
 .update-farm-page__checkbox--label .update-farm-page__checkbox--custom {
   position: absolute;
@@ -178,7 +166,6 @@ textarea {
 }
 
 /* Styling buttons */
-
 .update-farm-page__buttons > button {
   border: 2px solid #50875f;
   background-color: #50875f;
