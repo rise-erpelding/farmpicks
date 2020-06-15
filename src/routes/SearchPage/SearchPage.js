@@ -26,7 +26,9 @@ class SearchPage extends Component {
   render () {
     FilteredFarmsService.clearFilteredFarms()
 
-    const farmAddStatus = this.context.farmAdded === true ? <div className="search-page__farm-added--success">Farm added successfully</div> : null
+    const farmAddStatus = this.context.farmAdded === true 
+    ? <div className="search-page__farm-added--success">Farm added successfully</div> 
+    : null
 
     return (
       <div className="search-page">
