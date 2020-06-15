@@ -30,14 +30,18 @@ class SearchBar extends Component {
 
   render() {
     return (
-      <form className="search-bar"
-        onSubmit={this.handleSubmit}>
+      <form 
+        id='searchBar'
+        className='search-bar'
+        onSubmit={this.handleSubmit}
+        >
         <input 
-          type="text" 
-          name="search-bar" 
-          placeholder="Search for farms or products..."
+          type='text' 
+          name='search-bar' 
+          area-labelledby='searchBar'
+          placeholder='Search for farms or products...'
           onChange={e => this.updateQuery(e.target.value)} />
-        <button type="submit"><FontAwesomeIcon icon='search' /></button>
+        <button type='submit'><FontAwesomeIcon icon='search' /></button>
       </form>
     )
   }
