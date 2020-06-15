@@ -10,6 +10,11 @@
   font-family: 'Lato', sans-serif;
 }
 
+.login-page__login-error {
+  color: red;
+  padding-bottom: 10px;
+}
+
 .login-page__username,
 .login-page__password {
   text-align: right;

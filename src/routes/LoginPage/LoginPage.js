@@ -32,12 +32,13 @@ class LoginPage extends Component {
         user_name.value = ''
         password.value = ''
         TokenService.saveAuthToken(res.authToken)
+        this.handleLoginSuccess()
       })
       .catch(res => {
-        this.setState({ error: res.error })
+        user_name.value = ''
+        password.value = ''
+        this.setState({ error: true })
       })
-    
-    this.handleLoginSuccess()
   }
 
   handleLoginSuccess = () => {
@@ -50,10 +51,14 @@ class LoginPage extends Component {
   }
 
   render () {
+    const loginFailed = this.state.error
+      ? <div className='login-page__login-error'>Incorrect username or password</div>
+      : null
 
     return (
       <div className='login-page'>
         <h2>Login</h2>
+        {loginFailed}
         <form 
           className='login-page__form'
           onSubmit={this.handleSubmitJwtAuth}>
