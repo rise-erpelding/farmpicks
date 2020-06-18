@@ -19,7 +19,6 @@ import FilteredFarmsService from '../../services/filtered-farms-service'
 import './App.css'
 
 class App extends Component {
-
   state = {
     farms: [],
     filteredFarms: [],
@@ -30,6 +29,7 @@ class App extends Component {
     showBackground: false,
     error: null,
   }
+  
 
 
 

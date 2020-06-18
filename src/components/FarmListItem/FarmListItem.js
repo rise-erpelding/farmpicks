@@ -1,11 +1,11 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import FarmerAvatar from '../../Images/FarmerAvatar.png'
-import './FarmListItem.css'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import FarmerAvatar from '../../Images/FarmerAvatar.png';
+import './FarmListItem.css';
 
 export default function FarmListItem(props) {
-  const farm = props.info
-  const profile = farm.profile_image ? farm.profile_image : FarmerAvatar
+  const farm = props.info;
+  const profile = farm.profile_image ? farm.profile_image : FarmerAvatar;
   return (
     <div className="farm-list-item">
       <div className="farm-list-item__img--container">
@@ -27,7 +27,7 @@ export default function FarmListItem(props) {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 FarmListItem.defaultProps = {
@@ -37,5 +37,5 @@ FarmListItem.defaultProps = {
     farm_name: '',
     products: [],
     id: '',
-  }
-}
+  },
+};
