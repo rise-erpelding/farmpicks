@@ -4,7 +4,7 @@ class AppError extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      hasError: false
+      hasError: false,
     };
   }
 
@@ -15,7 +15,7 @@ class AppError extends Component {
   render() {
     if (this.state.hasError) {
       return (
-        <h2 className='AppError'>
+        <h2 className="AppError">
           Oops! Something went wrong. Please refresh the page or try again later.
         </h2>
       );
