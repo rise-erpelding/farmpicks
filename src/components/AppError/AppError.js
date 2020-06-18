@@ -1,3 +1,4 @@
+/* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 
 class AppError extends Component {
@@ -8,12 +9,13 @@ class AppError extends Component {
     };
   }
 
-  static getDerivedStateFromError(error) {
+  static getDerivedStateFromError() {
     return { hasError: true };
   }
 
   render() {
-    if (this.state.hasError) {
+    const { hasError } = this.state;
+    if (hasError) {
       return (
         <h2 className="AppError">
           Oops! Something went wrong. Please refresh the page or try again later.

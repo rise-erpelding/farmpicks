@@ -1,94 +1,100 @@
-import React, { Component } from 'react'
-import FarmContext from '../../contexts/FarmContext'
-import './FilterModal.css'
+/* eslint-disable react/no-array-index-key */
+import React, { Component } from 'react';
+import FarmContext from '../../contexts/FarmContext';
+import './FilterModal.css';
 
 
 class FilterModal extends Component {
-  static defaultProps = {
-    onUpdateProducts: () => {},
-    onUpdatePurchaseOptions: () => {},
+  constructor(props) {
+    super(props);
+    this.state = {
+      products: [],
+      purchaseOptions: [],
+    };
   }
 
-  static contextType = FarmContext
-
-  state = {
-    products: [],
-    purchaseOptions: []
-  }
-
-  onUpdateProducts = e => {
-    const productsArray = this.state.products
+  onUpdateProducts = (e) => {
+    const { products } = this.state;
+    const productsArray = products;
     if (e.target.checked) {
-        productsArray.push(e.target.value)
-      this.setState({ products: productsArray })
+      productsArray.push(e.target.value);
+      this.setState({ products: productsArray });
     } else if (!e.target.checked) {
-      const removedProducts = productsArray.filter(product => product !== e.target.value)
-      this.setState({ products: removedProducts })
+      const removedProducts = productsArray.filter(
+        (product) => product !== e.target.value,
+      );
+      this.setState({ products: removedProducts });
     }
-
   }
 
-  onUpdatePurchaseOptions = e => {
-    const purchaseOptionsArray = this.state.purchaseOptions
+  onUpdatePurchaseOptions = (e) => {
+    const { purchaseOptions } = this.state;
+    const purchaseOptionsArray = purchaseOptions;
     if (e.target.checked) {
-        purchaseOptionsArray.push(e.target.value)
-      this.setState({ purchaseOptions: purchaseOptionsArray })
+      purchaseOptionsArray.push(e.target.value);
+      this.setState({ purchaseOptions: purchaseOptionsArray });
     } else if (!e.target.checked) {
-      const removedPurchaseOptions = purchaseOptionsArray.filter(option => option !== e.target.value)
-      this.setState({ purchaseOptions: removedPurchaseOptions })
+      const removedPurchaseOptions = purchaseOptionsArray.filter(
+        (option) => option !== e.target.value,
+      );
+      this.setState({ purchaseOptions: removedPurchaseOptions });
     }
-
   }
 
-  handleSubmit = e => {
-    e.preventDefault()
-    this.props.onUpdateOptions(this.state.products, this.state.purchaseOptions)
-    this.props.handleClose()
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const { onUpdateOptions, handleClose } = this.props;
+    const { products, purchaseOptions } = this.state;
+    onUpdateOptions(products, purchaseOptions);
+    handleClose();
   }
 
-  render () {
-    const showHideClassName = this.props.show ? 'filter-modal display-block' : 'filter-modal display-none'
+  render() {
+    const { show, handleClose } = this.props;
+    const showHideClassName = show ? 'filter-modal display-block' : 'filter-modal display-none';
 
-    const { products } = this.context
-    const { purchaseOptions } = this.context
+    const { products, purchaseOptions } = this.context;
 
-    const productCheckboxes = products.map((product, index) => 
+    const productCheckboxes = products.map((product, index) => (
       <li key={index}>
-        <label className='filter-modal__checkbox--label' htmlFor={'product' + index}>
-          <input 
-            type='checkbox' 
-            id={'product' + index} 
-            name={'product' + index}
+        <label className="filter-modal__checkbox--label" htmlFor={`product${index}`}>
+          <input
+            type="checkbox"
+            id={`product${index}`}
+            name={`product${index}`}
             value={product}
-            onChange={this.onUpdateProducts.bind(this)} />
-          <span className='filter-modal__checkbox--custom'></span>
+            onChange={this.onUpdateProducts.bind(this)}
+          />
+          <span className="filter-modal__checkbox--custom" />
           {product}
         </label>
-      </li>)
+      </li>
+    ));
 
-      const purchaseOptionCheckboxes = purchaseOptions.map((purchaseOption, index) => 
+    const purchaseOptionCheckboxes = purchaseOptions.map((purchaseOption, index) => (
       <li key={index}>
-        <label className='filter-modal__checkbox--label' htmlFor={'purchaseOption' + index}>
+        <label className="filter-modal__checkbox--label" htmlFor={`purchaseOption${index}`}>
           <input
-            type='checkbox' 
-            id={'purchaseOption' + index} 
-            name={'purchaseOption' + index} 
+            type="checkbox"
+            id={`purchaseOption${index}`}
+            name={`purchaseOption${index}`}
             value={purchaseOption}
             onChange={this.onUpdatePurchaseOptions.bind(this)} />
-          <span className='filter-modal__checkbox--custom'></span>
+          <span className="filter-modal__checkbox--custom" />
           {purchaseOption}
         </label>
-      </li>)
+      </li>
+    ));
 
     return (
       <div className={showHideClassName}>
-        <div className='filter-modal__main'>
+        <div className="filter-modal__main">
           <form onSubmit={this.handleSubmit}>
             <div>
               <div>
                 Filter by product type:
               </div>
-              <ul className='filter-modal__products'>
+              <ul className="filter-modal__products">
                 {productCheckboxes}
               </ul>
             </div>
@@ -96,21 +102,28 @@ class FilterModal extends Component {
               <div>
                 Filter by purchase option:
               </div>
-              <ul className='filter-modal__purchase-options'>
+              <ul className="filter-modal__purchase-options">
                 {purchaseOptionCheckboxes}
               </ul>
             </div>
-            <button type='button' onClick={this.props.handleClose}>
+            <button type="button" onClick={handleClose}>
               Close
             </button>
-            <button type='submit'>
+            <button type="submit">
               Filter
             </button>
           </form>
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default FilterModal
+export default FilterModal;
+
+FilterModal.defaultProps = {
+  onUpdateProducts: () => {},
+  onUpdatePurchaseOptions: () => {},
+};
+
+FilterModal.contextType = FarmContext;

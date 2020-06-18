@@ -1,11 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter} from 'react-router-dom';
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faSearch, faHeart as faHeartSolid, faChevronLeft, faCaretDown, faFilter, faUser } from '@fortawesome/free-solid-svg-icons'
-import { faHeart as faHeartRegular } from '@fortawesome/free-regular-svg-icons'
-import App from './components/App/App.jsx';
-import AppError from '../src/components/AppError/AppError'
+import { BrowserRouter } from 'react-router-dom';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import {
+  faSearch,
+  faHeart as faHeartSolid,
+  faChevronLeft,
+  faCaretDown,
+  faFilter,
+  faUser,
+} from '@fortawesome/free-solid-svg-icons';
+import { faHeart as faHeartRegular } from '@fortawesome/free-regular-svg-icons';
+import App from './components/App/App';
+import AppError from './components/AppError/AppError';
 import './index.css';
 
 library.add(
@@ -15,13 +22,14 @@ library.add(
   faChevronLeft,
   faCaretDown,
   faFilter,
-  faUser
-)
+  faUser,
+);
 
 ReactDOM.render(
   <AppError>
     <BrowserRouter>
       <App />
     </BrowserRouter>
-  </AppError>, 
-  document.getElementById('root'));
+  </AppError>,
+  document.getElementById('root'),
+);

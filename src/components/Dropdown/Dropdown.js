@@ -1,43 +1,44 @@
-import React, { Component } from 'react'
-import FarmContext from '../../contexts/FarmContext'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import './Dropdown.css'
+import React, { Component } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import FarmContext from '../../contexts/FarmContext';
+import './Dropdown.css';
 
 class Dropdown extends Component {
-  static defaultProps = {
-    products: [],
-    purchaseOptions: [],
-    onChangePage: () => {}
+  handleProductClick = (clickedThing) => {
+    const formattedQuery = `?products=${clickedThing}`;
+    const { getFarms } = this.context;
+    const { onChangePage } = this.props;
+    getFarms(formattedQuery);
+    onChangePage();
   }
 
-  static contextType = FarmContext
-
-  handleProductClick = clickedThing => {
-    const formattedQuery = '?products=' + clickedThing
-    this.context.getFarms(formattedQuery)
-    this.props.onChangePage()
-  }
-
-  handlePurchaseOptionClick = clickedThing => {
-    const formattedQuery = '?purchaseOptions=' + clickedThing
-    this.context.getFarms(formattedQuery)
-    this.props.onChangePage()
+  handlePurchaseOptionClick = (clickedThing) => {
+    const formattedQuery = `?purchaseOptions=${clickedThing}`;
+    const { getFarms } = this.context;
+    const { onChangePage } = this.props;
+    getFarms(formattedQuery);
+    onChangePage();
   }
 
   handleSeeAllClick = () => {
-    this.context.getFarms('')
-    this.props.onChangePage()
+    const { getFarms } = this.context;
+    const { onChangePage } = this.props;
+    getFarms('');
+    onChangePage();
   }
 
   render() {
-    const productsList = this.context.products.map((product, index) =>
-      <li key={index} onClick={() => this.handleProductClick(product)}>{product}</li>)
-    const purchaseOptionsList = this.context.purchaseOptions.map((purchaseOption, index) => 
-      <li key={index} onClick={() => this.handlePurchaseOptionClick(purchaseOption)}>{purchaseOption}</li>)
+    const { products } = this.context;
+    const { purchaseOptions } = this.context;
+    const productsList = products.map((product, index) => <li key={index} onClick={() => this.handleProductClick(product)}>{product}</li>);
+    const purchaseOptionsList = purchaseOptions.map((purchaseOption, index) => <li key={index} onClick={() => this.handlePurchaseOptionClick(purchaseOption)}>{purchaseOption}</li>);
 
     return (
       <div className="dropdown">
-        <button className="dropdown__button">See Categories <FontAwesomeIcon icon='caret-down' /></button>
+        <button type="button" className="dropdown__button">
+          See Categories
+          <FontAwesomeIcon icon="caret-down" />
+        </button>
         <div className="dropdown__content">
           <h5>Products</h5>
           <ul className="dropdown__products">
@@ -51,8 +52,16 @@ class Dropdown extends Component {
         </div>
       </div>
 
-    )
+    );
   }
 }
 
-export default Dropdown
+export default Dropdown;
+
+Dropdown.defaultProps = {
+  products: [],
+  purchaseOptions: [],
+  onChangePage: () => {},
+};
+
+Dropdown.contextType = FarmContext;

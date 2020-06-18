@@ -5,7 +5,7 @@ import './DemoLoginInfo.css';
 
 export default function Hero() {
   return (
-    <div className='demo-login-info'>
+    <div className="demo-login-info">
       <h3>Demo login info:</h3>
       <p>Username: consumer1</p>
       <p>Password: password</p>
