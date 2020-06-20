@@ -1,6 +1,5 @@
 /* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
 class AppError extends Component {
   constructor(props) {
@@ -23,16 +22,9 @@ class AppError extends Component {
         </h2>
       );
     }
+    // eslint-disable-next-line react/prop-types
     return this.props.children;
   }
 }
 
 export default AppError;
-
-AppError.defaultProps = {
-  children: '',
-};
-
-AppError.propTypes = {
-  children: PropTypes.string,
-};
