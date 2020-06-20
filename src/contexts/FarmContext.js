@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 const FarmContext = React.createContext({
   farms: [],
@@ -13,6 +13,6 @@ const FarmContext = React.createContext({
   toggleLogin: () => {},
   showBackground: () => {},
   hideBackground: () => {},
-})
+});
 
-export default FarmContext
+export default FarmContext;

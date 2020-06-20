@@ -1,5 +1,8 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import PropTypes from 'prop-types';
 import FarmContext from '../../contexts/FarmContext';
 import './Dropdown.css';
 
@@ -30,8 +33,26 @@ class Dropdown extends Component {
   render() {
     const { products } = this.context;
     const { purchaseOptions } = this.context;
-    const productsList = products.map((product, index) => <li key={index} onClick={() => this.handleProductClick(product)}>{product}</li>);
-    const purchaseOptionsList = purchaseOptions.map((purchaseOption, index) => <li key={index} onClick={() => this.handlePurchaseOptionClick(purchaseOption)}>{purchaseOption}</li>);
+    const productsList = products.map(
+      (product, index) => (
+        <li
+          key={index}
+          onClick={() => this.handleProductClick(product)}
+        >
+          {product}
+        </li>
+      ),
+    );
+    const purchaseOptionsList = purchaseOptions.map(
+      (purchaseOption, index) => (
+        <li
+          key={index}
+          onClick={() => this.handlePurchaseOptionClick(purchaseOption)}
+        >
+          {purchaseOption}
+        </li>
+      ),
+    );
 
     return (
       <div className="dropdown">
@@ -59,9 +80,11 @@ class Dropdown extends Component {
 export default Dropdown;
 
 Dropdown.defaultProps = {
-  products: [],
-  purchaseOptions: [],
   onChangePage: () => {},
+};
+
+Dropdown.propTypes = {
+  onChangePage: PropTypes.func,
 };
 
 Dropdown.contextType = FarmContext;

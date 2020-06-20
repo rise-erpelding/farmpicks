@@ -1,6 +1,7 @@
+/* eslint-disable no-undef */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom';
 import NavBar from './NavBar';
 
 it('renders without crashing', () => {
@@ -8,7 +9,8 @@ it('renders without crashing', () => {
   ReactDOM.render(
     <BrowserRouter>
       <NavBar />
-    </BrowserRouter>
-    , div);
+    </BrowserRouter>,
+    div,
+  );
   ReactDOM.unmountComponentAtNode(div);
 });

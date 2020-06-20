@@ -1,62 +1,76 @@
-import React, { Component } from 'react'
-import TokenService from '../../services/token-service'
-import { Link, NavLink } from 'react-router-dom'
-import FarmContext from '../../contexts/FarmContext'
-import './NavBar.css'
+/* eslint-disable class-methods-use-this */
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Link, NavLink } from 'react-router-dom';
+import TokenService from '../../services/token-service';
+import FarmContext from '../../contexts/FarmContext';
+import './NavBar.css';
 
 class NavBar extends Component {
-
-  static contextType = FarmContext
-
   handleLogoutClick = () => {
-    this.context.toggleLogin()
-    TokenService.clearAuthToken()
+    const { toggleLogin } = this.context;
+    toggleLogin();
+    TokenService.clearAuthToken();
   }
 
   renderLogoutAndProfileLinks() {
     return (
-      <div className='nav-bar'>
+      <div className="nav-bar">
         <NavLink
-          activeClassName='selected'
-          to='/add-farm'>
+          activeClassName="selected"
+          to="/add-farm"
+        >
           Add a farm
         </NavLink>
         <NavLink
-          activeClassName='selected'
-          to='/my-profile'>
+          activeClassName="selected"
+          to="/my-profile"
+        >
           My Profile
         </NavLink>
-        <Link 
+        <Link
           onClick={this.handleLogoutClick}
-          to='/'>
+          to="/"
+        >
           Logout
         </Link>
       </div>
-    )
+    );
   }
 
   renderLoginLink() {
     return (
-      <div className='nav-bar'>
-        <NavLink activeClassName='selected' to='/register'>
+      <div className="nav-bar">
+        <NavLink activeClassName="selected" to="/register">
           Register
         </NavLink>
-        <NavLink to='/login'>
+        <NavLink to="/login">
           Login
         </NavLink>
       </div>
-    )
+    );
   }
 
-  render () {
+  render() {
+    const { login } = this.props;
     return (
       <>
-        {this.props.login === true
+        {login === true
           ? this.renderLogoutAndProfileLinks()
           : this.renderLoginLink()}
       </>
-    )
+    );
   }
 }
 
-export default NavBar
+export default NavBar;
+
+NavBar.defaultProps = {
+  login: false,
+};
+
+NavBar.contextType = FarmContext;
+
+NavBar.propTypes = {
+  login: PropTypes.bool,
+};

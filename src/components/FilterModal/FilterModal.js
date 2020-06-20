@@ -1,8 +1,7 @@
-/* eslint-disable react/no-array-index-key */
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import FarmContext from '../../contexts/FarmContext';
 import './FilterModal.css';
-
 
 class FilterModal extends Component {
   constructor(props) {
@@ -79,7 +78,8 @@ class FilterModal extends Component {
             id={`purchaseOption${index}`}
             name={`purchaseOption${index}`}
             value={purchaseOption}
-            onChange={this.onUpdatePurchaseOptions.bind(this)} />
+            onChange={this.onUpdatePurchaseOptions.bind(this)}
+          />
           <span className="filter-modal__checkbox--custom" />
           {purchaseOption}
         </label>
@@ -122,8 +122,15 @@ class FilterModal extends Component {
 export default FilterModal;
 
 FilterModal.defaultProps = {
-  onUpdateProducts: () => {},
-  onUpdatePurchaseOptions: () => {},
+  show: false,
+  handleClose: () => {},
+  onUpdateOptions: () => {},
 };
 
 FilterModal.contextType = FarmContext;
+
+FilterModal.propTypes = {
+  show: PropTypes.bool,
+  handleClose: PropTypes.func,
+  onUpdateOptions: PropTypes.func,
+};

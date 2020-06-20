@@ -1,50 +1,66 @@
-import React, { Component } from 'react'
-import FarmContext from '../../contexts/FarmContext'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import './SearchBar.css'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import FarmContext from '../../contexts/FarmContext';
+import './SearchBar.css';
 
 class SearchBar extends Component {
-  static defaultProps = {
-    onChangePage: () => {}
+  constructor(props) {
+    super(props);
+    this.state = {
+      searchTerm: '',
+    };
   }
 
-  static contextType = FarmContext
-
-  state = {
-    searchTerm: '',
-    error: null
-  }
-
-  updateQuery = query => {
+  updateQuery = (query) => {
     this.setState({
-      searchTerm: query
-    })
+      searchTerm: query,
+    });
   }
 
-  handleSubmit = e => {
-    e.preventDefault()
-    const formattedQuery = '?q=' + this.state.searchTerm
-    this.context.getFarms(formattedQuery)
-    this.props.onChangePage()
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const { searchTerm } = this.state;
+    const { getFarms } = this.context;
+    const { onChangePage } = this.props;
+    const formattedQuery = `?q=${searchTerm}`;
+    getFarms(formattedQuery);
+    onChangePage();
   }
 
   render() {
     return (
-      <form 
-        id='searchBar'
-        className='search-bar'
+      <form
+        id="searchBar"
+        className="search-bar"
         onSubmit={this.handleSubmit}
+      >
+        <input
+          type="text"
+          name="search-bar"
+          aria-labelledby="searchBar"
+          placeholder="Search for farms or products..."
+          onChange={(e) => this.updateQuery(e.target.value)}
+        />
+        <button
+          type="submit"
+          aria-labelledby="searchBar"
         >
-        <input 
-          type='text' 
-          name='search-bar' 
-          area-labelledby='searchBar'
-          placeholder='Search for farms or products...'
-          onChange={e => this.updateQuery(e.target.value)} />
-        <button type='submit'><FontAwesomeIcon icon='search' /></button>
+          <FontAwesomeIcon icon="search" />
+        </button>
       </form>
-    )
+    );
   }
 }
 
-export default SearchBar
+export default SearchBar;
+
+SearchBar.defaultProps = {
+  onChangePage: () => {},
+};
+
+SearchBar.contextType = FarmContext;
+
+SearchBar.propTypes = {
+  onChangePage: PropTypes.func,
+};

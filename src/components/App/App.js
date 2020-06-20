@@ -43,8 +43,7 @@ class App extends Component {
 
   setFarms = (farms) => {
     this.setState({
-      // eslint-disable-next-line object-shorthand
-      farms: farms,
+      farms,
       filteredFarms: farms,
     });
 
@@ -188,6 +187,7 @@ class App extends Component {
       farmAdded,
       isLoggedIn,
     } = this.state;
+
     const contextValue = {
       farms,
       filteredFarms,

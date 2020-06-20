@@ -1,16 +1,22 @@
 import React from 'react';
-import './FormFieldExplanation.css'
+import PropTypes from 'prop-types';
+import './FormFieldExplanation.css';
 
 const FormFieldExplanation = (props) => {
-  return (      
-    <div className='form-field-explanation'>
-      {props.message}
+  const { message } = props;
+  return (
+    <div className="form-field-explanation">
+      {message}
     </div>
-  )
-}
+  );
+};
 
 export default FormFieldExplanation;
 
 FormFieldExplanation.defaultProps = {
-  message: ''
-}
+  message: '',
+};
+
+FormFieldExplanation.propTypes = {
+  message: PropTypes.string,
+};

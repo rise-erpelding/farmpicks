@@ -1,5 +1,6 @@
 /* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class AppError extends Component {
   constructor(props) {
@@ -27,3 +28,11 @@ class AppError extends Component {
 }
 
 export default AppError;
+
+AppError.defaultProps = {
+  children: '',
+};
+
+AppError.propTypes = {
+  children: PropTypes.string,
+};

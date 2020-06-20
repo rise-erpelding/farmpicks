@@ -1,32 +1,47 @@
-import React, { Component } from 'react'
-import FarmContext from '../../contexts/FarmContext'
-import ValidationError from '../../components/ValidationError/ValidationError'
-import FormFieldExplanation from '../../components/FormFieldExplanation/FormFieldExplanation'
-import './AddFarmPage.css'
-import FarmsApiService from '../../services/farms-api-service'
+import React, { Component } from 'react';
+import FarmContext from '../../contexts/FarmContext';
+import ValidationError from '../../components/ValidationError/ValidationError';
+import FormFieldExplanation from '../../components/FormFieldExplanation/FormFieldExplanation';
+import './AddFarmPage.css';
+import FarmsApiService from '../../services/farms-api-service';
 
 class AddFarmPage extends Component {
-  static contextType = FarmContext
-
-  state = {
-    farmName: '',
-    farmDescription: '',
-    address1: '',
-    address2: '',
-    city: '',
-    addressState: '',
-    zipCode: '',
-    contactName: '',
-    phoneNumber: '',
-    website: '',
-    purchaseDetails: '',
-    products: [],
-    purchaseOptions: [],
-    error: null,
+  constructor(props) {
+    super(props);
+    this.state = {
+      farmName: '',
+      farmDescription: '',
+      address1: '',
+      address2: '',
+      city: '',
+      addressState: '',
+      zipCode: '',
+      contactName: '',
+      phoneNumber: '',
+      website: '',
+      purchaseDetails: '',
+      products: [],
+      purchaseOptions: [],
+    };
   }
 
-  handleSubmit = e => {
-    e.preventDefault()
+  handleSubmit = (e) => {
+    e.preventDefault();
+    // const {
+    //   farm_name: farmName,
+    //   products,
+    //   farm_description: farmDescription,
+    //   address_1: address1,
+    //   address_2: address2,
+    //   city,
+    //   state,
+    //   zip_code: zipCode,
+    //   contact_name: contactName,
+    //   phone_number: phoneNumber,
+    //   purchase_options: purchaseOptions,
+    //   purchase_details: purchaseDetails,
+    //   website,
+    // } = this.state;
     const newFarm = {
       farm_name: this.state.farmName,
       products: this.state.products,
@@ -40,139 +55,143 @@ class AddFarmPage extends Component {
       phone_number: this.state.phoneNumber,
       purchase_options: this.state.purchaseOptions,
       purchase_details: this.state.purchaseDetails,
-      website: this.state.website
-    }
+      website: this.state.website,
+    };
 
     FarmsApiService.postFarm(newFarm)
-    .then(data => {
-      this.context.addFarm(data)
-      this.props.history.push('/')
-    })
-    .catch(error => {
-      this.setState({ error })
-    })
+      .then((data) => {
+        this.context.addFarm(data);
+        this.props.history.push('/');
+      })
+      .catch((error) => {
+        this.setState({ error });
+      });
   }
 
   handleClickCancel = () => {
-    this.props.history.push('/')
+    this.props.history.push('/');
   }
 
   validateFarmName = () => {
-    const farmName = this.state.farmName.trim()
+    const farmName = this.state.farmName.trim();
     if (farmName.length === 0) {
-      return '*Farm name is required'
+      return '*Farm name is required';
     }
   }
 
   validateProducts = () => {
     if (this.state.products.length === 0) {
-      return '*Select at least one product representing what the farm sells'
+      return '*Select at least one product representing what the farm sells';
     }
   }
 
   validatePurchaseOptions = () => {
     if (this.state.purchaseOptions.length === 0) {
-      return '*Select at least one way that consumers can get products from the farm'
+      return '*Select at least one way that consumers can get products from the farm';
     }
   }
 
-  updateFarmName = e => {
-    this.setState({farmName: e.target.value})
+  updateFarmName = (e) => {
+    this.setState({ farmName: e.target.value });
   }
 
-  updateFarmDescription = e => {
-    this.setState({farmDescription: e.target.value})
+  updateFarmDescription = (e) => {
+    this.setState({ farmDescription: e.target.value });
   }
 
-  updateAddress1 = e => {
-    this.setState({address1: e.target.value})
+  updateAddress1 = (e) => {
+    this.setState({ address1: e.target.value });
   }
 
-  updateAddress2 = e => {
-    this.setState({address2: e.target.value})
+  updateAddress2 = (e) => {
+    this.setState({ address2: e.target.value });
   }
 
-  updateCity = e => {
-    this.setState({city: e.target.value})
+  updateCity = (e) => {
+    this.setState({ city: e.target.value });
   }
 
-  updateAddressState = e => {
-    this.setState({addressState: e.target.value})
+  updateAddressState = (e) => {
+    this.setState({ addressState: e.target.value });
   }
 
-  updateZipCode = e => {
-    this.setState({zipCode: e.target.value})
+  updateZipCode = (e) => {
+    this.setState({ zipCode: e.target.value });
   }
 
-  updateContactName = e => {
-    this.setState({contactName: e.target.value})
+  updateContactName = (e) => {
+    this.setState({ contactName: e.target.value });
   }
 
-  updatePhoneNumber = e => {
-    this.setState({phoneNumber: e.target.value})
+  updatePhoneNumber = (e) => {
+    this.setState({ phoneNumber: e.target.value });
   }
 
-  updateWebsite = e => {
-    this.setState({website: e.target.value})
+  updateWebsite = (e) => {
+    this.setState({ website: e.target.value });
   }
 
-  updatePurchaseDetails = e => {
-    this.setState({purchaseDetails: e.target.value})
+  updatePurchaseDetails = (e) => {
+    this.setState({ purchaseDetails: e.target.value });
   }
 
   updateProducts(e) {
-    const productsArray = this.state.products
+    const productsArray = this.state.products;
     if (e.target.checked) {
-        productsArray.push(e.target.value)
-      this.setState({ products: productsArray })
+      productsArray.push(e.target.value);
+      this.setState({ products: productsArray });
     } else if (!e.target.checked) {
-      const removedProducts = productsArray.filter(product => product !== e.target.value)
-      this.setState({ products: removedProducts })
+      const removedProducts = productsArray.filter((product) => product !== e.target.value);
+      this.setState({ products: removedProducts });
     }
   }
 
   updatePurchaseOptions(e) {
-    const purchaseOptionsArray = this.state.purchaseOptions
+    const purchaseOptionsArray = this.state.purchaseOptions;
     if (e.target.checked) {
-        purchaseOptionsArray.push(e.target.value)
-      this.setState({ purchaseOptions: purchaseOptionsArray })
+      purchaseOptionsArray.push(e.target.value);
+      this.setState({ purchaseOptions: purchaseOptionsArray });
     } else if (!e.target.checked) {
-      const removedPurchaseOptions = purchaseOptionsArray.filter(option => option !== e.target.value)
-      this.setState({ purchaseOptions: removedPurchaseOptions })
+      const removedPurchaseOptions = purchaseOptionsArray.filter((option) => option !== e.target.value);
+      this.setState({ purchaseOptions: removedPurchaseOptions });
     }
   }
 
   render() {
-    const { products } = this.context
-    const { purchaseOptions } = this.context
-    const productCheckboxes = products.map((product, index) => 
+    const { products } = this.context;
+    const { purchaseOptions } = this.context;
+    const productCheckboxes = products.map((product, index) => (
       <li key={index}>
-        <label className="add-farm-page__checkbox--label" htmlFor={'product' + index}>
-          <input 
-            type="checkbox" 
-            id={'product' + index} 
-            name={'product' + index}
+        <label className="add-farm-page__checkbox--label" htmlFor={`product${index}`}>
+          <input
+            type="checkbox"
+            id={`product${index}`}
+            name={`product${index}`}
             value={product}
-            onChange={this.updateProducts.bind(this)} />
-          <span className="add-farm-page__checkbox--custom"></span>
+            onChange={this.updateProducts.bind(this)}
+          />
+          <span className="add-farm-page__checkbox--custom" />
           {product}
         </label>
-      </li>)
-    const purchaseOptionCheckboxes = purchaseOptions.map((purchaseOption, index) => 
+      </li>
+    ));
+    const purchaseOptionCheckboxes = purchaseOptions.map((purchaseOption, index) => (
       <li key={index}>
-        <label className="add-farm-page__checkbox--label" htmlFor={'purchaseOption' + index}>
+        <label className="add-farm-page__checkbox--label" htmlFor={`purchaseOption${index}`}>
           <input
-            type="checkbox" 
-            id={'purchaseOption' + index} 
-            name={'purchaseOption' + index} 
+            type="checkbox"
+            id={`purchaseOption${index}`}
+            name={`purchaseOption${index}`}
             value={purchaseOption}
-            onChange={this.updatePurchaseOptions.bind(this)} />
-          <span className="add-farm-page__checkbox--custom"></span>
+            onChange={this.updatePurchaseOptions.bind(this)}
+          />
+          <span className="add-farm-page__checkbox--custom" />
           {purchaseOption}
         </label>
-      </li>)
-    const farmDescriptionExp = 'What the farm sells and/or any farming practices that are relevant.'
-    const purchaseDetailsExp = 'What is the best way to get products from the farm. Accepted forms of payment are also useful for consumers.'
+      </li>
+    ));
+    const farmDescriptionExp = 'What the farm sells and/or any farming practices that are relevant.';
+    const purchaseDetailsExp = 'What is the best way to get products from the farm. Accepted forms of payment are also useful for consumers.';
 
     return (
       <div className="add-farm-page">
@@ -189,12 +208,13 @@ class AddFarmPage extends Component {
                   Farm Name:
                   <ValidationError message={this.validateFarmName()} />
                 </label>
-                <input 
-                  onChange={this.updateFarmName.bind(this)} 
-                  type="text" 
-                  name="farm-name" 
+                <input
+                  onChange={this.updateFarmName.bind(this)}
+                  type="text"
+                  name="farm-name"
                   id="farm-name"
-                  required />
+                  required
+                />
               </li>
               <li>
                 <div>
@@ -210,76 +230,85 @@ class AddFarmPage extends Component {
                   Farm Description:
                   <FormFieldExplanation message={farmDescriptionExp} />
                 </label>
-                <textarea 
-                  onChange={this.updateFarmDescription.bind(this)} 
-                  id="farm-description" 
-                  name="farm-description" 
-                  rows="12" 
-                  cols="60" />
+                <textarea
+                  onChange={this.updateFarmDescription.bind(this)}
+                  id="farm-description"
+                  name="farm-description"
+                  rows="12"
+                  cols="60"
+                />
               </li>
               <li>
                 <label htmlFor="address-line-1">Address Line 1:</label>
-                <input 
-                  onChange={this.updateAddress1.bind(this)} 
-                  type="text" 
-                  name="address-line-1" 
-                  id="address-line-1" />
+                <input
+                  onChange={this.updateAddress1.bind(this)}
+                  type="text"
+                  name="address-line-1"
+                  id="address-line-1"
+                />
               </li>
               <li>
                 <label htmlFor="address-line-2">Address Line 2:</label>
-                <input 
-                  onChange={this.updateAddress2.bind(this)} 
-                  type="text" 
-                  name="address-line-2" 
-                  id="address-line-2" />
+                <input
+                  onChange={this.updateAddress2.bind(this)}
+                  type="text"
+                  name="address-line-2"
+                  id="address-line-2"
+                />
               </li>
               <li className="add-farm-page__city-state-zip">
                 <label htmlFor="city">City:</label>
-                <input 
-                  onChange={this.updateCity.bind(this)} 
-                  type="text" 
-                  name="city" 
-                  id="city" />
+                <input
+                  onChange={this.updateCity.bind(this)}
+                  type="text"
+                  name="city"
+                  id="city"
+                />
               </li>
               <li className="add-farm-page__city-state-zip">
                 <label htmlFor="state">State:</label>
-                <input 
-                  onChange={this.updateAddressState.bind(this)} 
-                  type="text" 
-                  name="state" 
-                  id="state" />
+                <input
+                  onChange={this.updateAddressState.bind(this)}
+                  type="text"
+                  name="state"
+                  id="state"
+                />
               </li>
               <li className="add-farm-page__city-state-zip">
                 <label htmlFor="zip">Zip Code:</label>
-                <input 
-                  onChange={this.updateZipCode.bind(this)} 
-                  type="text" 
-                  name="zip" 
-                  id="zip" />
+                <input
+                  onChange={this.updateZipCode.bind(this)}
+                  type="text"
+                  name="zip"
+                  id="zip"
+                />
               </li>
               <li>
                 <label htmlFor="contact-name">Contact name:</label>
-                <input 
-                  onChange={this.updateContactName.bind(this)} 
-                  type="text" 
-                  name="contact-name" 
-                  id="contact-name" />
+                <input
+                  onChange={this.updateContactName.bind(this)}
+                  type="text"
+                  name="contact-name"
+                  id="contact-name"
+                />
               </li>
               <li>
                 <label htmlFor="phone">Phone number:</label>
-                <input 
-                  onChange={this.updatePhoneNumber.bind(this)} 
-                  type="text" 
-                  name="phone" 
-                  id="phone" />
+                <input
+                  onChange={this.updatePhoneNumber.bind(this)}
+                  type="text"
+                  name="phone"
+                  id="phone"
+                />
               </li>
               <li>
                 <label htmlFor="website">Website:</label>
-                <input 
-                  onChange={this.updateWebsite.bind(this)} 
-                  type="text" 
-                  name="website" 
-                  id="website" />
+                <input
+                  onChange={this.updateWebsite.bind(this)}
+                  type="text"
+                  name="website"
+                  id="website"
+                />
               </li>
             </ul>
           </div>
@@ -287,28 +316,29 @@ class AddFarmPage extends Component {
             <div className="add-farm-page__purchase-details--label">
               Purchase Details
             </div>
-              <ul className="add-farm-page__purchase-details--form">
-                <li>
-                  <div>
-                    Purchase Options:
-                    <ValidationError message={this.validatePurchaseOptions()} />
-                  </div>
-                  <ul className="add-farm-page__purchase-options">
-                    {purchaseOptionCheckboxes}
-                  </ul>
-                </li>
-                <li>
-                  <label htmlFor="purchase-details">
-                    Purchase details:
-                    <FormFieldExplanation message={purchaseDetailsExp} />
-                  </label>
-                  <textarea 
-                    onChange={this.updatePurchaseDetails.bind(this)} 
-                    id="purchase-details" 
-                    name="purchase-details" 
-                    rows="12" 
-                    cols="60" />
-                </li>
+            <ul className="add-farm-page__purchase-details--form">
+              <li>
+                <div>
+                  Purchase Options:
+                  <ValidationError message={this.validatePurchaseOptions()} />
+                </div>
+                <ul className="add-farm-page__purchase-options">
+                  {purchaseOptionCheckboxes}
+                </ul>
+              </li>
+              <li>
+                <label htmlFor="purchase-details">
+                  Purchase details:
+                  <FormFieldExplanation message={purchaseDetailsExp} />
+                </label>
+                <textarea
+                  onChange={this.updatePurchaseDetails.bind(this)}
+                  id="purchase-details"
+                  name="purchase-details"
+                  rows="12"
+                  cols="60"
+                />
+              </li>
             </ul>
           </div>
           <div className="add-farm-page__buttons">
@@ -317,8 +347,10 @@ class AddFarmPage extends Component {
           </div>
         </form>
       </div>
-    )
+    );
   }
 }
 
-export default AddFarmPage
+export default AddFarmPage;
+
+AddFarmPage.contextType = FarmContext;
