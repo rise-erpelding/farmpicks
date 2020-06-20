@@ -7,6 +7,7 @@ import FarmContext from '../../contexts/FarmContext';
 import './Dropdown.css';
 
 class Dropdown extends Component {
+  // gets farms according to selected product type and handles page change
   handleProductClick = (clickedThing) => {
     const formattedQuery = `?products=${clickedThing}`;
     const { getFarms } = this.context;
@@ -15,6 +16,7 @@ class Dropdown extends Component {
     onChangePage();
   }
 
+  // gets farms according to selected purchase option type and handles page change
   handlePurchaseOptionClick = (clickedThing) => {
     const formattedQuery = `?purchaseOptions=${clickedThing}`;
     const { getFarms } = this.context;
@@ -23,6 +25,7 @@ class Dropdown extends Component {
     onChangePage();
   }
 
+  // gets all farms and handles page change
   handleSeeAllClick = () => {
     const { getFarms } = this.context;
     const { onChangePage } = this.props;

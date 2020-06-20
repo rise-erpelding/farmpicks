@@ -34,6 +34,7 @@ class App extends Component {
   }
 
   componentDidMount() {
+    // fills dropdown menu with products and purchase options
     FarmsApiService.getProductsPurchaseOptions()
       .then(([products, purchaseOptions]) => {
         this.setProducts(products);
@@ -64,6 +65,7 @@ class App extends Component {
     });
   }
 
+  // gets farms based on user inputted search query in SearchBar or Dropdown
   getFarms = (query) => {
     FarmsApiService.getFarms(query)
       .then(this.setFarms)
@@ -72,6 +74,7 @@ class App extends Component {
       });
   }
 
+  // adds farm from form in AddFarmPage
   addFarm = (newFarm) => {
     const { farms } = this.state;
     this.setState({
@@ -82,6 +85,7 @@ class App extends Component {
     });
   }
 
+  // updates farm from form in UpdateFarmPage
   updateFarm = (updatedFarm) => {
     const { farms } = this.state;
     this.setState({
@@ -89,15 +93,19 @@ class App extends Component {
     });
   }
 
+  // filters according to products and purchase options selected in FilterModal
   filterOptions = (products, purchaseOptions) => {
-    // filters according to products and purchase options in ResultsPage
     const filteredFarms = [];
     if (products.length === 0 && purchaseOptions.length === 0) {
+      /* if no product or purchase options are selected from filter modal,
+      filteredFarms will be the same as farms */
       const { farms } = this.state;
       farms.forEach((farm) => {
         filteredFarms.push(farm);
       });
     } else if (products.length === 0) {
+      /* if there are purchase options selected but not products, push all the farms
+      in results that have the purchase options selected into filteredFarms */
       const { farms } = this.state;
       farms.forEach((farm) => {
         farm.purchase_options.forEach((hasPO) => {
@@ -109,6 +117,8 @@ class App extends Component {
         });
       });
     } else if (purchaseOptions.length === 0) {
+      /* if there are products selected but not purchase options, push all the farms
+      in results that have the products selected into filteredFarms */
       const { farms } = this.state;
       farms.forEach((farm) => {
         farm.products.forEach((hasProduct) => {
@@ -120,6 +130,8 @@ class App extends Component {
         });
       });
     } else {
+      /* otherwise if there are both products and purchase options selected, push all the farms
+      in results that have products and purchase options selected into filteredFarms */
       const { farms } = this.state;
       farms.forEach((farm) => {
         farm.products.forEach((hasProduct) => {
@@ -136,6 +148,7 @@ class App extends Component {
       });
     }
 
+    // also ensure that there are no duplicate farms added to filteredFarms
     const filteredUniqueFarms = filteredFarms.filter((item, index) => {
       const firstIndex = filteredFarms.findIndex(({ id }) => item.id === id);
       return firstIndex === index;
@@ -171,6 +184,7 @@ class App extends Component {
   }
 
   render() {
+    // determines whether to show background or show white screen with colored navbar
     const { showBackground } = this.state;
     const appClass = showBackground
       ? 'app show-background'

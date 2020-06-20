@@ -34,24 +34,30 @@ class ResultsPage extends Component {
   }
 
   render() {
+  /* filteredFarms are the same as the farms returned from getFarms() but will be updated if
+  FilterModal is used */
     const { filteredFarms } = this.context;
     const sessionStoredFarms = JSON.parse(FilteredFarmsService.getFilteredFarms());
     const { show } = this.state;
 
+    // determines what search results are rendered
     let farmsList;
     if (filteredFarms && filteredFarms.length > 0) {
+      // if there are filteredFarms in context, render these
       farmsList = filteredFarms.map((farm) => (
         <li key={farm.id}>
           <FarmListItem info={farm} />
         </li>
       ));
     } else if (sessionStoredFarms) {
+      // otherwise if there are farms stored in session storage, render those
       farmsList = sessionStoredFarms.map((farm) => (
         <li key={farm.id}>
           <FarmListItem info={farm} />
         </li>
       ));
     } else {
+      // if no farms in either context or session storage, render not found message
       farmsList = (
         <li className="results-page__no-farms">
           <h4>Whoops! No farms found. Try a new search.</h4>
