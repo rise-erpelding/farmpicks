@@ -1,4 +1,9 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable consistent-return */
+/* eslint-disable react/no-unused-state */
+/* eslint-disable camelcase */
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import FarmContext from '../../contexts/FarmContext';
 import ValidationError from '../../components/ValidationError/ValidationError';
 import FormFieldExplanation from '../../components/FormFieldExplanation/FormFieldExplanation';
@@ -22,46 +27,49 @@ class AddFarmPage extends Component {
       purchaseDetails: '',
       products: [],
       purchaseOptions: [],
+      error: null,
     };
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
-    // const {
-    //   farm_name: farmName,
-    //   products,
-    //   farm_description: farmDescription,
-    //   address_1: address1,
-    //   address_2: address2,
-    //   city,
-    //   state,
-    //   zip_code: zipCode,
-    //   contact_name: contactName,
-    //   phone_number: phoneNumber,
-    //   purchase_options: purchaseOptions,
-    //   purchase_details: purchaseDetails,
-    //   website,
-    // } = this.state;
+    const {
+      farmName: farm_name,
+      products,
+      farmDescription: farm_description,
+      address1: address_1,
+      address2: address_2,
+      city,
+      addressState: state,
+      zipCode: zip_code,
+      contactName: contact_name,
+      phoneNumber: phone_number,
+      purchaseOptions: purchase_options,
+      purchaseDetails: purchase_details,
+      website,
+    } = this.state;
     const newFarm = {
-      farm_name: this.state.farmName,
-      products: this.state.products,
-      farm_description: this.state.farmDescription,
-      address_1: this.state.address1,
-      address_2: this.state.address2,
-      city: this.state.city,
-      state: this.state.addressState,
-      zip_code: this.state.zipCode,
-      contact_name: this.state.contactName,
-      phone_number: this.state.phoneNumber,
-      purchase_options: this.state.purchaseOptions,
-      purchase_details: this.state.purchaseDetails,
-      website: this.state.website,
+      farm_name,
+      products,
+      farm_description,
+      address_1,
+      address_2,
+      city,
+      state,
+      zip_code,
+      contact_name,
+      phone_number,
+      purchase_options,
+      purchase_details,
+      website,
     };
 
     FarmsApiService.postFarm(newFarm)
       .then((data) => {
-        this.context.addFarm(data);
-        this.props.history.push('/');
+        const { addFarm } = this.context;
+        const { history } = this.props;
+        addFarm(data);
+        history.push('/');
       })
       .catch((error) => {
         this.setState({ error });
@@ -69,24 +77,28 @@ class AddFarmPage extends Component {
   }
 
   handleClickCancel = () => {
-    this.props.history.push('/');
+    const { history } = this.props;
+    history.push('/');
   }
 
   validateFarmName = () => {
-    const farmName = this.state.farmName.trim();
+    const { farmName } = this.state;
+    farmName.trim();
     if (farmName.length === 0) {
       return '*Farm name is required';
     }
   }
 
   validateProducts = () => {
-    if (this.state.products.length === 0) {
+    const { products } = this.state;
+    if (products.length === 0) {
       return '*Select at least one product representing what the farm sells';
     }
   }
 
   validatePurchaseOptions = () => {
-    if (this.state.purchaseOptions.length === 0) {
+    const { purchaseOptions } = this.state;
+    if (purchaseOptions.length === 0) {
       return '*Select at least one way that consumers can get products from the farm';
     }
   }
@@ -136,7 +148,7 @@ class AddFarmPage extends Component {
   }
 
   updateProducts(e) {
-    const productsArray = this.state.products;
+    const { products: productsArray } = this.state;
     if (e.target.checked) {
       productsArray.push(e.target.value);
       this.setState({ products: productsArray });
@@ -147,12 +159,13 @@ class AddFarmPage extends Component {
   }
 
   updatePurchaseOptions(e) {
-    const purchaseOptionsArray = this.state.purchaseOptions;
+    const { purchaseOptions: purchaseOptionsArray } = this.state;
     if (e.target.checked) {
       purchaseOptionsArray.push(e.target.value);
       this.setState({ purchaseOptions: purchaseOptionsArray });
     } else if (!e.target.checked) {
-      const removedPurchaseOptions = purchaseOptionsArray.filter((option) => option !== e.target.value);
+      const removedPurchaseOptions = purchaseOptionsArray
+        .filter((option) => option !== e.target.value);
       this.setState({ purchaseOptions: removedPurchaseOptions });
     }
   }
@@ -354,3 +367,23 @@ class AddFarmPage extends Component {
 export default AddFarmPage;
 
 AddFarmPage.contextType = FarmContext;
+
+AddFarmPage.defaultProps = {
+  history: {},
+};
+
+AddFarmPage.propTypes = {
+  history: PropTypes.shape({
+    action: PropTypes.string,
+    block: PropTypes.func,
+    createHref: PropTypes.func,
+    go: PropTypes.func,
+    goBack: PropTypes.func,
+    goForward: PropTypes.func,
+    length: PropTypes.number,
+    listen: PropTypes.func,
+    location: PropTypes.object,
+    push: PropTypes.func,
+    replace: PropTypes.func,
+  }),
+};

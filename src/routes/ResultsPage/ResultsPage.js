@@ -117,8 +117,4 @@ class ResultsPage extends Component {
 
 export default ResultsPage;
 
-ResultsPage.defaultProps = {
-  changePage: () => {},
-};
-
 ResultsPage.contextType = FarmContext;
