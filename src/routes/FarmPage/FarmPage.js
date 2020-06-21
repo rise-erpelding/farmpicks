@@ -156,6 +156,8 @@ class FarmPage extends Component {
       zipCode,
       contactName,
       phoneNumber,
+      // currently using mock data, so website is not used
+      // eslint-disable-next-line no-unused-vars
       website,
       farmDescription,
       purchaseDetails,
@@ -257,7 +259,11 @@ class FarmPage extends Component {
               {contactName ? `Call ${contactName} at ` : ''}
               {phoneNumber}
             </div>
-            <div className="farm-page__website"><a href={website}>Website</a></div>
+            <div className="farm-page__website">
+              {/* currently using mock data, so there is not a real website linked */}
+              {/* <a href={website}>Website</a> */}
+              <a href="https://farmpicks.vercel.app/">Website</a>
+            </div>
             <p className="farm-page__description">
               {farmDescription}
             </p>
