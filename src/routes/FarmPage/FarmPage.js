@@ -247,20 +247,14 @@ class FarmPage extends Component {
             </div>
 
             <address className="farm-page__address">
-              {address1}
-              ,
+              {address1 ? `${address1}, ` : ''}
               {address2 ? `${address2}, ` : ''}
-              {city}
-              ,
-              {addressState}
-              {' '}
+              {city ? `${city}, ` : ''}
+              {addressState ? `${addressState} ` : ''}
               {zipCode}
             </address>
             <div>
-              Call
-              {contactName}
-              {' '}
-              at
+              {contactName ? `Call ${contactName} at ` : ''}
               {phoneNumber}
             </div>
             <div className="farm-page__website"><a href={website}>Website</a></div>
