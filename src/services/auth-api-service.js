@@ -1,4 +1,4 @@
-import config from '../config'
+import config from '../config';
 
 const AuthApiService = {
   postLogin(credentials) {
@@ -9,16 +9,16 @@ const AuthApiService = {
       },
       body: JSON.stringify(credentials),
     })
-    .then(res => {
-      if (!res.ok) {
-        return res.json()
-          .then(error => {
-          throw error
-        })
-      }
-      return res.json()
-    })
+      .then((res) => {
+        if (!res.ok) {
+          return res.json()
+            .then((error) => {
+              throw error;
+            });
+        }
+        return res.json();
+      });
   },
-}
+};
 
-export default AuthApiService
+export default AuthApiService;
