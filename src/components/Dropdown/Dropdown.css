@@ -57,13 +57,13 @@
   }
 
   .dropdown__content > h5 {
-    font-size: 1.05em;
+    font-size: 0.9em;
   }
 }
 
-@media screen and (min-width: 700px) {
+/* @media screen and (min-width: 700px) {
   .dropdown__products > li,
   .dropdown__purchase-options > li {
     font-size: 1em;
   }
-}
+} */
