@@ -1,11 +1,8 @@
-import React, { Component } from 'react'
+import React from 'react';
+import './NotFoundPage.css';
 
-class NotFoundPage extends Component {
-  render() {
-    return (
-      <div>404 Page not found</div>
-    )
-  }
+export default function NotFoundPage() {
+  return (
+    <div className="not-found-page">404 Page not found</div>
+  );
 }
-
-export default NotFoundPage
