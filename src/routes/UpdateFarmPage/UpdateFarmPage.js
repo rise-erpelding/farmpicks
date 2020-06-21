@@ -257,7 +257,7 @@ class UpdateFarmPage extends Component {
 
     return (
       <div className="update-farm-page">
-        <h2 className="update-farm-page__title">Add a farm</h2>
+        <h2 className="update-farm-page__title">Edit farm</h2>
         <form onSubmit={this.handleSubmit}>
           <div className="update-farm-page__farm-details">
             <div className="update-farm-page__farm-details--label">
