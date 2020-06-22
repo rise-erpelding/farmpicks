@@ -1,7 +1,7 @@
 .hero {
   text-align: left;
   font-size: 1.3em;
-  padding: 15px 25px 30px 25px;
+  padding: 0px 25px 15px 25px;
 }
 
 .hero > h1 {
@@ -21,10 +21,16 @@
 @media screen and (min-width: 700px) {
   .hero {
     font-size: 2em;
-    padding: 10px 25px 35px 100px;
+    padding: 0px 25px 30px 100px;
   }
 
   .hero > p {
     font-size: 0.6em;
+  }
+}
+
+@media screen and (min-height: 800px) {
+  .hero {
+    padding: 10px 25px 40px 100px;
   }
 }
