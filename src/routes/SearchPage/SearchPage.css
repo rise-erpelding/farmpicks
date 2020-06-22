@@ -11,3 +11,10 @@
   color: #50875f;
   padding: 10px;
 }
+
+.search-page__button--onboarding {
+  font-size: 1em;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}

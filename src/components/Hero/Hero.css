@@ -21,7 +21,7 @@
 @media screen and (min-width: 700px) {
   .hero {
     font-size: 2em;
-    padding: 15px 25px 40px 100px;
+    padding: 10px 25px 35px 100px;
   }
 
   .hero > p {

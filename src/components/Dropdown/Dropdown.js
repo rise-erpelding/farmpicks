@@ -58,7 +58,7 @@ class Dropdown extends Component {
     );
 
     return (
-      <div className="dropdown">
+      <span className="dropdown">
         <button type="button" className="dropdown__button">
           See Categories
           <FontAwesomeIcon icon="caret-down" />
@@ -74,7 +74,7 @@ class Dropdown extends Component {
           </ul>
           <h5 className="dropdown__all-farms" onClick={() => this.handleSeeAllClick()}>See all farms</h5>
         </div>
-      </div>
+      </span>
 
     );
   }

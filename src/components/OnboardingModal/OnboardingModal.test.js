@@ -1,7 +1,6 @@
 /* eslint-disable no-undef */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
   faSearch,
@@ -14,7 +13,7 @@ import {
   faTimes,
 } from '@fortawesome/free-solid-svg-icons';
 import { faHeart as faHeartRegular } from '@fortawesome/free-regular-svg-icons';
-import SearchPage from './SearchPage';
+import OnboardingModal from './OnboardingModal';
 
 library.add(
   faSearch,
@@ -30,11 +29,6 @@ library.add(
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(
-    <BrowserRouter>
-      <SearchPage />
-    </BrowserRouter>,
-    div,
-  );
+  ReactDOM.render(<OnboardingModal />, div);
   ReactDOM.unmountComponentAtNode(div);
 });

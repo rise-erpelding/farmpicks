@@ -10,6 +10,8 @@ import {
   faCaretDown,
   faFilter,
   faUser,
+  faQuestionCircle,
+  faTimes,
 } from '@fortawesome/free-solid-svg-icons';
 import { faHeart as faHeartRegular } from '@fortawesome/free-regular-svg-icons';
 import App from './App';
@@ -23,6 +25,8 @@ library.add(
   faCaretDown,
   faFilter,
   faUser,
+  faQuestionCircle,
+  faTimes,
 );
 
 it('renders without crashing', () => {
