@@ -1,18 +1,17 @@
-.search-page__add-farm {
-  border: 1px solid black;
-  background-color: lightgray;
-  padding: 2px;
-  font-size: 0.9em;
-  top: 80px;
-}
-
 .search-page__farm-added--success {
   font-family: 'Lato', sans-serif;
   color: #50875f;
   padding: 10px;
 }
 
+.search-page__under-search-bar {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
 .search-page__button--onboarding {
+  padding: 10px 20px;
   font-size: 1em;
   border: none;
   background-color: transparent;

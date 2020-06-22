@@ -1,7 +1,8 @@
 .dropdown {
-  width: 192px;
+  /* display: inline-block; */
+  width: 180px;
   padding: 10px;
-  margin: auto;
+  /* margin: auto; */
 }
 
 .dropdown__button {

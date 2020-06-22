@@ -56,14 +56,15 @@ class SearchPage extends Component {
         <Hero />
         {farmAddStatus}
         <SearchBar onChangePage={this.changePage} />
-        <div>
+        <div className="search-page__under-search-bar">
           <Dropdown onChangePage={this.changePage} />
           <button
             type="button"
             onClick={this.showModal}
             className="search-page__button--onboarding"
           >
-            Getting Started
+            About
+            {' '}
             <FontAwesomeIcon icon="question-circle" />
           </button>
         </div>
